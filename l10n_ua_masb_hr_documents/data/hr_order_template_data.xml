@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data noupdate="0">
+
+        <!-- ========== ШАБЛОН НАКАЗУ ПРО ПРИЙНЯТТЯ НА РОБОТУ (П-1) ========== -->
+        <record id="masb_order_template_hiring" model="hr.order.template">
+            <field name="name">Агрошляхбуд: Наказ про прийняття на роботу (форма П-1)</field>
+            <field name="order_type">hiring</field>
+            <field name="subject">Про прийняття на роботу</field>
+            <field name="active">True</field>
+            <field name="body"><![CDATA[
+
+
+
+
+<div class="order-document" style="font-family: 'Times New Roman', serif; font-size: 14pt; line-height: 1.5;">
+    <div style="text-align: right; margin-bottom: 10px;">
+        <table style="width: 100%;">
+            <tr>
+                <td style="width: 50%;"></td>
+                <td style="width: 50%; text-align: right; font-size: 10pt;">
+                    Типова форма № П-1<br/>
+                    Затверджено наказом Держкомстату України<br/>
+                    від 05.12.2008 р. № 489
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <div style="text-align: center; margin-bottom: 20px;">
+        <strong><t t-esc="company.name or '_______________'"/></strong><br/>
+        <span style="font-size: 10pt;">(найменування підприємства, організації)</span>
+    </div>
+
+    <div style="text-align: center; margin-bottom: 20px;">
+        <h2 style="margin: 0;">НАКАЗ (РОЗПОРЯДЖЕННЯ)</h2>
+        <h3 style="margin: 5px 0;">про прийняття на роботу</h3>
+    </div>
+
+    <table style="width: 100%; margin-bottom: 20px;">
+        <tr>
+            <td style="width: 50%;">№ <t t-esc="order.name or '______'"/></td>
+            <td style="width: 50%; text-align: right;">
+                від <t t-esc="format_date_ua(order.date)"/>
+            </td>
+        </tr>
+    </table>
+
+    <div style="margin-bottom: 20px;">
+        <p><strong>ПРИЙНЯТИ</strong> на роботу з 
+            <t t-esc="format_date_ua(employee.contract_date_start) if employee else '________________________________'"/>
+            <t t-if="employee.contract_date_end">
+                 по <t t-esc="format_date_ua(employee.contract_date_end)"/> 
+            </t>
+        </p>
+        
+
+        <table style="width: 100%; border-collapse: collapse; margin: 10px 0;">
+            <tr>
+                <td style="width: 30%; padding: 5px;">Прізвище, ім'я, по батькові:</td>
+                <td style="width: 70%; padding: 5px; border-bottom: 1px solid #000;"><t t-esc="employee.name if employee else '________________________________'"/></td>
+            </tr>
+            <!--tr>
+                <td style="padding: 5px;">Табельний номер:</td>
+                <td style="padding: 5px; border-bottom: 1px solid #000;"><t t-esc="employee.barcode or '____________'" t-if="employee"/><t t-else="">____________</t></td>
+            </tr-->
+            <tr>
+                <td style="padding: 5px;">Структурний підрозділ:</td>
+                <td style="padding: 5px; border-bottom: 1px solid #000;"><t t-esc="department.name if department else '________________________________'"/></td>
+            </tr>
+            <tr>
+                <td style="padding: 5px;">Посада (професія):</td>
+                <td style="padding: 5px; border-bottom: 1px solid #000;"><t t-esc="employee.job_title if employee else '________________________________'"/></td>
+            </tr>
+        </table>
+
+        <p style="margin: 10px 0;"><strong>Підстава:</strong> заява працівника</p>
+    </div>
+
+    <div style="margin-top: 40px;">
+        <table style="width: 100%;">
+            <tr>
+                <td style="width: 40%;">Керівник підприємства</td>
+                <td style="width: 30%; text-align: center; border-bottom: 1px solid #000;"></td>
+                <td style="width: 30%; text-align: center;"><t t-esc="company.director_id.name"/></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td style="text-align: center; font-size: 10pt;">(підпис)</td>
+                <td style="text-align: center; font-size: 10pt;">(П.І.Б.)</td>
+            </tr>
+        </table>
+    </div>
+
+    <div style="margin-top: 30px;">
+        <p>З наказом ознайомлений(а):</p>
+        <table style="width: 100%; margin-top: 10px;">
+            <tr>
+                <td style="width: 30%; text-align: center; border-bottom: 1px solid #000;"></td>
+                <td style="width: 10%;"></td>
+                <td style="width: 30%; text-align: center; border-bottom: 1px solid #000;"><t t-esc="employee.name if employee else '________________________________'"/></td>
+                <td style="width: 10%;"></td>
+                <td style="width: 20%; text-align: center; border-bottom: 1px solid #000;"></td>
+            </tr>
+            <tr>
+                <td style="text-align: center; font-size: 10pt;">(підпис)</td>
+                <td></td>
+                <td style="text-align: center; font-size: 10pt;">(П.І.Б.)</td>
+                <td></td>
+                <td style="text-align: center; font-size: 10pt;">(дата)</td>
+            </tr>
+        </table>
+    </div>
+</div>
+
+
+
+	    ]]></field>
+        </record>
+
+
+
+        <!-- ========== ШАБЛОН НАКАЗУ ПРО ЗВІЛЬНЕННЯ (П-4) ========== -->
+        <record id="masb_order_template_dismissal" model="hr.order.template">
+            <field name="name">Агрошляхбуд: Наказ про припинення трудового договору (форма П-4)</field>
+            <field name="order_type">dismissal</field>
+            <field name="subject">Про припинення трудового договору</field>
+            <field name="active">True</field>
+            <field name="body"><![CDATA[
+
+<div class="order-document" style="font-family: 'Times New Roman', serif; font-size: 14pt; line-height: 1.5;" data-oe-version="2.0">
+    <div style="text-align: right; margin-bottom: 10px;">
+        <table style="width: 100%;">
+            <tbody><tr>
+                <td style="width: 50%;"></td>
+                <td style="width: 50%; text-align: right; font-size: 10pt;">
+                    Типова форма № П-4<br/>
+                    Затверджено наказом Держкомстату України<br/>
+                    від 05.12.2008 р. № 489
+                </td>
+            </tr>
+        </tbody></table>
+    </div>
+
+    <div style="text-align: center; margin-bottom: 20px;">
+        <strong><t t-esc="company.name or '_______________'"></t></strong><br/>
+        <span style="font-size: 10pt;">(найменування підприємства, організації)</span>
+    </div>
+
+    <div style="text-align: center; margin-bottom: 20px;">
+        <h2 style="margin: 0;">НАКАЗ (РОЗПОРЯДЖЕННЯ)</h2>
+        <h3 style="margin: 5px 0;">про припинення трудового договору (контракту)</h3>
+    </div>
+
+    <table style="width: 100%; margin-bottom: 20px;">
+        <tbody><tr>
+            <td style="width: 50%;">№ <t t-esc="order.name or '______'"></t></td>
+            <td style="width: 50%; text-align: right;">
+                від <t t-esc="format_date_ua(order.date)"></t>
+            </td>
+        </tr>
+    </tbody></table>
+
+    <div style="margin-bottom: 20px;">
+        <p><strong>ЗВІЛЬНИТИ</strong>:</p>
+
+        <table style="width: 100%; border-collapse: collapse; margin: 10px 0;">
+            <tbody><tr>
+                <td style="width: 30%; padding: 5px;">Прізвище, ім'я, по батькові:</td>
+                <td style="width: 70%; padding: 5px; border-bottom: 1px solid #000;"><t t-esc="employee.name if employee else '________________________________'"></t></td>
+            </tr>
+            <!--tr>
+                <td style="padding: 5px;">Табельний номер:</td>
+                <td style="padding: 5px; border-bottom: 1px solid #000;"><t t-esc="employee.barcode or '____________'" t-if="employee"></t><t t-else="">____________</t></td>
+            </tr-->
+            <tr>
+                <td style="padding: 5px;">Структурний підрозділ:</td>
+                <td style="padding: 5px; border-bottom: 1px solid #000;"><t t-esc="department.name if department else '________________________________'"></t></td>
+            </tr>
+            <tr>
+                <td style="padding: 5px;">Посада (професія):</td>
+                <td style="padding: 5px; border-bottom: 1px solid #000;"><t t-esc="employee.job_title if employee else '________________________________'"></t></td>
+            </tr>
+        </tbody></table>
+
+        <p style="margin: 10px 0;"><strong>Причина звільнення:</strong> за власним бажанням, ст. 38 КЗпП України</p>
+        <p style="margin: 10px 0;"><strong>Підстава:</strong> заява працівника</p>
+        <p style="margin: 10px 0;">Бухгалтерії підприємства виплатити компенсацію за <t t-esc="employee.allocations_count-employee.allocation_count or '0'"></t> календарних днів невикористаної відпустки</p>
+    </div>
+
+    <div style="margin-top: 40px;">
+        <table style="width: 100%;">
+            <tbody><tr>
+                <td style="width: 40%;">Керівник підприємства</td>
+                <td style="width: 30%; text-align: center; border-bottom: 1px solid #000;"></td>
+                <td style="width: 30%; text-align: center;"><t t-esc="company.director_id.name"></t></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td style="text-align: center; font-size: 10pt;">(підпис)</td>
+                <td style="text-align: center; font-size: 10pt;">(П.І.Б.)</td>
+            </tr>
+        </tbody></table>
+    </div>
+
+    <div style="margin-top: 30px;">
+        <p>З наказом ознайомлений(а):</p>
+        <table style="width: 100%; margin-top: 10px;">
+            <tbody><tr>
+                <td style="width: 30%; text-align: center; border-bottom: 1px solid #000;"></td>
+                <td style="width: 10%;"></td>
+                <td style="width: 30%; text-align: center; border-bottom: 1px solid #000;"><t t-esc="employee.name if employee else '________________________________'"></t></td>
+                <td style="width: 10%;"></td>
+                <td style="width: 20%; text-align: center; border-bottom: 1px solid #000;"></td>
+            </tr>
+            <tr>
+                <td style="text-align: center; font-size: 10pt;">(підпис)</td>
+                <td></td>
+                <td style="text-align: center; font-size: 10pt;">(П.І.Б.)</td>
+                <td></td>
+                <td style="text-align: center; font-size: 10pt;">(дата)</td>
+            </tr>
+        </tbody></table>
+    </div>
+</div>
+
+
+
+	    ]]></field>
+        </record>
+
+
+
+    </data>
+</odoo>
