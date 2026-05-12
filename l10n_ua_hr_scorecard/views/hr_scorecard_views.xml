@@ -128,20 +128,27 @@
                 <field name="name"/>
                 <field name="employee_id"/>
                 <field name="period_id"/>
-                <filter string="Draft" name="filter_draft" domain="[('state', '=', 'draft')]"/>
-                <filter string="Confirmed" name="filter_confirmed" domain="[('state', '=', 'confirmed')]"/>
-                <filter string="Closed" name="filter_closed" domain="[('state', '=', 'closed')]"/>
+                <separator/>
+                <filter string="Draft" name="filter_draft"
+                        domain="[('state', '=', 'draft')]"/>
+                <filter string="Confirmed" name="filter_confirmed"
+                        domain="[('state', '=', 'confirmed')]"/>
+                <filter string="Closed" name="filter_closed"
+                        domain="[('state', '=', 'closed')]"/>
                 <separator/>
                 <filter string="Bonus Accrued" name="filter_final_accrued"
                         domain="[('final_accrued', '=', True)]"/>
                 <filter string="Pending Accrual" name="filter_not_accrued"
                         domain="[('final_accrued', '=', False), ('state', 'in', ('confirmed', 'closed'))]"/>
-                <group expand="0" string="Group By">
-                    <filter string="Employee" name="group_employee" context="{'group_by': 'employee_id'}"/>
-                    <filter string="Period" name="group_period" context="{'group_by': 'period_id'}"/>
-                    <filter string="Department" name="group_department" context="{'group_by': 'department_id'}"/>
-                    <filter string="Status" name="group_state" context="{'group_by': 'state'}"/>
-                </group>
+                <separator/>
+                <filter string="Employee" name="group_employee"
+                        context="{'group_by': 'employee_id'}"/>
+                <filter string="Period" name="group_period"
+                        context="{'group_by': 'period_id'}"/>
+                <filter string="Department" name="group_department"
+                        context="{'group_by': 'department_id'}"/>
+                <filter string="Status" name="group_state"
+                        context="{'group_by': 'state'}"/>
             </search>
         </field>
     </record>

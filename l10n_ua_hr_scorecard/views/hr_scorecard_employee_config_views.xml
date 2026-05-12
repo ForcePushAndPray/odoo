@@ -60,18 +60,19 @@
             <search string="Employee KPI Configs">
                 <field name="employee_id"/>
                 <field name="bonus_type_id"/>
+                <separator/>
                 <filter string="Period-based" name="filter_period"
                         domain="[('bonus_model', '=', 'period')]"/>
                 <filter string="Monthly Advance" name="filter_monthly"
                         domain="[('bonus_model', '=', 'monthly_advance')]"/>
-                <filter string="Archived" name="filter_inactive"
+                <separator/>
+                <filter string="Archived" name="filter_archived"
                         domain="[('active', '=', False)]"/>
-                <group expand="0" string="Group By">
-                    <filter string="Bonus Model" name="group_model"
-                            context="{'group_by': 'bonus_model'}"/>
-                    <filter string="Company" name="group_company"
-                            context="{'group_by': 'company_id'}"/>
-                </group>
+                <separator/>
+                <filter string="Bonus Model" name="group_model"
+                        context="{'group_by': 'bonus_model'}"/>
+                <filter string="Company" name="group_company"
+                        context="{'group_by': 'company_id'}"/>
             </search>
         </field>
     </record>
