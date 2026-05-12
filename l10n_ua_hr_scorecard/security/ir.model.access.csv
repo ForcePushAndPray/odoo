@@ -1,0 +1,15 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_hr_kpi_user,hr.kpi.user,model_hr_kpi,hr.group_hr_user,1,0,0,0
+access_hr_kpi_manager,hr.kpi.manager,model_hr_kpi,l10n_ua_hr_base.group_hr_ua_manager,1,1,1,1
+access_hr_kpi_period_user,hr.kpi.period.user,model_hr_kpi_period,hr.group_hr_user,1,0,0,0
+access_hr_kpi_period_officer,hr.kpi.period.officer,model_hr_kpi_period,l10n_ua_hr_base.group_hr_ua_officer,1,1,1,0
+access_hr_kpi_period_manager,hr.kpi.period.manager,model_hr_kpi_period,l10n_ua_hr_base.group_hr_ua_manager,1,1,1,1
+access_hr_scorecard_user,hr.scorecard.user,model_hr_scorecard,hr.group_hr_user,1,0,0,0
+access_hr_scorecard_officer,hr.scorecard.officer,model_hr_scorecard,l10n_ua_hr_base.group_hr_ua_officer,1,1,1,0
+access_hr_scorecard_manager,hr.scorecard.manager,model_hr_scorecard,l10n_ua_hr_base.group_hr_ua_manager,1,1,1,1
+access_hr_scorecard_line_user,hr.scorecard.line.user,model_hr_scorecard_line,hr.group_hr_user,1,0,0,0
+access_hr_scorecard_line_officer,hr.scorecard.line.officer,model_hr_scorecard_line,l10n_ua_hr_base.group_hr_ua_officer,1,1,1,1
+access_hr_scorecard_line_manager,hr.scorecard.line.manager,model_hr_scorecard_line,l10n_ua_hr_base.group_hr_ua_manager,1,1,1,1
+access_hr_scorecard_employee_config_user,hr.scorecard.employee.config.user,model_hr_scorecard_employee_config,hr.group_hr_user,1,0,0,0
+access_hr_scorecard_employee_config_officer,hr.scorecard.employee.config.officer,model_hr_scorecard_employee_config,l10n_ua_hr_base.group_hr_ua_officer,1,1,1,0
+access_hr_scorecard_employee_config_manager,hr.scorecard.employee.config.manager,model_hr_scorecard_employee_config,l10n_ua_hr_base.group_hr_ua_manager,1,1,1,1

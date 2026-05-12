@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <menuitem id="menu_hr_scorecard_root"
+              name="KPI Scorecards"
+              parent="hr.menu_hr_root"
+              sequence="55"/>
+
+    <menuitem id="menu_hr_scorecard"
+              name="Scorecards"
+              parent="menu_hr_scorecard_root"
+              action="action_hr_scorecard"
+              sequence="10"/>
+
+    <menuitem id="menu_hr_scorecard_employee_config"
+              name="Employee KPI Configs"
+              parent="menu_hr_scorecard_root"
+              action="action_hr_scorecard_employee_config"
+              sequence="20"
+              groups="l10n_ua_hr_base.group_hr_ua_officer"/>
+
+    <menuitem id="menu_hr_scorecard_config"
+              name="Configuration"
+              parent="menu_hr_scorecard_root"
+              sequence="90"
+              groups="l10n_ua_hr_base.group_hr_ua_manager"/>
+
+    <menuitem id="menu_hr_kpi"
+              name="KPIs"
+              parent="menu_hr_scorecard_config"
+              action="action_hr_kpi"
+              sequence="10"/>
+
+    <menuitem id="menu_hr_kpi_period"
+              name="Periods"
+              parent="menu_hr_scorecard_config"
+              action="action_hr_kpi_period"
+              sequence="20"/>
+
+</odoo>

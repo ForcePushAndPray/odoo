@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="hr_scorecard_company_rule" model="ir.rule">
+        <field name="name">Scorecard: Multi-company</field>
+        <field name="model_id" ref="model_hr_scorecard"/>
+        <field name="domain_force">[('company_id', 'in', company_ids)]</field>
+    </record>
+
+    <record id="hr_kpi_company_rule" model="ir.rule">
+        <field name="name">KPI: Multi-company</field>
+        <field name="model_id" ref="model_hr_kpi"/>
+        <field name="domain_force">['|', ('company_id', '=', False), ('company_id', 'in', company_ids)]</field>
+    </record>
+
+    <record id="hr_kpi_period_company_rule" model="ir.rule">
+        <field name="name">KPI Period: Multi-company</field>
+        <field name="model_id" ref="model_hr_kpi_period"/>
+        <field name="domain_force">['|', ('company_id', '=', False), ('company_id', 'in', company_ids)]</field>
+    </record>
+
+    <record id="hr_scorecard_employee_config_company_rule" model="ir.rule">
+        <field name="name">Scorecard Employee Config: Multi-company</field>
+        <field name="model_id" ref="model_hr_scorecard_employee_config"/>
+        <field name="domain_force">[('company_id', 'in', company_ids)]</field>
+    </record>
+
+</odoo>

@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <record id="hr_scorecard_employee_config_view_form" model="ir.ui.view">
+        <field name="name">hr.scorecard.employee.config.form</field>
+        <field name="model">hr.scorecard.employee.config</field>
+        <field name="arch" type="xml">
+            <form string="Employee KPI Config">
+                <sheet>
+                    <widget name="web_ribbon" title="Archived"
+                            bg_color="bg-danger" invisible="active"/>
+                    <div class="oe_title">
+                        <label for="employee_id"/>
+                        <h1><field name="employee_id"/></h1>
+                    </div>
+                    <group>
+                        <group string="Compensation Split">
+                            <field name="salary_pct"/>
+                            <field name="bonus_pct"/>
+                        </group>
+                        <group string="Bonus Defaults">
+                            <field name="bonus_model"/>
+                            <field name="bonus_base"/>
+                            <field name="bonus_type_id"/>
+                            <field name="currency_id" invisible="1"/>
+                        </group>
+                    </group>
+                    <group>
+                        <field name="company_id" groups="base.group_multi_company"/>
+                        <field name="active"/>
+                    </group>
+                    <separator string="Notes"/>
+                    <field name="notes" placeholder="Notes..."/>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="hr_scorecard_employee_config_view_list" model="ir.ui.view">
+        <field name="name">hr.scorecard.employee.config.list</field>
+        <field name="model">hr.scorecard.employee.config</field>
+        <field name="arch" type="xml">
+            <list string="Employee KPI Configs">
+                <field name="employee_id"/>
+                <field name="salary_pct"/>
+                <field name="bonus_pct"/>
+                <field name="bonus_model"/>
+                <field name="bonus_base"/>
+                <field name="bonus_type_id"/>
+                <field name="currency_id" column_invisible="1"/>
+                <field name="company_id" groups="base.group_multi_company"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="hr_scorecard_employee_config_view_search" model="ir.ui.view">
+        <field name="name">hr.scorecard.employee.config.search</field>
+        <field name="model">hr.scorecard.employee.config</field>
+        <field name="arch" type="xml">
+            <search string="Employee KPI Configs">
+                <field name="employee_id"/>
+                <field name="bonus_type_id"/>
+                <filter string="Period-based" name="filter_period"
+                        domain="[('bonus_model', '=', 'period')]"/>
+                <filter string="Monthly Advance" name="filter_monthly"
+                        domain="[('bonus_model', '=', 'monthly_advance')]"/>
+                <filter string="Archived" name="filter_inactive"
+                        domain="[('active', '=', False)]"/>
+                <group expand="0" string="Group By">
+                    <filter string="Bonus Model" name="group_model"
+                            context="{'group_by': 'bonus_model'}"/>
+                    <filter string="Company" name="group_company"
+                            context="{'group_by': 'company_id'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_hr_scorecard_employee_config" model="ir.actions.act_window">
+        <field name="name">Employee KPI Configs</field>
+        <field name="res_model">hr.scorecard.employee.config</field>
+        <field name="view_mode">list,form</field>
+        <field name="search_view_id" ref="hr_scorecard_employee_config_view_search"/>
+    </record>
+
+</odoo>
