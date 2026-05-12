@@ -55,12 +55,17 @@
             <search string="KPIs">
                 <field name="name"/>
                 <field name="code"/>
-                <filter string="Binary" name="filter_binary" domain="[('calculation_method', '=', 'binary')]"/>
-                <filter string="Coefficient" name="filter_coef" domain="[('calculation_method', '=', 'coefficient')]"/>
-                <filter string="Archived" name="inactive" domain="[('active', '=', False)]"/>
-                <group expand="0" string="Group By">
-                    <filter string="Calculation Method" name="group_method" context="{'group_by': 'calculation_method'}"/>
-                </group>
+                <separator/>
+                <filter string="Binary" name="filter_binary"
+                        domain="[('calculation_method', '=', 'binary')]"/>
+                <filter string="Coefficient" name="filter_coefficient"
+                        domain="[('calculation_method', '=', 'coefficient')]"/>
+                <separator/>
+                <filter string="Archived" name="filter_archived"
+                        domain="[('active', '=', False)]"/>
+                <separator/>
+                <filter string="Calculation Method" name="group_method"
+                        context="{'group_by': 'calculation_method'}"/>
             </search>
         </field>
     </record>
