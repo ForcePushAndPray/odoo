@@ -30,6 +30,14 @@ class HrKpi(models.Model):
         string='Company',
         default=lambda self: self.env.company,
     )
+    job_ids = fields.Many2many(
+        'hr.job',
+        'hr_kpi_job_rel',
+        'kpi_id',
+        'job_id',
+        string='Job Positions',
+        help='Staffing positions to which this KPI applies.',
+    )
 
     _sql_constraints = [
         ('code_company_uniq', 'unique(code, company_id)',

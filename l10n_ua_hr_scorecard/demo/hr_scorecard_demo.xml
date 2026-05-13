@@ -29,5 +29,22 @@
             <field name="date_to">2026-03-31</field>
         </record>
 
+        <record id="target_sales_q1" model="hr.kpi.target">
+            <field name="kpi_id" ref="kpi_sales_target"/>
+            <field name="period_id" ref="period_q1_2026"/>
+            <field name="planned_value">1000000</field>
+        </record>
+
+        <record id="target_visits_q1" model="hr.kpi.target">
+            <field name="kpi_id" ref="kpi_customer_visits"/>
+            <field name="period_id" ref="period_q1_2026"/>
+            <field name="planned_value">60</field>
+        </record>
+
+        <record id="target_report_q1" model="hr.kpi.target">
+            <field name="kpi_id" ref="kpi_quarterly_report"/>
+            <field name="period_id" ref="period_q1_2026"/>
+        </record>
+
     </data>
 </odoo>

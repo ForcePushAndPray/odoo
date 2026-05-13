@@ -4,6 +4,9 @@ access_hr_kpi_manager,hr.kpi.manager,model_hr_kpi,l10n_ua_hr_base.group_hr_ua_ma
 access_hr_kpi_period_user,hr.kpi.period.user,model_hr_kpi_period,hr.group_hr_user,1,0,0,0
 access_hr_kpi_period_officer,hr.kpi.period.officer,model_hr_kpi_period,l10n_ua_hr_base.group_hr_ua_officer,1,1,1,0
 access_hr_kpi_period_manager,hr.kpi.period.manager,model_hr_kpi_period,l10n_ua_hr_base.group_hr_ua_manager,1,1,1,1
+access_hr_kpi_target_user,hr.kpi.target.user,model_hr_kpi_target,hr.group_hr_user,1,0,0,0
+access_hr_kpi_target_officer,hr.kpi.target.officer,model_hr_kpi_target,l10n_ua_hr_base.group_hr_ua_officer,1,1,1,0
+access_hr_kpi_target_manager,hr.kpi.target.manager,model_hr_kpi_target,l10n_ua_hr_base.group_hr_ua_manager,1,1,1,1
 access_hr_scorecard_user,hr.scorecard.user,model_hr_scorecard,hr.group_hr_user,1,0,0,0
 access_hr_scorecard_officer,hr.scorecard.officer,model_hr_scorecard,l10n_ua_hr_base.group_hr_ua_officer,1,1,1,0
 access_hr_scorecard_manager,hr.scorecard.manager,model_hr_scorecard,l10n_ua_hr_base.group_hr_ua_manager,1,1,1,1
@@ -13,3 +16,5 @@ access_hr_scorecard_line_manager,hr.scorecard.line.manager,model_hr_scorecard_li
 access_hr_scorecard_employee_config_user,hr.scorecard.employee.config.user,model_hr_scorecard_employee_config,hr.group_hr_user,1,0,0,0
 access_hr_scorecard_employee_config_officer,hr.scorecard.employee.config.officer,model_hr_scorecard_employee_config,l10n_ua_hr_base.group_hr_ua_officer,1,1,1,0
 access_hr_scorecard_employee_config_manager,hr.scorecard.employee.config.manager,model_hr_scorecard_employee_config,l10n_ua_hr_base.group_hr_ua_manager,1,1,1,1
+access_hr_kpi_assign_wizard_officer,hr.kpi.assign.wizard.officer,model_hr_kpi_assign_wizard,l10n_ua_hr_base.group_hr_ua_officer,1,1,1,1
+access_hr_kpi_assign_wizard_manager,hr.kpi.assign.wizard.manager,model_hr_kpi_assign_wizard,l10n_ua_hr_base.group_hr_ua_manager,1,1,1,1

@@ -50,21 +50,19 @@
                     </group>
                     <notebook>
                         <page string="KPI Lines" name="lines">
-                            <field name="line_ids" readonly="state == 'closed'">
+                            <field name="line_ids">
                                 <list editable="bottom">
                                     <field name="sequence" widget="handle"/>
                                     <field name="kpi_id"/>
                                     <field name="calculation_method"/>
                                     <field name="weight" sum="Total weight"/>
-                                    <field name="planned_value"
-                                           readonly="calculation_method == 'binary'"/>
-                                    <field name="actual_value"
-                                           readonly="calculation_method == 'binary'"/>
-                                    <field name="binary_achieved"
-                                           readonly="calculation_method != 'binary'"/>
+                                    <field name="planned_value"/>
+                                    <field name="actual_value"/>
+                                    <field name="binary_achieved" optional="hide"/>
                                     <field name="uom_name" optional="hide"/>
                                     <field name="achievement"/>
                                     <field name="weighted_achievement" sum="Weighted result"/>
+                                    <field name="target_state" optional="show"/>
                                 </list>
                             </field>
                             <group class="oe_subtotal_footer oe_right">

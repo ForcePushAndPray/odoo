@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <record id="hr_scorecard_view_form_kpi_layout" model="ir.ui.view">
+        <field name="name">hr.scorecard.form.kpi.layout</field>
+        <field name="model">hr.scorecard</field>
+        <field name="priority">20</field>
+        <field name="arch" type="xml">
+            <form string="KPI Scorecard">
+                <header>
+                    <button name="action_confirm" string="Confirm" type="object"
+                            class="btn-primary" invisible="state != 'draft'"/>
+                    <button name="action_close" string="Close" type="object"
+                            class="btn-primary" invisible="state != 'confirmed'"/>
+                    <button name="action_draft" string="Reset to Draft" type="object"
+                            invisible="state == 'draft'"/>
+                    <button name="action_accrue_bonus" string="Accrue Bonus" type="object"
+                            class="btn-primary"
+                            invisible="state == 'draft' or (bonus_model == 'period' and state != 'closed') or (bonus_model == 'monthly_advance' and advances_accrued and final_accrued) or (bonus_model == 'period' and final_accrued)"
+                            groups="l10n_ua_hr_base.group_hr_ua_officer"/>
+                    <field name="state" widget="statusbar"
+                           statusbar_visible="draft,confirmed,closed"/>
+                </header>
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button name="action_open_bonuses" type="object"
+                                class="oe_stat_button" icon="fa-money"
+                                invisible="bonus_count == 0">
+                            <field name="bonus_count" widget="statinfo" string="Bonuses"/>
+                        </button>
+                    </div>
+                    <div class="oe_title">
+                        <label for="name"/>
+                        <h1><field name="name"/></h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="employee_id" readonly="state != 'draft'"/>
+                            <field name="period_id" readonly="state != 'draft'"/>
+                            <field name="company_id" groups="base.group_multi_company"/>
+                        </group>
+                        <group>
+                            <field name="bonus_base"/>
+                            <field name="weighted_result"/>
+                            <field name="bonus_amount"/>
+                            <field name="currency_id" invisible="1"/>
+                        </group>
+                    </group>
+                    <field name="line_ids">
+                        <list editable="bottom">
+                            <field name="sequence" widget="handle"/>
+                            <field name="kpi_id"/>
+                            <field name="calculation_method"/>
+                            <field name="planned_value"/>
+                            <field name="actual_value"/>
+                            <field name="binary_achieved" optional="hide"/>
+                            <field name="achievement"/>
+                            <field name="weight" sum="Total"/>
+                            <field name="weighted_achievement" sum="Weighted"/>
+                            <field name="target_state" optional="hide"/>
+                        </list>
+                    </field>
+                </sheet>
+                <chatter/>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_hr_scorecard_kpi_layout" model="ir.actions.act_window">
+        <field name="name">KPI Scorecard</field>
+        <field name="res_model">hr.scorecard</field>
+        <field name="view_mode">list,form</field>
+        <field name="views"
+               eval="[(ref('hr_scorecard_view_list'), 'list'),
+                      (ref('hr_scorecard_view_form_kpi_layout'), 'form')]"/>
+        <field name="search_view_id" ref="hr_scorecard_view_search"/>
+        <field name="context">{'search_default_group_period': 1}</field>
+    </record>
+
+</odoo>

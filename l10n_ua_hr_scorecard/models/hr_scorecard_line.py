@@ -17,6 +17,21 @@ class HrScorecardLine(models.Model):
     )
     sequence = fields.Integer(default=10)
     kpi_id = fields.Many2one('hr.kpi', string='KPI', required=True)
+    period_id = fields.Many2one(
+        'hr.kpi.period',
+        related='scorecard_id.period_id',
+        store=True,
+        readonly=True,
+    )
+    target_id = fields.Many2one(
+        'hr.kpi.target',
+        string='Target',
+        compute='_compute_target_id',
+        store=True,
+        readonly=True,
+        help='Period-level planned/actual values for this KPI. '
+             'Created automatically when the line is saved.',
+    )
     calculation_method = fields.Selection(
         related='kpi_id.calculation_method',
         store=True,
@@ -32,22 +47,32 @@ class HrScorecardLine(models.Model):
         required=True,
         default=0.0,
         help='Weight of this KPI in the overall scorecard. All weights on a confirmed '
-             'scorecard must total 100%.',
+             'scorecard must total 100%. Always editable.',
     )
-    planned_value = fields.Float(string='Planned Value')
-    actual_value = fields.Float(string='Actual Value')
+    planned_value = fields.Float(
+        related='target_id.planned_value',
+        readonly=True,
+    )
+    actual_value = fields.Float(
+        related='target_id.actual_value',
+        readonly=True,
+    )
     binary_achieved = fields.Boolean(
-        string='Achieved',
-        help='Used when calculation method is Binary.',
+        related='target_id.binary_achieved',
+        readonly=True,
+    )
+    target_state = fields.Selection(
+        related='target_id.state',
+        readonly=True,
     )
     achievement = fields.Float(
-        string='Achievement (%)',
-        compute='_compute_achievement',
+        related='target_id.achievement',
         store=True,
+        readonly=True,
     )
     weighted_achievement = fields.Float(
         string='Weighted (%)',
-        compute='_compute_achievement',
+        compute='_compute_weighted_achievement',
         store=True,
         help='achievement x weight / 100',
     )
@@ -63,26 +88,23 @@ class HrScorecardLine(models.Model):
             if line.weight < 0 or line.weight > 100:
                 raise ValidationError(_('Weight must be between 0 and 100.'))
 
-    @api.depends(
-        'calculation_method', 'higher_is_better',
-        'planned_value', 'actual_value', 'binary_achieved', 'weight',
-    )
-    def _compute_achievement(self):
+    @api.depends('kpi_id', 'scorecard_id.period_id', 'scorecard_id.company_id')
+    def _compute_target_id(self):
+        Target = self.env['hr.kpi.target']
         for line in self:
-            if line.calculation_method == 'binary':
-                achievement = 100.0 if line.binary_achieved else 0.0
-            else:
-                if not line.planned_value:
-                    achievement = 0.0
-                elif line.higher_is_better:
-                    achievement = line.actual_value / line.planned_value * 100.0
-                else:
-                    if not line.actual_value:
-                        achievement = 0.0
-                    else:
-                        achievement = line.planned_value / line.actual_value * 100.0
-            line.achievement = float_round(achievement, precision_digits=2)
+            if not line.kpi_id or not line.scorecard_id.period_id:
+                line.target_id = False
+                continue
+            line.target_id = Target.get_or_create(
+                line.kpi_id,
+                line.scorecard_id.period_id,
+                line.scorecard_id.company_id,
+            )
+
+    @api.depends('achievement', 'weight')
+    def _compute_weighted_achievement(self):
+        for line in self:
             line.weighted_achievement = float_round(
-                line.achievement * line.weight / 100.0,
+                (line.achievement or 0.0) * (line.weight or 0.0) / 100.0,
                 precision_digits=2,
             )

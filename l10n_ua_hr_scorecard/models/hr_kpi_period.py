@@ -24,6 +24,11 @@ class HrKpiPeriod(models.Model):
         string='Company',
         default=lambda self: self.env.company,
     )
+    target_ids = fields.One2many(
+        'hr.kpi.target',
+        'period_id',
+        string='KPI Targets',
+    )
 
     @api.constrains('date_from', 'date_to')
     def _check_dates(self):

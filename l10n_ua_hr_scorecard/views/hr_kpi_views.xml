@@ -25,6 +25,10 @@
                             <field name="company_id" groups="base.group_multi_company"/>
                         </group>
                     </group>
+                    <group string="Applies to Positions">
+                        <field name="job_ids" widget="many2many_tags"
+                               options="{'no_create': True}" nolabel="1"/>
+                    </group>
                     <group string="Description">
                         <field name="description" nolabel="1"/>
                     </group>

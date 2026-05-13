@@ -33,8 +33,15 @@ Features
   HR/payroll modules are not modified
 * Automatic bonus accrual into `hr.bonus` (from
   `l10n_ua_hr_salary_bonus`) on demand from the scorecard or period
+* Period-level KPI targets (`hr.kpi.target`) with confirm/draft lifecycle:
+  planned and actual values are shared across every employee scorecard
+  that uses the KPI in that period, and become read-only after confirmation
+* "KPI Targets" master-detail UI for maintaining values by period
+* Optional link between a KPI and one or more staffing positions (`hr.job`)
+* Additional "KPI Scorecard" form view focused on per-employee weights
     """,
-    'author': 'Vlad Patenko',
+    'author': 'NDEV',
+    'website': 'https://ndev.online',
     'license': 'LGPL-3',
     'depends': [
         'l10n_ua_hr_base',
@@ -46,8 +53,11 @@ Features
         'data/ir_sequence_data.xml',
         'views/hr_kpi_views.xml',
         'views/hr_kpi_period_views.xml',
+        'views/hr_kpi_target_views.xml',
+        'views/hr_kpi_assign_wizard_views.xml',
         'views/hr_scorecard_employee_config_views.xml',
         'views/hr_scorecard_views.xml',
+        'views/hr_scorecard_kpi_layout_views.xml',
         'views/menu_views.xml',
     ],
     'demo': [
