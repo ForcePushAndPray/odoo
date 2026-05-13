@@ -104,41 +104,19 @@ class HrKpiTarget(models.Model):
                 raise UserError(_('Only confirmed targets can be reset to draft.'))
         self.write({'state': 'draft'})
 
-    def action_open_employees(self):
-        """Open employees who have this KPI in this period via a scorecard line."""
-        self.ensure_one()
-        lines = self.env['hr.scorecard.line'].search([
-            ('kpi_id', '=', self.kpi_id.id),
-            ('scorecard_id.period_id', '=', self.period_id.id),
-            ('scorecard_id.company_id', 'in', self.env.companies.ids),
-        ])
-        employees = lines.mapped('scorecard_id.employee_id')
-        return {
-            'type': 'ir.actions.act_window',
-            'name': _('Employees with %s in %s') % (
-                self.kpi_id.name, self.period_id.name,
-            ),
-            'res_model': 'hr.employee',
-            'view_mode': 'list,form',
-            'domain': [('id', 'in', employees.ids)],
-            'context': {
-                'default_kpi_id': self.kpi_id.id,
-                'default_period_id': self.period_id.id,
-            },
-        }
-
-    def action_assign_to_employee(self):
-        """Open the wizard to assign this KPI to one or more employees."""
+    def action_open_assignments(self):
+        """Open the wizard to view and edit employees assigned to this KPI."""
         self.ensure_one()
         return {
             'type': 'ir.actions.act_window',
-            'name': _('Assign KPI to Employee'),
+            'name': _('KPI Assignments'),
             'res_model': 'hr.kpi.assign.wizard',
             'view_mode': 'form',
             'target': 'new',
             'context': {
                 'default_kpi_id': self.kpi_id.id,
                 'default_period_id': self.period_id.id,
+                'default_company_id': self.company_id.id,
             },
         }
 

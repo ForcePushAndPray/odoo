@@ -36,15 +36,9 @@
                             <field name="employee_id" readonly="state != 'draft'"/>
                             <field name="department_id"/>
                             <field name="period_id" readonly="state != 'draft'"/>
-                            <field name="company_id" groups="base.group_multi_company"/>
-                        </group>
-                        <group>
-                            <field name="bonus_model" readonly="state != 'draft'"/>
-                            <field name="bonus_type_id" readonly="advances_accrued or final_accrued"/>
-                            <field name="bonus_base" readonly="state == 'closed' or advances_accrued"/>
-                            <field name="advances_accrued"
-                                   invisible="bonus_model != 'monthly_advance'"/>
-                            <field name="final_accrued"/>
+                            <field name="company_id"
+                                   options="{'no_create': True, 'no_open': True}"
+                                   groups="base.group_multi_company"/>
                             <field name="currency_id" invisible="1"/>
                         </group>
                     </group>
@@ -71,21 +65,6 @@
                                 <field name="bonus_amount"/>
                             </group>
                         </page>
-                        <page string="Accrued Bonuses" name="bonuses">
-                            <field name="bonus_ids">
-                                <list>
-                                    <field name="name"/>
-                                    <field name="date"/>
-                                    <field name="bonus_type_id"/>
-                                    <field name="amount" sum="Total"/>
-                                    <field name="state" widget="badge"
-                                           decoration-success="state == 'paid'"
-                                           decoration-info="state == 'draft'"
-                                           decoration-warning="state == 'confirmed'"/>
-                                    <field name="currency_id" column_invisible="1"/>
-                                </list>
-                            </field>
-                        </page>
                         <page string="Notes" name="notes">
                             <field name="notes" placeholder="Notes..."/>
                         </page>
@@ -102,13 +81,17 @@
         <field name="arch" type="xml">
             <list string="Scorecards" decoration-muted="state == 'closed'"
                   decoration-info="state == 'draft'">
+                <control>
+                    <create string="New"/>
+                    <button name="%(action_hr_kpi_bulk_assign)d" type="action"
+                            string="Assign" class="btn-secondary"
+                            groups="l10n_ua_hr_base.group_hr_ua_officer"/>
+                </control>
+                <field name="period_id"/>
                 <field name="name"/>
                 <field name="employee_id"/>
                 <field name="department_id" optional="show"/>
-                <field name="period_id"/>
                 <field name="weighted_result"/>
-                <field name="bonus_amount" sum="Total"/>
-                <field name="bonus_count" optional="show"/>
                 <field name="currency_id" column_invisible="1"/>
                 <field name="state" widget="badge"
                        decoration-success="state == 'closed'"
@@ -147,6 +130,10 @@
                         context="{'group_by': 'department_id'}"/>
                 <filter string="Status" name="group_state"
                         context="{'group_by': 'state'}"/>
+                <searchpanel>
+                    <field name="period_id" string="Periods"
+                           enable_counters="1" expand="1" icon="fa-calendar"/>
+                </searchpanel>
             </search>
         </field>
     </record>

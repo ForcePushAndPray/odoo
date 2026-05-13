@@ -23,6 +23,7 @@ class HrKpiPeriod(models.Model):
         'res.company',
         string='Company',
         default=lambda self: self.env.company,
+        domain=lambda self: [('id', 'in', self.env.companies.ids)],
     )
     target_ids = fields.One2many(
         'hr.kpi.target',

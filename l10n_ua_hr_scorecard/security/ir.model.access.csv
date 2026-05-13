@@ -18,3 +18,5 @@ access_hr_scorecard_employee_config_officer,hr.scorecard.employee.config.officer
 access_hr_scorecard_employee_config_manager,hr.scorecard.employee.config.manager,model_hr_scorecard_employee_config,l10n_ua_hr_base.group_hr_ua_manager,1,1,1,1
 access_hr_kpi_assign_wizard_officer,hr.kpi.assign.wizard.officer,model_hr_kpi_assign_wizard,l10n_ua_hr_base.group_hr_ua_officer,1,1,1,1
 access_hr_kpi_assign_wizard_manager,hr.kpi.assign.wizard.manager,model_hr_kpi_assign_wizard,l10n_ua_hr_base.group_hr_ua_manager,1,1,1,1
+access_hr_kpi_bulk_assign_wizard_officer,hr.kpi.bulk.assign.wizard.officer,model_hr_kpi_bulk_assign_wizard,l10n_ua_hr_base.group_hr_ua_officer,1,1,1,1
+access_hr_kpi_bulk_assign_wizard_manager,hr.kpi.bulk.assign.wizard.manager,model_hr_kpi_bulk_assign_wizard,l10n_ua_hr_base.group_hr_ua_manager,1,1,1,1

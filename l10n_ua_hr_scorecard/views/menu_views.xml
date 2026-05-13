@@ -2,22 +2,15 @@
 <odoo>
 
     <menuitem id="menu_hr_scorecard_root"
-              name="KPI Scorecards"
+              name="KPI"
               parent="hr.menu_hr_root"
               sequence="55"/>
 
     <menuitem id="menu_hr_kpi_targets"
-              name="KPI Targets"
+              name="Targets"
               parent="menu_hr_scorecard_root"
               action="action_hr_kpi_targets"
               sequence="5"
-              groups="l10n_ua_hr_base.group_hr_ua_officer"/>
-
-    <menuitem id="menu_hr_scorecard_kpi_layout"
-              name="KPI Scorecard"
-              parent="menu_hr_scorecard_root"
-              action="action_hr_scorecard_kpi_layout"
-              sequence="8"
               groups="l10n_ua_hr_base.group_hr_ua_officer"/>
 
     <menuitem id="menu_hr_scorecard"

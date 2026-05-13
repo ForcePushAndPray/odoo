@@ -117,7 +117,8 @@ class HrScorecard(models.Model):
         string='Company',
         required=True,
         default=lambda self: self.env.company,
-    )
+        domain=lambda self: [('id', 'in', self.env.companies.ids)],
+    )    
     state = fields.Selection([
         ('draft', 'Draft'),
         ('confirmed', 'Confirmed'),

@@ -7,14 +7,9 @@
         <field name="arch" type="xml">
             <form string="KPI Period">
                 <header>
-                    <button name="action_close" string="Close Period" type="object"
-                            class="btn-primary" invisible="state != 'open'"/>
-                    <button name="action_reopen" string="Reopen" type="object"
-                            invisible="state != 'closed'"/>
                     <button name="action_accrue_bonuses" string="Accrue Bonuses" type="object"
                             groups="l10n_ua_hr_base.group_hr_ua_officer"
                             help="Create hr.bonus records for every confirmed/closed scorecard in this period."/>
-                    <field name="state" widget="statusbar" statusbar_visible="open,closed"/>
                 </header>
                 <sheet>
                     <div class="oe_title">
@@ -24,7 +19,9 @@
                     <group>
                         <group>
                             <field name="period_type"/>
-                            <field name="company_id" groups="base.group_multi_company"/>
+                            <field name="company_id"
+                                   options="{'no_create': True, 'no_open': True}"
+                                   groups="base.group_multi_company"/>
                         </group>
                         <group>
                             <field name="date_from"/>
@@ -40,14 +37,11 @@
         <field name="name">hr.kpi.period.list</field>
         <field name="model">hr.kpi.period</field>
         <field name="arch" type="xml">
-            <list string="KPI Periods" decoration-muted="state == 'closed'">
+            <list string="KPI Periods">
                 <field name="name"/>
                 <field name="period_type"/>
                 <field name="date_from"/>
                 <field name="date_to"/>
-                <field name="state" widget="badge"
-                       decoration-success="state == 'open'"
-                       decoration-muted="state == 'closed'"/>
             </list>
         </field>
     </record>

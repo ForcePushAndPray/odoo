@@ -23,6 +23,17 @@ class HrScorecardLine(models.Model):
         store=True,
         readonly=True,
     )
+    employee_id = fields.Many2one(
+        'hr.employee',
+        related='scorecard_id.employee_id',
+        store=True,
+        readonly=True,
+        index=True,
+    )
+    scorecard_state = fields.Selection(
+        related='scorecard_id.state',
+        readonly=True,
+    )
     target_id = fields.Many2one(
         'hr.kpi.target',
         string='Target',
@@ -108,3 +119,15 @@ class HrScorecardLine(models.Model):
                 (line.achievement or 0.0) * (line.weight or 0.0) / 100.0,
                 precision_digits=2,
             )
+
+    def action_open_scorecard(self):
+        """Open the parent scorecard form for this line."""
+        self.ensure_one()
+        return {
+            'type': 'ir.actions.act_window',
+            'name': self.scorecard_id.name or _('Scorecard'),
+            'res_model': 'hr.scorecard',
+            'res_id': self.scorecard_id.id,
+            'view_mode': 'form',
+            'target': 'current',
+        }

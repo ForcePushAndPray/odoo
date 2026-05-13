@@ -5,22 +5,27 @@
         <field name="name">hr.kpi.assign.wizard.form</field>
         <field name="model">hr.kpi.assign.wizard</field>
         <field name="arch" type="xml">
-            <form string="Assign KPI to Employees">
+            <form string="KPI Assignments">
                 <sheet>
                     <group>
                         <field name="kpi_id" readonly="1"/>
                         <field name="period_id" readonly="1"/>
-                        <field name="company_id" groups="base.group_multi_company"/>
+                        <field name="company_id"
+                               options="{'no_create': True, 'no_open': True}"
+                               groups="base.group_multi_company"/>
                     </group>
                     <group>
                         <field name="employee_ids" widget="many2many_tags"
                                options="{'no_create': True}"/>
-                        <field name="weight"/>
                     </group>
+                    <p class="text-muted">
+                        Selecting an employee adds the KPI; deselecting removes it.
+                        Removal requires the underlying scorecard to be in Draft state.
+                    </p>
                 </sheet>
                 <footer>
-                    <button name="action_assign" string="Assign" type="object"
-                            class="btn-primary"/>
+                    <button name="action_save_assignments" string="Save Assignments"
+                            type="object" class="btn-primary"/>
                     <button string="Cancel" class="btn-secondary" special="cancel"/>
                 </footer>
             </form>
