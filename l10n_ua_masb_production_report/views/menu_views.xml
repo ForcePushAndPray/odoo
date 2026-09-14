@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <menuitem id="menu_masb_production_report"
+              name="Production Cost Statement (23)"
+              parent="l10n_ua_account_base.menu_l10n_ua_accounting"
+              action="masb_production_report_action"
+              sequence="60"/>
+
+    <menuitem id="menu_masb_production_column"
+              name="Production Statement Columns"
+              parent="l10n_ua_account_base.menu_l10n_ua_directories"
+              action="masb_production_column_action"
+              sequence="60"/>
+
+</odoo>

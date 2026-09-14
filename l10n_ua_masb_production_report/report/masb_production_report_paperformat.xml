@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!--
+        The statement is wide by nature: one column per corresponding account.
+        A3 landscape with small margins is the smallest paper it stays readable
+        on; anything narrower turns the figures into a wall.
+    -->
+    <record id="paperformat_masb_production" model="report.paperformat">
+        <field name="name">Production Cost Statement (A3 landscape)</field>
+        <field name="default" eval="False"/>
+        <field name="format">A3</field>
+        <field name="orientation">Landscape</field>
+        <field name="margin_top">12</field>
+        <field name="margin_bottom">10</field>
+        <field name="margin_left">5</field>
+        <field name="margin_right">5</field>
+        <field name="header_line" eval="False"/>
+        <field name="header_spacing">8</field>
+        <field name="dpi">90</field>
+    </record>
+
+    <record id="masb_production_report_print" model="ir.actions.report">
+        <field name="name">Production Cost Statement</field>
+        <field name="model">masb.production.report</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">l10n_ua_masb_production_report.report_masb_production</field>
+        <field name="report_file">l10n_ua_masb_production_report.report_masb_production</field>
+        <field name="paperformat_id" ref="paperformat_masb_production"/>
+        <field name="binding_model_id" ref="model_masb_production_report"/>
+        <field name="binding_type">report</field>
+    </record>
+
+</odoo>

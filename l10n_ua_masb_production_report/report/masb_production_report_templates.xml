@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <template id="report_masb_production">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-call="web.external_layout">
+                    <div class="page">
+                        <t t-set="matrix" t-value="o._report_matrix()"/>
+                        <t t-set="debit_titles"
+                           t-value="o._column_titles(matrix['layout']['debit'])"/>
+                        <t t-set="credit_titles"
+                           t-value="o._column_titles(matrix['layout']['credit'])"/>
+                        <t t-set="money"
+                           t-value="{'widget': 'monetary', 'display_currency': o.currency_id}"/>
+
+                        <h4 class="text-center mb-0">
+                            Analytic statement of account <span t-field="o.account_prefix"/>
+                        </h4>
+                        <div class="text-center mb-3">
+                            <span t-field="o.company_id.name"/>,
+                            <span t-field="o.date_from"/> &#8212;
+                            <span t-field="o.date_to"/>
+                        </div>
+
+                        <table class="table table-sm table-bordered"
+                               style="font-size: 7pt;">
+                            <thead>
+                                <tr>
+                                    <th>Account</th>
+                                    <th>Subdivision / cost element</th>
+                                    <th class="text-end">Opening balance</th>
+                                    <th class="text-end" t-foreach="debit_titles"
+                                        t-as="title"><span t-out="title"/></th>
+                                    <th class="text-end">Total debit</th>
+                                    <th class="text-end" t-foreach="credit_titles"
+                                        t-as="title"><span t-out="title"/></th>
+                                    <th class="text-end">Total credit</th>
+                                    <th class="text-end">Closing balance</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr t-foreach="matrix['rows']" t-as="row"
+                                    t-att-class="row['is_group'] and 'fw-bold table-light' or ''">
+                                    <td><span t-out="row['account_code']"/></td>
+                                    <td t-att-class="not row['is_group'] and 'ps-4' or ''">
+                                        <span t-out="row['label']"/>
+                                    </td>
+                                    <td class="text-end">
+                                        <span t-out="row['opening_balance']"
+                                              t-options="money"/>
+                                    </td>
+                                    <td class="text-end" t-foreach="row['debit']"
+                                        t-as="amount">
+                                        <span t-out="amount" t-options="money"/>
+                                    </td>
+                                    <td class="text-end">
+                                        <span t-out="row['turnover_debit']"
+                                              t-options="money"/>
+                                    </td>
+                                    <td class="text-end" t-foreach="row['credit']"
+                                        t-as="amount">
+                                        <span t-out="amount" t-options="money"/>
+                                    </td>
+                                    <td class="text-end">
+                                        <span t-out="row['turnover_credit']"
+                                              t-options="money"/>
+                                    </td>
+                                    <td class="text-end">
+                                        <span t-out="row['closing_balance']"
+                                              t-options="money"/>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                        <div class="mt-3" style="font-size: 8pt;">
+                            <strong>Control</strong>:
+                            debit turnover of the journal items
+                            <span t-field="o.control_debit"/>,
+                            credit turnover
+                            <span t-field="o.control_credit"/>.
+                            <span t-if="not o.is_balanced" class="text-danger">
+                                The statement does not match the journal items.
+                            </span>
+                        </div>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+
+</odoo>

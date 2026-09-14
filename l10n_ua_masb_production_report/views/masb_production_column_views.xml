@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="masb_production_column_view_list" model="ir.ui.view">
+        <field name="name">masb.production.column.list</field>
+        <field name="model">masb.production.column</field>
+        <field name="arch" type="xml">
+            <list string="Statement Columns" editable="bottom" multi_edit="1">
+                <field name="sequence" widget="handle"/>
+                <field name="block"/>
+                <field name="name"/>
+                <field name="account_prefixes"/>
+                <field name="cost_element"/>
+                <field name="company_id" groups="base.group_multi_company"
+                       placeholder="Shared"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="masb_production_column_view_search" model="ir.ui.view">
+        <field name="name">masb.production.column.search</field>
+        <field name="model">masb.production.column</field>
+        <field name="arch" type="xml">
+            <search string="Statement Columns">
+                <field name="name"/>
+                <field name="account_prefixes"/>
+                <filter name="debit_block" string="Debit turnover"
+                        domain="[('block', '=', 'debit')]"/>
+                <filter name="credit_block" string="Credit turnover"
+                        domain="[('block', '=', 'credit')]"/>
+                <separator/>
+                <filter name="inactive" string="Archived"
+                        domain="[('active', '=', False)]"/>
+                <group>
+                    <filter name="group_block" string="Block"
+                            context="{'group_by': 'block'}"/>
+                    <filter name="group_element" string="Cost element"
+                            context="{'group_by': 'cost_element'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="masb_production_column_action" model="ir.actions.act_window">
+        <field name="name">Production Statement Columns</field>
+        <field name="res_model">masb.production.column</field>
+        <field name="view_mode">list</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Describe a column of the production statement
+            </p>
+            <p>
+                A column collects turnover against corresponding accounts whose
+                code starts with one of its prefixes.
+            </p>
+        </field>
+    </record>
+
+</odoo>

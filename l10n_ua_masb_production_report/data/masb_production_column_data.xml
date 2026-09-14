@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!--
+        Default column layout of the statement, matching the paper form used at
+        MASB. Prefixes follow the chart of accounts of the Ukrainian
+        localization, where synthetic accounts carry zero padded codes
+        (910000, 231000), so a prefix of "91" also covers every sub-account
+        under it.
+
+        The records are noupdate: the layout is accounting policy and belongs to
+        the accountant after the first install, not to the next module upgrade.
+    -->
+    <data noupdate="1">
+
+        <!-- Debit block: accounts credited against production -->
+        <record id="column_debit_13" model="masb.production.column">
+            <field name="name">13 depreciation</field>
+            <field name="block">debit</field>
+            <field name="sequence">10</field>
+            <field name="account_prefixes">13</field>
+            <field name="cost_element">direct</field>
+            <field name="company_id" eval="False"/>
+        </record>
+        <record id="column_debit_201" model="masb.production.column">
+            <field name="name">201 building materials</field>
+            <field name="block">debit</field>
+            <field name="sequence">20</field>
+            <field name="account_prefixes">201</field>
+            <field name="cost_element">material</field>
+            <field name="company_id" eval="False"/>
+        </record>
+        <record id="column_debit_203" model="masb.production.column">
+            <field name="name">203 fuel</field>
+            <field name="block">debit</field>
+            <field name="sequence">30</field>
+            <field name="account_prefixes">203</field>
+            <field name="cost_element">material</field>
+            <field name="company_id" eval="False"/>
+        </record>
+        <record id="column_debit_207" model="masb.production.column">
+            <field name="name">207 spare parts</field>
+            <field name="block">debit</field>
+            <field name="sequence">40</field>
+            <field name="account_prefixes">207</field>
+            <field name="cost_element">material</field>
+            <field name="company_id" eval="False"/>
+        </record>
+        <record id="column_debit_209" model="masb.production.column">
+            <field name="name">209 other materials</field>
+            <field name="block">debit</field>
+            <field name="sequence">50</field>
+            <field name="account_prefixes">202,204,205,206,208,209</field>
+            <field name="cost_element">material</field>
+            <field name="company_id" eval="False"/>
+        </record>
+        <record id="column_debit_22" model="masb.production.column">
+            <field name="name">22 low value items</field>
+            <field name="block">debit</field>
+            <field name="sequence">60</field>
+            <field name="account_prefixes">22</field>
+            <field name="cost_element">material</field>
+            <field name="company_id" eval="False"/>
+        </record>
+        <record id="column_debit_26" model="masb.production.column">
+            <field name="name">26 finished goods</field>
+            <field name="block">debit</field>
+            <field name="sequence">70</field>
+            <field name="account_prefixes">26</field>
+            <field name="cost_element">material</field>
+            <field name="company_id" eval="False"/>
+        </record>
+        <record id="column_debit_231_233" model="masb.production.column">
+            <field name="name">231, 233 auxiliary production</field>
+            <field name="block">debit</field>
+            <field name="sequence">80</field>
+            <field name="account_prefixes">231,232,233,234</field>
+            <field name="cost_element">direct</field>
+            <field name="company_id" eval="False"/>
+        </record>
+        <record id="column_debit_235_236" model="masb.production.column">
+            <field name="name">235, 236 machinery</field>
+            <field name="block">debit</field>
+            <field name="sequence">90</field>
+            <field name="account_prefixes">235,236</field>
+            <field name="cost_element">direct</field>
+            <field name="company_id" eval="False"/>
+        </record>
+        <record id="column_debit_39" model="masb.production.column">
+            <field name="name">39 prior period costs</field>
+            <field name="block">debit</field>
+            <field name="sequence">100</field>
+            <field name="account_prefixes">39</field>
+            <field name="cost_element">prior</field>
+            <field name="company_id" eval="False"/>
+        </record>
+        <record id="column_debit_471" model="masb.production.column">
+            <field name="name">471 vacation provision</field>
+            <field name="block">debit</field>
+            <field name="sequence">110</field>
+            <field name="account_prefixes">47</field>
+            <field name="cost_element">direct</field>
+            <field name="company_id" eval="False"/>
+        </record>
+        <record id="column_debit_651" model="masb.production.column">
+            <field name="name">651 social contributions</field>
+            <field name="block">debit</field>
+            <field name="sequence">120</field>
+            <field name="account_prefixes">65</field>
+            <field name="cost_element">direct</field>
+            <field name="company_id" eval="False"/>
+        </record>
+        <record id="column_debit_661" model="masb.production.column">
+            <field name="name">661 wages</field>
+            <field name="block">debit</field>
+            <field name="sequence">130</field>
+            <field name="account_prefixes">66</field>
+            <field name="cost_element">direct</field>
+            <field name="company_id" eval="False"/>
+        </record>
+        <record id="column_debit_631_685" model="masb.production.column">
+            <field name="name">631, 685 utilities and services</field>
+            <field name="block">debit</field>
+            <field name="sequence">140</field>
+            <field name="account_prefixes">63,68</field>
+            <field name="cost_element">direct</field>
+            <field name="company_id" eval="False"/>
+        </record>
+        <record id="column_debit_91" model="masb.production.column">
+            <field name="name">91 production overheads</field>
+            <field name="block">debit</field>
+            <field name="sequence">150</field>
+            <field name="account_prefixes">91</field>
+            <field name="cost_element">overhead</field>
+            <field name="company_id" eval="False"/>
+        </record>
+
+        <!-- Credit block: accounts debited from production -->
+        <record id="column_credit_23" model="masb.production.column">
+            <field name="name">23 internal transfer</field>
+            <field name="block">credit</field>
+            <field name="sequence">10</field>
+            <field name="account_prefixes">23</field>
+            <field name="company_id" eval="False"/>
+        </record>
+        <record id="column_credit_26" model="masb.production.column">
+            <field name="name">26 finished goods</field>
+            <field name="block">credit</field>
+            <field name="sequence">20</field>
+            <field name="account_prefixes">26</field>
+            <field name="company_id" eval="False"/>
+        </record>
+        <record id="column_credit_39" model="masb.production.column">
+            <field name="name">39 deferred costs</field>
+            <field name="block">credit</field>
+            <field name="sequence">30</field>
+            <field name="account_prefixes">39</field>
+            <field name="company_id" eval="False"/>
+        </record>
+        <record id="column_credit_90" model="masb.production.column">
+            <field name="name">90 cost of sales</field>
+            <field name="block">credit</field>
+            <field name="sequence">40</field>
+            <field name="account_prefixes">90</field>
+            <field name="company_id" eval="False"/>
+        </record>
+        <record id="column_credit_94" model="masb.production.column">
+            <field name="name">94 other operating expenses</field>
+            <field name="block">credit</field>
+            <field name="sequence">50</field>
+            <field name="account_prefixes">94</field>
+            <field name="company_id" eval="False"/>
+        </record>
+
+    </data>
+</odoo>
