@@ -36,7 +36,6 @@ msgstr "Колонка відомості по рахунку 23"
 
 #. module: l10n_ua_masb_production_report
 #: model:ir.actions.act_window,name:l10n_ua_masb_production_report.masb_production_report_action
-#: model:ir.actions.report,name:l10n_ua_masb_production_report.masb_production_report_print
 msgid "Production Cost Statement"
 msgstr "Відомість по рахунку 23 «Виробництво»"
 
@@ -50,11 +49,6 @@ msgstr "Колонки відомості по рахунку 23"
 #: model:ir.ui.menu,name:l10n_ua_masb_production_report.menu_masb_production_report
 msgid "Production Cost Statement (23)"
 msgstr "Відомість по рахунку 23 (виробництво)"
-
-#. module: l10n_ua_masb_production_report
-#: model:report.paperformat,name:l10n_ua_masb_production_report.paperformat_masb_production
-msgid "Production Cost Statement (A3 landscape)"
-msgstr "Відомість по рахунку 23 (A3, альбомна)"
 
 #. module: l10n_ua_masb_production_report
 #: model:ir.model.fields,field_description:l10n_ua_masb_production_report.field_masb_production_report__date_from
@@ -121,17 +115,20 @@ msgstr "Сальдо на кінець"
 
 #. module: l10n_ua_masb_production_report
 #: model:ir.model.fields,field_description:l10n_ua_masb_production_report.field_masb_production_report_line__account_id
+#: model:ir.model.fields,field_description:l10n_ua_masb_production_report.field_masb_production_report_cell__account_id
 msgid "Production Account"
 msgstr "Рахунок виробництва"
 
 #. module: l10n_ua_masb_production_report
 #: model:ir.model.fields,field_description:l10n_ua_masb_production_report.field_masb_production_report_line__analytic_account_id
+#: model:ir.model.fields,field_description:l10n_ua_masb_production_report.field_masb_production_report_cell__analytic_account_id
 msgid "Subdivision"
 msgstr "Підрозділ"
 
 #. module: l10n_ua_masb_production_report
 #: model:ir.model.fields,field_description:l10n_ua_masb_production_report.field_masb_production_report_line__cost_element
 #: model:ir.model.fields,field_description:l10n_ua_masb_production_report.field_masb_production_column__cost_element
+#: model:ir.model.fields,field_description:l10n_ua_masb_production_report.field_masb_production_report_cell__cost_element
 msgid "Cost Element"
 msgstr "Елемент витрат"
 
@@ -143,6 +140,7 @@ msgstr "Блок"
 
 #. module: l10n_ua_masb_production_report
 #: model:ir.model.fields,field_description:l10n_ua_masb_production_report.field_masb_production_column__name
+#: model:ir.model.fields,field_description:l10n_ua_masb_production_report.field_masb_production_report_cell__column_id
 msgid "Column"
 msgstr "Колонка"
 
@@ -214,8 +212,8 @@ msgstr "Вивантажити XLSX"
 
 #. module: l10n_ua_masb_production_report
 #: model_terms:ir.ui.view,arch_db:l10n_ua_masb_production_report.masb_production_report_view_form
-msgid "Print"
-msgstr "Друк"
+msgid "Pivot"
+msgstr "Зведена таблиця"
 
 #. module: l10n_ua_masb_production_report
 #: model_terms:ir.ui.view,arch_db:l10n_ua_masb_production_report.masb_production_report_view_form
@@ -228,12 +226,15 @@ msgid "Reset to Draft"
 msgstr "Повернути в чернетку"
 
 #. module: l10n_ua_masb_production_report
-#: model_terms:ir.ui.view,arch_db:l10n_ua_masb_production_report.masb_production_report_view_form
+#. odoo-python
+#: code:addons/l10n_ua_masb_production_report/models/masb_production_report.py:0
 msgid "Control"
 msgstr "Контроль"
 
 #. module: l10n_ua_masb_production_report
 #: model_terms:ir.ui.view,arch_db:l10n_ua_masb_production_report.masb_production_report_view_form
+#: model:ir.model.fields,field_description:l10n_ua_masb_production_report.field_masb_production_report_cell__report_id
+#: model:ir.model.fields,field_description:l10n_ua_masb_production_report.field_masb_production_report_line__report_id
 msgid "Statement"
 msgstr "Відомість"
 
@@ -258,39 +259,40 @@ msgstr ""
 "                        без підрозділу."
 
 #. module: l10n_ua_masb_production_report
-#: model_terms:ir.ui.view,arch_db:l10n_ua_masb_production_report.report_masb_production
+#. odoo-python
+#: code:addons/l10n_ua_masb_production_report/models/masb_production_report.py:0
 msgid "Account"
 msgstr "Рахунок"
 
 #. module: l10n_ua_masb_production_report
-#: model_terms:ir.ui.view,arch_db:l10n_ua_masb_production_report.report_masb_production
+#. odoo-python
+#: code:addons/l10n_ua_masb_production_report/models/masb_production_report.py:0
 msgid "Subdivision / cost element"
 msgstr "Підрозділ / елемент витрат"
 
 #. module: l10n_ua_masb_production_report
-#: model_terms:ir.ui.view,arch_db:l10n_ua_masb_production_report.report_masb_production
+#. odoo-python
+#: code:addons/l10n_ua_masb_production_report/models/masb_production_report.py:0
 msgid "Opening balance"
 msgstr "Сальдо на початок"
 
 #. module: l10n_ua_masb_production_report
-#: model_terms:ir.ui.view,arch_db:l10n_ua_masb_production_report.report_masb_production
+#. odoo-python
+#: code:addons/l10n_ua_masb_production_report/models/masb_production_report.py:0
 msgid "Closing balance"
 msgstr "Сальдо на кінець"
 
 #. module: l10n_ua_masb_production_report
-#: model_terms:ir.ui.view,arch_db:l10n_ua_masb_production_report.report_masb_production
+#. odoo-python
+#: code:addons/l10n_ua_masb_production_report/models/masb_production_report.py:0
 msgid "Total debit"
 msgstr "Всього по дебету"
 
 #. module: l10n_ua_masb_production_report
-#: model_terms:ir.ui.view,arch_db:l10n_ua_masb_production_report.report_masb_production
+#. odoo-python
+#: code:addons/l10n_ua_masb_production_report/models/masb_production_report.py:0
 msgid "Total credit"
 msgstr "Всього по кредиту"
-
-#. module: l10n_ua_masb_production_report
-#: model_terms:ir.ui.view,arch_db:l10n_ua_masb_production_report.report_masb_production
-msgid "Analytic statement of account"
-msgstr "Аналітичний облік по рахунку"
 
 #. module: l10n_ua_masb_production_report
 #. odoo-python
@@ -459,3 +461,261 @@ msgstr "90 собівартість реалізації"
 #: model:masb.production.column,name:l10n_ua_masb_production_report.column_credit_94
 msgid "94 other operating expenses"
 msgstr "94 інші операційні витрати"
+
+#. module: l10n_ua_masb_production_report
+#: model:ir.model.fields,field_description:l10n_ua_masb_production_report.field_masb_production_report__show_all_columns
+msgid "Show All Columns"
+msgstr "Показувати всі колонки"
+
+
+#. module: l10n_ua_masb_production_report
+#: model_terms:ir.ui.view,arch_db:l10n_ua_masb_production_report.masb_production_report_view_form
+#: model:ir.model.fields,field_description:l10n_ua_masb_production_report.field_masb_production_report__line_ids
+msgid "Lines"
+msgstr "Рядки"
+
+#. module: l10n_ua_masb_production_report
+#: model:ir.model.fields,field_description:l10n_ua_masb_production_report.field_masb_production_report_line__responsible_name
+#: model:ir.model.fields,field_description:l10n_ua_masb_production_report.field_account_analytic_account__masb_responsible_id
+msgid "Accountable Person"
+msgstr "МВО"
+
+#. module: l10n_ua_masb_production_report
+#. odoo-python
+#: code:addons/l10n_ua_masb_production_report/models/masb_production_report.py:0
+msgid "TOTAL"
+msgstr "ВСЬОГО"
+
+#. module: l10n_ua_masb_production_report
+#. odoo-python
+#: code:addons/l10n_ua_masb_production_report/models/masb_production_report.py:0
+msgid "Control, credit"
+msgstr "Контроль, кредит"
+
+#. module: l10n_ua_masb_production_report
+#. odoo-python
+#: code:addons/l10n_ua_masb_production_report/models/masb_production_report.py:0
+msgid "The statement does not match the journal items."
+msgstr "Відомість не збігається з проводками."
+
+#. module: l10n_ua_masb_production_report
+#. odoo-javascript
+#: code:addons/l10n_ua_masb_production_report/static/src/production_matrix/matrix.js:0
+msgid "Computing…"
+msgstr "Обчислення…"
+
+#. module: l10n_ua_masb_production_report
+#. odoo-javascript
+#: code:addons/l10n_ua_masb_production_report/static/src/production_matrix/matrix.js:0
+msgid "The statement is empty. Set the period and press Compute."
+msgstr "Відомість порожня. Задайте період і натисніть «Розрахувати»."
+
+#. module: l10n_ua_masb_production_report
+#: model_terms:ir.ui.view,arch_db:l10n_ua_masb_production_report.masb_production_report_cell_view_search
+msgid "Subdivision totals"
+msgstr "Разом по підрозділах"
+
+#. module: l10n_ua_masb_production_report
+#: model_terms:ir.ui.view,arch_db:l10n_ua_masb_production_report.masb_production_report_cell_view_search
+msgid "Cost elements"
+msgstr "Елементи витрат"
+
+#. module: l10n_ua_masb_production_report
+#: model_terms:ir.ui.view,arch_db:l10n_ua_masb_production_report.masb_production_report_cell_view_search
+msgid "Production account"
+msgstr "Рахунок виробництва"
+
+#. module: l10n_ua_masb_production_report
+#: model_terms:ir.ui.view,arch_db:l10n_ua_masb_production_report.masb_production_report_cell_view_pivot
+#: model_terms:ir.ui.view,arch_db:l10n_ua_masb_production_report.masb_production_report_cell_view_list
+#: model_terms:ir.ui.view,arch_db:l10n_ua_masb_production_report.masb_production_report_cell_view_search
+msgid "Statement Cells"
+msgstr "Комірки відомості"
+
+#. module: l10n_ua_masb_production_report
+#: model:ir.model.fields,field_description:l10n_ua_masb_production_report.field_masb_production_report_cell__amount
+msgid "Amount"
+msgstr "Сума"
+
+#. module: l10n_ua_masb_production_report
+#: model:ir.model.fields,field_description:l10n_ua_masb_production_report.field_masb_production_column__active
+msgid "Active"
+msgstr "Активно"
+
+#. module: l10n_ua_masb_production_report
+#: model:ir.model.fields,field_description:l10n_ua_masb_production_report.field_masb_production_column__company_id
+#: model:ir.model.fields,field_description:l10n_ua_masb_production_report.field_masb_production_report__company_id
+#: model:ir.model.fields,field_description:l10n_ua_masb_production_report.field_masb_production_report_line__company_id
+msgid "Company"
+msgstr "Компанія"
+
+#. module: l10n_ua_masb_production_report
+#: model:ir.model.fields,field_description:l10n_ua_masb_production_report.field_masb_production_column__sequence
+#: model:ir.model.fields,field_description:l10n_ua_masb_production_report.field_masb_production_report_line__sequence
+msgid "Sequence"
+msgstr "Послідовність"
+
+#. module: l10n_ua_masb_production_report
+#: model:ir.model.fields,field_description:l10n_ua_masb_production_report.field_masb_production_report__currency_id
+#: model:ir.model.fields,field_description:l10n_ua_masb_production_report.field_masb_production_report_cell__currency_id
+#: model:ir.model.fields,field_description:l10n_ua_masb_production_report.field_masb_production_report_line__currency_id
+msgid "Currency"
+msgstr "Валюта"
+
+#. module: l10n_ua_masb_production_report
+#: model:ir.model.fields,field_description:l10n_ua_masb_production_report.field_masb_production_report__name
+msgid "Name"
+msgstr "Назва"
+
+#. module: l10n_ua_masb_production_report
+#: model:ir.model.fields,field_description:l10n_ua_masb_production_report.field_masb_production_report__state
+msgid "State"
+msgstr "Стан"
+
+#. module: l10n_ua_masb_production_report
+#: model:ir.model.fields,field_description:l10n_ua_masb_production_report.field_masb_production_report__xlsx_file
+msgid "XLSX"
+msgstr "XLSX"
+
+#. module: l10n_ua_masb_production_report
+#: model:ir.model.fields,field_description:l10n_ua_masb_production_report.field_masb_production_report__xlsx_filename
+msgid "Xlsx Filename"
+msgstr "Ім'я файлу XLSX"
+
+#. module: l10n_ua_masb_production_report
+#: model:ir.model.fields,field_description:l10n_ua_masb_production_report.field_masb_production_report_cell__line_id
+msgid "Line"
+msgstr "Рядок"
+
+#. module: l10n_ua_masb_production_report
+#: model:ir.model.fields,field_description:l10n_ua_masb_production_report.field_masb_production_report_cell__line_type
+#: model:ir.model.fields,field_description:l10n_ua_masb_production_report.field_masb_production_report_line__line_type
+msgid "Line Type"
+msgstr "Тип рядка"
+
+#. module: l10n_ua_masb_production_report
+#: model:ir.model.fields,field_description:l10n_ua_masb_production_report.field_masb_production_report_line__cell_ids
+msgid "Cells"
+msgstr "Комірки"
+
+#. module: l10n_ua_masb_production_report
+#: model:ir.model.fields,help:l10n_ua_masb_production_report.field_account_analytic_account__masb_responsible_id
+msgid "Materially accountable person of the subdivision, printed in the production cost statement."
+msgstr "Матеріально відповідальна особа підрозділу. Друкується у відомості по рахунку 23."
+
+#. module: l10n_ua_masb_production_report
+#: model:ir.model.fields,help:l10n_ua_masb_production_report.field_masb_production_column__account_prefixes
+msgid "Comma separated prefixes of the corresponding account code, e.g. \"201, 91\". A corresponding account falls into this column when its code starts with any of them."
+msgstr "Префікси коду кореспондуючого рахунку через кому, наприклад «201, 91». Рахунок потрапляє в цю колонку, якщо його код починається з будь-якого з них."
+
+#. module: l10n_ua_masb_production_report
+#: model:ir.model.fields,help:l10n_ua_masb_production_report.field_masb_production_column__block
+msgid "Debit block holds accounts credited against account 23 (what was spent on production), credit block holds accounts debited from it (where the cost went)."
+msgstr "Дебетовий блок містить рахунки, з кредиту яких списано на рахунок 23 (на що витрачено), кредитовий — рахунки, у дебет яких списано з нього (куди пішли витрати)."
+
+#. module: l10n_ua_masb_production_report
+#: model:ir.model.fields,help:l10n_ua_masb_production_report.field_masb_production_column__company_id
+msgid "Leave empty to share the column between companies."
+msgstr "Залиште порожнім, щоб колонка була спільною для всіх компаній."
+
+#. module: l10n_ua_masb_production_report
+#: model:ir.model.fields,help:l10n_ua_masb_production_report.field_masb_production_column__cost_element
+msgid "Row group the amounts of this column are reported in. Required for the debit block; credit amounts are spread over the cost elements in proportion to their debit turnover."
+msgstr "Група рядків, у якій показуються суми цієї колонки. Обов’язкова для дебетового блоку; кредитові суми розносяться між елементами витрат пропорційно їхнім дебетовим оборотам."
+
+#. module: l10n_ua_masb_production_report
+#: model:ir.model.fields,help:l10n_ua_masb_production_report.field_masb_production_column__name
+msgid "Header shown in the statement, e.g. \"201/91 building materials\"."
+msgstr "Заголовок колонки у відомості, наприклад «201 будматеріали»."
+
+#. module: l10n_ua_masb_production_report
+#: model:ir.model.fields,help:l10n_ua_masb_production_report.field_masb_production_report__account_prefix
+msgid "Comma separated prefixes of the production accounts covered by the statement, e.g. \"23\" or \"231, 233, 235, 236\"."
+msgstr "Префікси рахунків виробництва, які охоплює відомість, через кому — наприклад «23» або «231, 233, 235, 236»."
+
+#. module: l10n_ua_masb_production_report
+#: model:ir.model.fields,help:l10n_ua_masb_production_report.field_masb_production_report__analytic_plan_id
+msgid "Root analytic plan whose accounts are used as subdivisions. Only accounts of this plan are read from the analytic distribution."
+msgstr "Кореневий аналітичний план, рахунки якого правлять за підрозділи. З аналітичного розподілу читаються рахунки лише цього плану."
+
+#. module: l10n_ua_masb_production_report
+#: model:ir.model.fields,help:l10n_ua_masb_production_report.field_masb_production_report__control_debit
+msgid "Debit turnover of the production accounts taken straight from the journal items, without correspondence. The statement is only trustworthy while it equals the debit total."
+msgstr "Дебетовий оборот рахунків виробництва, узятий прямо з проводок, без відновлення кореспонденції. Відомості можна вірити, лише поки він дорівнює підсумку за дебетом."
+
+#. module: l10n_ua_masb_production_report
+#: model:ir.model.fields,help:l10n_ua_masb_production_report.field_masb_production_report__show_all_columns
+msgid "Keep every configured column in the statement, even the ones with no turnover. The accountant reads the form as a fixed blank, where a column stays in its place even when it is empty; turn it off to get a narrow statement of what actually moved."
+msgstr "Лишати у відомості всі налаштовані колонки, навіть ті, де немає оборотів. Бухгалтер читає форму як сталий бланк, де колонка стоїть на своєму місці навіть порожня; вимкніть, щоб отримати вузьку відомість тільки з того, що рухалося."
+
+#. module: l10n_ua_masb_production_report
+#: model:ir.model.fields,help:l10n_ua_masb_production_report.field_masb_production_report__unassigned_amount
+msgid "Debit turnover that carries no analytic account of the chosen plan. Anything above zero means journal items were posted without analytics."
+msgstr "Дебетовий оборот, у якому немає аналітичного рахунку обраного плану. Будь-яке значення понад нуль означає, що проводки провели без аналітики."
+
+#. module: l10n_ua_masb_production_report
+#: model:ir.model.fields,help:l10n_ua_masb_production_report.field_masb_production_report_line__responsible_name
+msgid "Name of the accountable person as it stood when the statement was computed. Stored rather than read through the analytic account, so that a closed period keeps the name it was signed with."
+msgstr "Ім’я матеріально відповідальної особи на момент розрахунку відомості. Зберігається, а не читається через аналітичний рахунок, щоб закритий період лишався з тим прізвищем, з яким його підписали."
+
+#. module: l10n_ua_masb_production_report
+#: model_terms:ir.ui.view,arch_db:l10n_ua_masb_production_report.masb_production_column_view_list
+#: model_terms:ir.ui.view,arch_db:l10n_ua_masb_production_report.masb_production_column_view_search
+msgid "Statement Columns"
+msgstr "Колонки відомості"
+
+#. module: l10n_ua_masb_production_report
+#: model_terms:ir.ui.view,arch_db:l10n_ua_masb_production_report.masb_production_column_view_search
+msgid "Archived"
+msgstr "Архівовані"
+
+#. module: l10n_ua_masb_production_report
+#: model_terms:ir.ui.view,arch_db:l10n_ua_masb_production_report.masb_production_report_view_list
+msgid "Production Cost Statements"
+msgstr "Відомості по рахунку 23"
+
+#. module: l10n_ua_masb_production_report
+#: model_terms:ir.ui.view,arch_db:l10n_ua_masb_production_report.masb_production_report_view_form
+#: model_terms:ir.ui.view,arch_db:l10n_ua_masb_production_report.masb_production_report_line_view_list
+msgid "Statement Lines"
+msgstr "Рядки відомості"
+
+#. module: l10n_ua_masb_production_report
+#. odoo-python
+#: code:addons/l10n_ua_masb_production_report/models/masb_production_report.py:0
+msgid "%(row)s - %(column)s"
+msgstr "%(row)s — %(column)s"
+
+#. module: l10n_ua_masb_production_report
+#. odoo-python
+#: code:addons/l10n_ua_masb_production_report/models/masb_production_report.py:0
+msgid "This figure does not belong to the statement."
+msgstr "Ця сума не належить цій відомості."
+
+#. module: l10n_ua_masb_production_report
+#. odoo-python
+#: code:addons/l10n_ua_masb_production_report/models/masb_production_report.py:0
+msgid ""
+"The closing balance is not a set of entries: it is the opening balance plus "
+"the turnover of the period."
+msgstr ""
+"Сальдо на кінець — не набір проводок: це сальдо на початок плюс обороти "
+"періоду."
+
+#. module: l10n_ua_masb_production_report
+#. odoo-python
+#: code:addons/l10n_ua_masb_production_report/models/masb_production_report.py:0
+msgid ""
+"Credit turnover is not attributable to a single cost element: the figure is "
+"the write-off spread over the elements in proportion to their debit "
+"turnover. Open the subdivision row instead."
+msgstr ""
+"Кредитовий оборот не належить окремому елементу витрат: ця сума — списання, "
+"рознесене між елементами пропорційно їхнім дебетовим оборотам. Відкрийте "
+"рядок підрозділу."
+
+#. module: l10n_ua_masb_production_report
+#. odoo-javascript
+#: code:addons/l10n_ua_masb_production_report/static/src/production_matrix/matrix.js:0
+msgid "Open the journal items behind this figure"
+msgstr "Відкрити проводки, які формують цю суму"

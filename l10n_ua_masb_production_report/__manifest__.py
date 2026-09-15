@@ -1,6 +1,6 @@
 {
     'name': 'Ukraine - MASB - Production Cost Statement (account 23)',
-    'version': '19.0.1.0.0',
+    'version': '19.0.1.4.1',
     'category': 'Accounting/Localizations/Reporting',
     'summary': 'Analytic statement of account 23 by subdivision, cost element '
                'and corresponding account',
@@ -36,6 +36,11 @@ Configurable (``masb.production.column``), split into two blocks:
 Opening balance, debit turnover total, credit turnover total and closing
 balance are computed per row.
 
+The statement is drawn on the form by a dedicated widget and exported to XLSX
+from the same structure, so the screen and the file cannot disagree. The stored
+cells are also open in the standard pivot view for questions the fixed blank
+does not answer.
+
 Correspondence
 --------------
 
@@ -50,17 +55,26 @@ localization; see ``_iter_correspondence`` for details.
     'license': 'LGPL-3',
     'depends': [
         'l10n_ua_account_base',
+        'l10n_ua_accounting',
         'analytic',
+        'hr',
     ],
     'data': [
         'security/ir.model.access.csv',
         'data/masb_production_column_data.xml',
-        'report/masb_production_report_paperformat.xml',
-        'report/masb_production_report_templates.xml',
+        'views/account_analytic_account_views.xml',
         'views/masb_production_column_views.xml',
+        'views/masb_production_report_cell_views.xml',
         'views/masb_production_report_views.xml',
         'views/menu_views.xml',
     ],
+    'assets': {
+        'web.assets_backend': [
+            'l10n_ua_masb_production_report/static/src/production_matrix/matrix.js',
+            'l10n_ua_masb_production_report/static/src/production_matrix/matrix.xml',
+            'l10n_ua_masb_production_report/static/src/production_matrix/matrix.scss',
+        ],
+    },
     'installable': True,
     'application': False,
     'auto_install': False,

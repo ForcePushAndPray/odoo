@@ -11,8 +11,8 @@
                             class="btn-primary" invisible="state != 'draft'"/>
                     <button name="action_export_xlsx" type="object"
                             string="Export XLSX" invisible="not line_ids"/>
-                    <button name="%(masb_production_report_print)d" type="action"
-                            string="Print" invisible="not line_ids"/>
+                    <button name="action_open_pivot" type="object"
+                            string="Pivot" invisible="not line_ids"/>
                     <button name="action_confirm" type="object" string="Confirm"
                             invisible="state != 'draft' or not line_ids"/>
                     <button name="action_draft" type="object"
@@ -50,6 +50,7 @@
                                    readonly="state == 'confirmed'"/>
                             <field name="account_prefix"
                                    readonly="state == 'confirmed'"/>
+                            <field name="show_all_columns"/>
                             <field name="currency_id" invisible="1"/>
                         </group>
                     </group>
@@ -66,7 +67,10 @@
                         </group>
                     </group>
                     <notebook>
-                        <page string="Statement" name="lines">
+                        <page string="Statement" name="matrix">
+                            <widget name="masb_production_matrix"/>
+                        </page>
+                        <page string="Lines" name="lines">
                             <field name="line_ids" readonly="1">
                                 <list string="Lines"
                                       decoration-bf="line_type == 'group'"

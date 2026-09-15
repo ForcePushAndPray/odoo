@@ -93,6 +93,14 @@ class MasbProductionReport(models.Model):
              'plan. Anything above zero means journal items were posted without '
              'analytics.',
     )
+    show_all_columns = fields.Boolean(
+        string='Show All Columns',
+        default=True,
+        help='Keep every configured column in the statement, even the ones with '
+             'no turnover. The accountant reads the form as a fixed blank, '
+             'where a column stays in its place even when it is empty; turn it '
+             'off to get a narrow statement of what actually moved.',
+    )
     state = fields.Selection(
         selection=[('draft', 'Draft'), ('confirmed', 'Confirmed')],
         default='draft',
@@ -316,12 +324,13 @@ class MasbProductionReport(models.Model):
         groups |= set(openings)
 
         Line = self.env['masb.production.report.line']
+        analytics = self.env['account.analytic.account'].browse(
+            [analytic_id for _account_id, analytic_id in groups if analytic_id])
         analytic_names = {
-            account.id: account.display_name
-            for account in self.env['account.analytic.account'].browse(
-                [analytic_id for _account_id, analytic_id in groups
-                 if analytic_id])
-        }
+            account.id: account.display_name for account in analytics}
+        responsibles = {
+            account.id: account.masb_responsible_id.name
+            for account in analytics}
         sequence = 0
         for account_id, analytic_id in sorted(
                 groups,
@@ -352,6 +361,7 @@ class MasbProductionReport(models.Model):
                 'line_type': 'group',
                 'account_id': account_id,
                 'analytic_account_id': analytic_id or False,
+                'responsible_name': responsibles.get(analytic_id) or False,
                 'opening_balance': opening,
             })
             group_line._write_cells(group_debit, group_credit)
@@ -370,11 +380,132 @@ class MasbProductionReport(models.Model):
                 })
                 ratio = (element_debit / debit_total) if debit_total else 0.0
                 element_line._write_cells(
-                    {(column_id, 'debit'): amount
-                     for column_id, amount
-                     in debit_cells[(account_id, analytic_id, element)].items()},
+                    dict(debit_cells[(account_id, analytic_id, element)]),
                     {column_id: amount * ratio
                      for column_id, amount in group_credit.items()})
+
+    def action_open_entries(self, line_id, column_key):
+        """Open the journal items behind one figure of the statement.
+
+        The correspondence is rebuilt the same way the statement was built, and
+        the journal items that fed the cell are collected by id. A domain on
+        ``account.move.line`` could not express this on its own: which account
+        a line corresponds to is not stored anywhere, it is derived from the
+        other side of its entry.
+        """
+        self.ensure_one()
+        line = self.env['masb.production.report.line'].browse(line_id).exists()
+        if not line or line.report_id != self:
+            raise UserError(_('This figure does not belong to the statement.'))
+        column = next((column for column in self._report_grid()['columns']
+                       if column['key'] == column_key), None)
+        if not column or column['role'] in ('text', 'closing'):
+            raise UserError(_(
+                'The closing balance is not a set of entries: it is the '
+                'opening balance plus the turnover of the period.'))
+        if (line.line_type == 'element' and column['block'] == 'credit'
+                and column['role'] != 'opening'):
+            raise UserError(_(
+                'Credit turnover is not attributable to a single cost element: '
+                'the figure is the write-off spread over the elements in '
+                'proportion to their debit turnover. Open the subdivision row '
+                'instead.'))
+
+        move_lines = self._entries_behind(line, column)
+        return {
+            'type': 'ir.actions.act_window',
+            'name': _('%(row)s - %(column)s',
+                      row=line.display_name, column=column['label']),
+            'res_model': 'account.move.line',
+            'view_mode': 'list,form',
+            # ``views`` has to be spelled out. An action returned from a button
+            # is completed by the web controller (``clean_action`` fills the
+            # views from ``view_mode``), but this one is fetched by the widget
+            # through a plain ORM call, which goes nowhere near that controller
+            # - and the client then reads ``action.views`` of undefined.
+            'views': [(False, 'list'), (False, 'form')],
+            'domain': [('id', 'in', move_lines.ids)],
+            'context': {'create': False, 'search_default_group_by_move': 1},
+        }
+
+    def _entries_behind(self, line, column):
+        """Journal items that produced one cell of the statement."""
+        self.ensure_one()
+        AML = self.env['account.move.line']
+        base = [
+            ('parent_state', '=', 'posted'),
+            ('company_id', '=', self.company_id.id),
+            ('account_id', '=', line.account_id.id),
+        ]
+        if column['role'] == 'opening':
+            candidates = AML.search(base + [('date', '<', self.date_from)])
+            return candidates.filtered(lambda aml: self._line_belongs(aml, line))
+
+        candidates = AML.search(base + [
+            ('date', '>=', self.date_from),
+            ('date', '<=', self.date_to),
+        ]).filtered(lambda aml: self._line_belongs(aml, line))
+
+        layout = self.env['masb.production.column']._layout(
+            self.company_id, column['block'])
+        # An empty recordset stands for the catch-all "Other" column, so it has
+        # to be built empty rather than browsed: ``browse(False)`` would hand
+        # back a placeholder record that equals nothing.
+        Column = self.env['masb.production.column']
+        wanted = Column.browse(column['column_id']) if column['column_id'] \
+            else Column
+        elements = None
+        if line.line_type == 'element' and column['role'] == 'total':
+            elements = line.cost_element
+
+        found = AML.browse()
+        for aml, corr_account, _amount, is_debit in self._iter_correspondence(
+                candidates):
+            if is_debit != (column['block'] == 'debit'):
+                continue
+            matched = self._match_column(
+                corr_account.with_company(self.company_id).code or '', layout)
+            if column['role'] == 'column' and matched != wanted:
+                continue
+            # Turnover against an account no column covers is reported under
+            # other direct costs, exactly as ``action_compute`` files it.
+            if elements and (matched.cost_element or 'direct') != elements:
+                continue
+            found |= aml
+        return found
+
+    def _line_belongs(self, move_line, line):
+        """Does a journal item feed the row of the statement?"""
+        self.ensure_one()
+        shares = dict(self._dimension_shares(move_line))
+        return (line.analytic_account_id.id or False) in shares
+
+    def action_open_pivot(self):
+        """Open the cells in the standard pivot view.
+
+        The widget on the form draws the statement as the accountant signs it;
+        the pivot is for the questions the blank does not answer - one
+        subdivision across cost elements, one column across subdivisions. Both
+        read the same cells, so the figures cannot disagree.
+
+        Subdivision rows are preselected: the element rows below them break the
+        very same turnover down, and summing both would double every figure.
+        """
+        self.ensure_one()
+        return {
+            'type': 'ir.actions.act_window',
+            'name': self.name,
+            'res_model': 'masb.production.report.cell',
+            'view_mode': 'pivot,list',
+            'domain': [('report_id', '=', self.id)],
+            'context': {
+                'create': False,
+                'search_default_group_rows': 1,
+                'pivot_row_groupby': ['analytic_account_id'],
+                'pivot_column_groupby': ['column_id'],
+                'pivot_measures': ['amount'],
+            },
+        }
 
     def action_confirm(self):
         self.state = 'confirmed'
@@ -385,6 +516,79 @@ class MasbProductionReport(models.Model):
     # ------------------------------------------------------------------
     # Rendering
     # ------------------------------------------------------------------
+
+    def get_matrix(self):
+        """The statement as a flat grid, for the form widget.
+
+        Called from the browser, so it returns plain JSON-able data rather than
+        records: the widget only draws, it does not need to know the models
+        behind the numbers.
+        """
+        self.ensure_one()
+        return self._report_grid()
+
+    def _report_grid(self):
+        """Columns and rows of the statement, in one flat structure.
+
+        Three renderers consume this: the form widget, the printed form and the
+        spreadsheet. Giving them one structure - instead of each assembling the
+        columns in its own order - is what keeps the screen, the paper and the
+        file literally identical.
+        """
+        self.ensure_one()
+        matrix = self._report_matrix()
+        layout = matrix['layout']
+        columns = [
+            {'key': 'account', 'label': _('Account'), 'numeric': False,
+             'role': 'text'},
+            {'key': 'label', 'label': _('Subdivision / cost element'),
+             'numeric': False, 'role': 'text'},
+            {'key': 'opening', 'label': _('Opening balance'), 'numeric': True,
+             'role': 'opening', 'block': False, 'column_id': False},
+        ]
+        for block, prefix, total_key, total_label in (
+                ('debit', 'd', 'total_debit', _('Total debit')),
+                ('credit', 'c', 'total_credit', _('Total credit'))):
+            ids = [column.id for column in layout[block]['columns']]
+            if layout[block]['other']:
+                ids.append(False)
+            for index, title in enumerate(self._column_titles(layout[block])):
+                columns.append({
+                    'key': '%s%s' % (prefix, index), 'label': title,
+                    'numeric': True, 'role': 'column', 'block': block,
+                    'column_id': ids[index],
+                })
+            columns.append({'key': total_key, 'label': total_label,
+                            'numeric': True, 'strong': True, 'role': 'total',
+                            'block': block, 'column_id': False})
+        columns.append({'key': 'closing', 'label': _('Closing balance'),
+                        'numeric': True, 'role': 'closing', 'block': False,
+                        'column_id': False})
+
+        rows = []
+        for row in matrix['rows']:
+            rows.append({
+                'kind': ('total' if row['is_total']
+                         else 'group' if row['is_group'] else 'element'),
+                'line_id': row['line'].id,
+                'cells': (
+                    [row['account_code'], row['label'], row['opening_balance']]
+                    + row['debit'] + [row['turnover_debit']]
+                    + row['credit']
+                    + [row['turnover_credit'], row['closing_balance']]),
+            })
+        return {
+            'columns': columns,
+            'rows': rows,
+            'currency_id': self.currency_id.id,
+            'control_debit': self.control_debit,
+            'control_credit': self.control_credit,
+            'is_balanced': self.is_balanced,
+            'control_label': _('Control'),
+            'control_credit_label': _('Control, credit'),
+            'mismatch_label': _(
+                'The statement does not match the journal items.'),
+        }
 
     def _report_layout(self):
         """Columns actually used by this statement, per block.
@@ -402,7 +606,7 @@ class MasbProductionReport(models.Model):
             block: {
                 'columns': [
                     column for column in Column._layout(self.company_id, block)
-                    if column.id in used
+                    if self.show_all_columns or column.id in used
                 ],
                 'other': any(
                     not cell.column_id for cell in cells
@@ -419,22 +623,31 @@ class MasbProductionReport(models.Model):
         """
         self.ensure_one()
         layout = self._report_layout()
-        element_labels = dict(COST_ELEMENTS)
+        # Labels come from the field, not from the raw selection list: the list
+        # holds the English source terms, while the field hands over whatever
+        # the .po says for the user's language.
+        element_labels = dict(
+            self.env['masb.production.report.line']._fields['cost_element']
+            ._description_selection(self.env))
         rows = []
         for line in self.line_ids.sorted('sequence'):
             amounts = defaultdict(float)
             for cell in line.cell_ids:
                 amounts[(cell.column_id.id, cell.block)] = cell.amount
+            is_group = line.line_type == 'group'
+            label = (line.analytic_account_id.display_name
+                     or _('No subdivision')) if is_group \
+                else element_labels.get(line.cost_element, '')
+            if is_group and line.responsible_name:
+                label = '%s, %s' % (label, line.responsible_name)
             rows.append({
                 'line': line,
-                'is_group': line.line_type == 'group',
-                'label': (
-                    line.analytic_account_id.display_name or _('No subdivision')
-                    if line.line_type == 'group'
-                    else element_labels.get(line.cost_element, '')),
+                'is_group': is_group,
+                'is_total': False,
+                'label': label,
                 'account_code': (
                     line.account_id.with_company(self.company_id).code
-                    if line.line_type == 'group' else ''),
+                    if is_group else ''),
                 'opening_balance': line.opening_balance,
                 'closing_balance': line.closing_balance,
                 'turnover_debit': line.turnover_debit,
@@ -443,7 +656,35 @@ class MasbProductionReport(models.Model):
                 'credit': self._row_values(
                     amounts, layout['credit'], 'credit'),
             })
+        rows.append(self._total_row(layout, rows))
         return {'layout': layout, 'rows': rows}
+
+    def _total_row(self, layout, rows):
+        """The closing "TOTAL" row of the statement.
+
+        Only group rows are summed: the element rows below them break the very
+        same turnover down, so adding both would double every figure.
+        """
+        self.ensure_one()
+        groups = [row for row in rows if row['is_group']]
+        width = {block: len(layout[block]['columns'])
+                 + (1 if layout[block]['other'] else 0)
+                 for block in ('debit', 'credit')}
+        return {
+            'line': self.env['masb.production.report.line'],
+            'is_group': False,
+            'is_total': True,
+            'label': _('TOTAL'),
+            'account_code': '',
+            'opening_balance': sum(row['opening_balance'] for row in groups),
+            'closing_balance': sum(row['closing_balance'] for row in groups),
+            'turnover_debit': sum(row['turnover_debit'] for row in groups),
+            'turnover_credit': sum(row['turnover_credit'] for row in groups),
+            'debit': [sum(row['debit'][index] for row in groups)
+                      for index in range(width['debit'])],
+            'credit': [sum(row['credit'][index] for row in groups)
+                       for index in range(width['credit'])],
+        }
 
     @api.model
     def _row_values(self, amounts, block_layout, block):
@@ -477,46 +718,57 @@ class MasbProductionReport(models.Model):
         return titles
 
     def _render_xlsx(self):
+        """Write the shared grid into a spreadsheet.
+
+        The sheet follows ``_report_grid`` column for column, so the file the
+        accountant opens in Excel is the same table the form shows and the
+        printer prints.
+        """
         import base64
 
         import xlsxwriter
 
         self.ensure_one()
-        matrix = self._report_matrix()
+        grid = self._report_grid()
         stream = io.BytesIO()
         workbook = xlsxwriter.Workbook(stream, {'in_memory': True})
         sheet = workbook.add_worksheet(_('Account 23'))
         header = workbook.add_format({
-            'bold': True, 'text_wrap': True, 'valign': 'vcenter',
+            'bold': True, 'text_wrap': True, 'valign': 'bottom',
             'align': 'center', 'border': 1})
-        group = workbook.add_format({'bold': True, 'num_format': '#,##0.00'})
-        group_text = workbook.add_format({'bold': True})
-        money = workbook.add_format({'num_format': '#,##0.00'})
+        strong_number = workbook.add_format({
+            'bold': True, 'num_format': '#,##0.00'})
+        strong_text = workbook.add_format({'bold': True})
+        number = workbook.add_format({'num_format': '#,##0.00'})
         indent = workbook.add_format({'indent': 2})
 
-        titles = [_('Account'), _('Subdivision / cost element'),
-                  _('Opening balance')]
-        titles += self._column_titles(matrix['layout']['debit'])
-        titles += [_('Total debit')]
-        titles += self._column_titles(matrix['layout']['credit'])
-        titles += [_('Total credit'), _('Closing balance')]
-        sheet.write_row(0, 0, titles, header)
+        sheet.write_row(0, 0, [column['label'] for column in grid['columns']],
+                        header)
+        sheet.set_row(0, 34)
         sheet.set_column(0, 0, 12)
         sheet.set_column(1, 1, 34)
-        sheet.set_column(2, len(titles) - 1, 14)
+        sheet.set_column(2, len(grid['columns']) - 1, 14)
         sheet.freeze_panes(1, 2)
 
-        for index, row in enumerate(matrix['rows'], start=1):
-            is_group = row['is_group']
-            number = group if is_group else money
-            sheet.write(index, 0, row['account_code'],
-                        group_text if is_group else indent)
-            sheet.write(index, 1, row['label'],
-                        group_text if is_group else indent)
-            values = ([row['opening_balance']] + row['debit']
-                      + [row['turnover_debit']] + row['credit']
-                      + [row['turnover_credit'], row['closing_balance']])
-            sheet.write_row(index, 2, values, number)
+        index = 0
+        for index, row in enumerate(grid['rows'], start=1):
+            strong = row['kind'] in ('group', 'total')
+            for position, value in enumerate(row['cells']):
+                if grid['columns'][position]['numeric']:
+                    style = strong_number if strong else number
+                else:
+                    style = strong_text if strong else indent
+                sheet.write(index, position, value, style)
+
+        # The control line repeats the turnover taken straight from the journal
+        # items. On paper it is what the accountant signs the statement against.
+        control = index + 2
+        sheet.write(control, 1, grid['control_label'], strong_text)
+        sheet.write(control, 2, grid['control_debit'], strong_number)
+        sheet.write(control + 1, 1, grid['control_credit_label'], strong_text)
+        sheet.write(control + 1, 2, grid['control_credit'], strong_number)
+        if not grid['is_balanced']:
+            sheet.write(control + 2, 1, grid['mismatch_label'], strong_text)
 
         workbook.close()
         return base64.b64encode(stream.getvalue())

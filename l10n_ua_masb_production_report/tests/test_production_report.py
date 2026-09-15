@@ -204,6 +204,165 @@ class TestProductionReport(TransactionCase):
         self.assertAlmostEqual(report.total_credit, report.control_credit)
         self.assertTrue(report.is_balanced)
 
+    def test_total_row_sums_group_rows_only(self):
+        """The TOTAL row must not add the element rows on top of the groups."""
+        self._move(date(2026, 7, 19), [
+            (self.acc_231, 100.0, 0.0, {self.shop_a: 50, self.shop_b: 50}),
+            (self.acc_201, 0.0, 60.0, None),
+            (self.acc_661, 0.0, 40.0, None),
+        ])
+        matrix = self._report()._report_matrix()
+        totals = [row for row in matrix['rows'] if row['is_total']]
+        self.assertEqual(len(totals), 1)
+        self.assertAlmostEqual(totals[0]['turnover_debit'], 100.0)
+        self.assertEqual(len(totals[0]['debit']),
+                         len(matrix['rows'][0]['debit']))
+
+    def test_show_all_columns(self):
+        """The blank keeps every column; switching it off narrows the matrix."""
+        self._move(date(2026, 7, 21), [
+            (self.acc_231, 30.0, 0.0, {self.shop_a: 100}),
+            (self.acc_201, 0.0, 30.0, None),
+        ])
+        report = self._report()
+        wide = len(report._report_layout()['debit']['columns'])
+        report.show_all_columns = False
+        narrow = len(report._report_layout()['debit']['columns'])
+        self.assertEqual(narrow, 1, 'only the materials column moved')
+        self.assertGreater(wide, narrow)
+
+    def test_responsible_name_is_snapshotted(self):
+        """The accountable person is stored, not read back from the account."""
+        employee = self.env['hr.employee'].create({
+            'name': 'Ivanenko I.I.', 'company_id': self.company.id})
+        self.shop_a.masb_responsible_id = employee
+        self._move(date(2026, 7, 22), [
+            (self.acc_231, 15.0, 0.0, {self.shop_a: 100}),
+            (self.acc_201, 0.0, 15.0, None),
+        ])
+        report = self._report()
+        self.assertEqual(self._group(report, self.shop_a).responsible_name,
+                         'Ivanenko I.I.')
+        employee.name = 'Petrenko P.P.'
+        self.assertEqual(self._group(report, self.shop_a).responsible_name,
+                         'Ivanenko I.I.')
+
+    def test_grid_is_rectangular(self):
+        """Every row of the grid matches the column list, cell for cell."""
+        self._move(date(2026, 7, 23), [
+            (self.acc_231, 12.0, 0.0, {self.shop_a: 100}),
+            (self.acc_201, 0.0, 12.0, None),
+        ])
+        grid = self._report().get_matrix()
+        self.assertTrue(grid['rows'])
+        width = len(grid['columns'])
+        for row in grid['rows']:
+            self.assertEqual(len(row['cells']), width, row['kind'])
+        labels = [row['cells'][1] for row in grid['rows']]
+        self.assertTrue(any('Shop A' in label for label in labels))
+        self.assertEqual(grid['rows'][-1]['kind'], 'total')
+
+    def test_pivot_action_targets_group_rows(self):
+        """The pivot opens the cells of this statement, totals preselected."""
+        self._move(date(2026, 7, 24), [
+            (self.acc_231, 20.0, 0.0, {self.shop_a: 100}),
+            (self.acc_201, 0.0, 20.0, None),
+        ])
+        report = self._report()
+        action = report.action_open_pivot()
+        self.assertEqual(action['res_model'], 'masb.production.report.cell')
+        self.assertEqual(action['domain'], [('report_id', '=', report.id)])
+        self.assertEqual(action['context']['search_default_group_rows'], 1)
+        cells = self.env['masb.production.report.cell'].search(
+            action['domain'] + [('line_type', '=', 'group')])
+        self.assertAlmostEqual(sum(cells.mapped('amount')), 20.0)
+        self.assertEqual(cells.analytic_account_id, self.shop_a)
+
+    @staticmethod
+    def _column_key(grid, label):
+        return next(column['key'] for column in grid['columns']
+                    if column['label'] == label)
+
+    def test_drilldown_opens_the_entries_of_one_column(self):
+        """A debit cell opens exactly the items that fed it, nothing else."""
+        materials = self._move(date(2026, 7, 25), [
+            (self.acc_231, 70.0, 0.0, {self.shop_a: 100}),
+            (self.acc_201, 0.0, 70.0, None),
+        ])
+        self._move(date(2026, 7, 25), [
+            (self.acc_231, 30.0, 0.0, {self.shop_a: 100}),
+            (self.acc_661, 0.0, 30.0, None),
+        ])
+        report = self._report()
+        grid = report.get_matrix()
+        group = self._group(report, self.shop_a)
+        action = report.action_open_entries(
+            group.id, self._column_key(grid, '201 building materials'))
+        # The widget fetches this action through a plain ORM call, so nothing
+        # completes it on the way out: it has to be usable as it stands.
+        self.assertEqual(action['views'], [(False, 'list'), (False, 'form')])
+        opened = self.env['account.move.line'].search(action['domain'])
+        self.assertEqual(opened, materials.line_ids.filtered(
+            lambda aml: aml.account_id == self.acc_231))
+
+    def test_drilldown_total_covers_the_whole_side(self):
+        """The total column opens every item of that side of the row."""
+        self._move(date(2026, 7, 26), [
+            (self.acc_231, 70.0, 0.0, {self.shop_a: 100}),
+            (self.acc_201, 0.0, 70.0, None),
+        ])
+        self._move(date(2026, 7, 26), [
+            (self.acc_231, 30.0, 0.0, {self.shop_a: 100}),
+            (self.acc_661, 0.0, 30.0, None),
+        ])
+        report = self._report()
+        grid = report.get_matrix()
+        action = report.action_open_entries(
+            self._group(report, self.shop_a).id,
+            self._column_key(grid, 'Total debit'))
+        opened = self.env['account.move.line'].search(action['domain'])
+        self.assertEqual(len(opened), 2)
+        self.assertAlmostEqual(sum(opened.mapped('debit')), 100.0)
+
+    def test_drilldown_ignores_other_subdivisions(self):
+        """Only the items of this row, not of the neighbouring subdivision."""
+        self._move(date(2026, 7, 27), [
+            (self.acc_231, 40.0, 0.0, {self.shop_a: 100}),
+            (self.acc_201, 0.0, 40.0, None),
+        ])
+        self._move(date(2026, 7, 27), [
+            (self.acc_231, 60.0, 0.0, {self.shop_b: 100}),
+            (self.acc_201, 0.0, 60.0, None),
+        ])
+        report = self._report()
+        grid = report.get_matrix()
+        action = report.action_open_entries(
+            self._group(report, self.shop_a).id,
+            self._column_key(grid, '201 building materials'))
+        opened = self.env['account.move.line'].search(action['domain'])
+        self.assertAlmostEqual(sum(opened.mapped('debit')), 40.0)
+
+    def test_drilldown_refuses_derived_figures(self):
+        """Closing balance and spread credit are not sets of entries."""
+        self._move(date(2026, 7, 28), [
+            (self.acc_231, 50.0, 0.0, {self.shop_a: 100}),
+            (self.acc_201, 0.0, 50.0, None),
+        ])
+        self._move(date(2026, 7, 29), [
+            (self.acc_260, 20.0, 0.0, None),
+            (self.acc_231, 0.0, 20.0, {self.shop_a: 100}),
+        ])
+        report = self._report()
+        grid = report.get_matrix()
+        group = self._group(report, self.shop_a)
+        with self.assertRaises(UserError):
+            report.action_open_entries(
+                group.id, self._column_key(grid, 'Closing balance'))
+        element = self._element(report, self.shop_a, 'material')
+        with self.assertRaises(UserError):
+            report.action_open_entries(
+                element.id, self._column_key(grid, 'Total credit'))
+
     def test_period_validation(self):
         report = self.env['masb.production.report'].with_company(
             self.company).create({

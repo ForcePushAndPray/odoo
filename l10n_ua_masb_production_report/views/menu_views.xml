@@ -1,11 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
 
+    <!--
+        The statement lives next to the other Ukrainian accounting reports under
+        Reporting, not under Configuration: it is a monthly working document of
+        the accountant, not a setup screen. Sequence 28 keeps it with the
+        turnover reports, before the financial statements.
+    -->
     <menuitem id="menu_masb_production_report"
               name="Production Cost Statement (23)"
-              parent="l10n_ua_account_base.menu_l10n_ua_accounting"
+              parent="l10n_ua_accounting.menu_ua_reports"
               action="masb_production_report_action"
-              sequence="60"/>
+              sequence="28"/>
 
     <menuitem id="menu_masb_production_column"
               name="Production Statement Columns"

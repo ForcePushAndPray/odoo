@@ -37,6 +37,13 @@ class MasbProductionReportLine(models.Model):
     analytic_account_id = fields.Many2one(
         'account.analytic.account', string='Subdivision')
     cost_element = fields.Selection(selection=COST_ELEMENTS)
+    responsible_name = fields.Char(
+        string='Accountable Person',
+        help='Name of the accountable person as it stood when the statement '
+             'was computed. Stored rather than read through the analytic '
+             'account, so that a closed period keeps the name it was signed '
+             'with.',
+    )
     company_id = fields.Many2one(
         related='report_id.company_id', store=True)
     currency_id = fields.Many2one(related='report_id.currency_id')
@@ -67,7 +74,10 @@ class MasbProductionReportLine(models.Model):
     @api.depends('line_type', 'analytic_account_id', 'cost_element',
                  'account_id')
     def _compute_display_name(self):
-        elements = dict(COST_ELEMENTS)
+        # From the field rather than from the raw selection list: the list is
+        # the English source, the field is what the .po translated.
+        elements = dict(
+            self._fields['cost_element']._description_selection(self.env))
         for line in self:
             if line.line_type == 'group':
                 line.display_name = '%s / %s' % (
