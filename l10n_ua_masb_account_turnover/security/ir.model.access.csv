@@ -1,0 +1,11 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_masb_account_turnover_type_user,masb.account.turnover.type.user,model_masb_account_turnover_type,account.group_account_readonly,1,0,0,0
+access_masb_account_turnover_type_manager,masb.account.turnover.type.manager,model_masb_account_turnover_type,account.group_account_manager,1,1,1,1
+access_masb_account_turnover_column_user,masb.account.turnover.column.user,model_masb_account_turnover_column,account.group_account_readonly,1,0,0,0
+access_masb_account_turnover_column_manager,masb.account.turnover.column.manager,model_masb_account_turnover_column,account.group_account_manager,1,1,1,1
+access_masb_account_turnover_user,masb.account.turnover.user,model_masb_account_turnover,account.group_account_readonly,1,0,0,0
+access_masb_account_turnover_accountant,masb.account.turnover.accountant,model_masb_account_turnover,account.group_account_user,1,1,1,1
+access_masb_account_turnover_line_user,masb.account.turnover.line.user,model_masb_account_turnover_line,account.group_account_readonly,1,0,0,0
+access_masb_account_turnover_line_accountant,masb.account.turnover.line.accountant,model_masb_account_turnover_line,account.group_account_user,1,1,1,1
+access_masb_account_turnover_cell_user,masb.account.turnover.cell.user,model_masb_account_turnover_cell,account.group_account_readonly,1,0,0,0
+access_masb_account_turnover_cell_accountant,masb.account.turnover.cell.accountant,model_masb_account_turnover_cell,account.group_account_user,1,1,1,1

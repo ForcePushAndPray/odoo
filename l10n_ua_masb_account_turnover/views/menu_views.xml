@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!--
+        The statements live next to the other Ukrainian accounting reports under
+        Reporting, not under Configuration: they are monthly working documents
+        of the accountant, not setup screens. Sequence 28 keeps them with the
+        turnover reports, before the financial statements. One entry serves
+        every statement type: the list is grouped by type, and a type added
+        later through the directory shows up there at once.
+    -->
+    <menuitem id="menu_masb_account_turnover"
+              name="Journal-Orders and Ledgers"
+              parent="l10n_ua_accounting.menu_ua_reports"
+              action="masb_account_turnover_action"
+              sequence="28"/>
+
+    <menuitem id="menu_masb_account_turnover_type"
+              name="Journal-Order and Ledger Types"
+              parent="l10n_ua_account_base.menu_l10n_ua_directories"
+              action="masb_account_turnover_type_action"
+              sequence="60"/>
+
+</odoo>

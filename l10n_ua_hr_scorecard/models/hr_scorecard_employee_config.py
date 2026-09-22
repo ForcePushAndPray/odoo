@@ -8,6 +8,7 @@ class HrScorecardEmployeeConfig(models.Model):
     _description = 'Employee KPI Compensation Config'
     _order = 'employee_id'
     _rec_name = 'employee_id'
+    _check_company_auto = True
 
     employee_id = fields.Many2one(
         'hr.employee',
@@ -15,6 +16,7 @@ class HrScorecardEmployeeConfig(models.Model):
         required=True,
         index=True,
         ondelete='cascade',
+        check_company=True,
     )
     salary_pct = fields.Float(
         string='Salary Share (%)',
@@ -40,6 +42,7 @@ class HrScorecardEmployeeConfig(models.Model):
         'hr.bonus.type',
         string='Bonus Type',
         required=True,
+        check_company=True,
         help='Type used when auto-accruing hr.bonus records from scorecards.',
     )
     company_id = fields.Many2one(
@@ -47,6 +50,7 @@ class HrScorecardEmployeeConfig(models.Model):
         string='Company',
         required=True,
         default=lambda self: self.env.company,
+        domain=lambda self: [('id', 'in', self.env.companies.ids)],
     )
     currency_id = fields.Many2one(
         'res.currency',
@@ -57,10 +61,10 @@ class HrScorecardEmployeeConfig(models.Model):
     active = fields.Boolean(default=True)
     notes = fields.Text(string='Notes')
 
-    _sql_constraints = [
-        ('employee_company_uniq', 'unique(employee_id, company_id)',
-         'A KPI compensation config already exists for this employee in this company.'),
-    ]
+    _employee_company_uniq = models.Constraint(
+        'unique(employee_id, company_id)',
+        'A KPI compensation config already exists for this employee in this company.',
+    )
 
     @api.constrains('salary_pct', 'bonus_pct')
     def _check_shares(self):

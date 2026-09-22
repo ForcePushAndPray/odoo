@@ -1,0 +1,163 @@
+// KPI map table.
+//
+// Follows common practice for tabular reports (Tufte, Few, IBCS): as few rules
+// as possible, and a hierarchy of rule weights instead of a full grid.
+//  - hairline horizontal rules between KPI rows;
+//  - a medium rule between the job positions of an employee and above each
+//    weighted result (a total), which is also bold;
+//  - a strong rule under the header, between employees and under the table;
+//  - vertical rules only where they separate groups: after the KPI column and
+//    between periods, not between weight / planned / actual / achievement;
+//  - right-aligned tabular figures so digits line up.
+// Row separators are top borders only: with separate borders, a bottom border
+// and the next row's top border would show as a double rule.
+.o_kpi_map_table {
+    // Odoo 19 does not publish the Bootstrap CSS variables (--bs-*), and a
+    // border whose colour is an undefined variable is dropped altogether.
+    // currentColor follows the text colour, so the rules work in both themes.
+    --kpi-map-rule-light: #{"color-mix(in srgb, currentColor 15%, transparent)"};
+    --kpi-map-rule-medium: #{"color-mix(in srgb, currentColor 35%, transparent)"};
+    --kpi-map-rule-strong: currentColor;
+
+    width: auto;
+    min-width: 100%;
+    // Closing rule of the table; cells spanning rows need no bottom rule.
+    border-bottom: 2px solid var(--kpi-map-rule-strong);
+    border-collapse: separate;
+    border-spacing: 0;
+    font-variant-numeric: tabular-nums;
+
+    > :not(caption) > * > * {
+        padding: 0.3rem 0.6rem;
+        border-width: 0;
+        box-shadow: none;
+    }
+
+    thead th {
+        font-weight: 600;
+        white-space: nowrap;
+        vertical-align: bottom;
+        opacity: 0.75;
+    }
+
+    thead tr:last-child th {
+        font-size: 0.85em;
+    }
+
+    thead tr:last-child th,
+    thead th[rowspan] {
+        border-bottom: 2px solid var(--kpi-map-rule-strong);
+    }
+
+    .o_kpi_map_period_title {
+        opacity: 1;
+        border-bottom: 1px solid var(--kpi-map-rule-medium);
+    }
+
+    .o_kpi_map_period_start {
+        border-left: 1px solid var(--kpi-map-rule-medium);
+    }
+
+    .o_kpi_map_kpi_col {
+        border-right: 1px solid var(--kpi-map-rule-medium);
+    }
+
+    tbody .o_kpi_map_kpi_col {
+        min-width: 14rem;
+    }
+
+    tbody tr > * {
+        border-top: 1px solid var(--kpi-map-rule-light);
+    }
+
+    tbody tr.o_kpi_map_job_start > *,
+    tbody tr.o_kpi_map_total > * {
+        border-top: 1px solid var(--kpi-map-rule-medium);
+    }
+
+    tbody tr.o_kpi_map_employee_start > * {
+        border-top: 2px solid var(--kpi-map-rule-strong);
+    }
+
+    // The header already ends with a strong rule.
+    tbody tr:first-child > * {
+        border-top: 0;
+    }
+
+    tbody tr.o_kpi_map_total > * {
+        font-weight: 600;
+    }
+
+
+    tbody td a {
+        text-decoration: none;
+    }
+}
+
+// The copy of the table that cog menu > Print puts at the end of the body:
+// invisible on screen, the only thing left on paper.
+.o_kpi_map_print_root {
+    display: none;
+}
+
+// Printing the KPI map: keep the title and the table, drop everything else.
+// Printing straight from the browser (Ctrl+P) at least drops the search panel,
+// which sits inside the view.
+@media print {
+    body.o_kpi_map_printing > * {
+        display: none !important;
+    }
+
+    body.o_kpi_map_printing > .o_kpi_map_print_root {
+        display: block !important;
+    }
+
+    .o_kpi_map_print_root {
+        padding: 0;
+
+        > h4 {
+            margin-bottom: 0.5rem;
+        }
+
+        .overflow-auto {
+            padding: 0 !important;
+            overflow: visible !important;
+            height: auto !important;
+        }
+    }
+
+    .o_kpi_map {
+        .o_search_panel,
+        .o_search_panel_sidebar,
+        .o_search_panel_resize {
+            display: none !important;
+        }
+
+        &,
+        .overflow-auto {
+            display: block !important;
+            height: auto !important;
+            overflow: visible !important;
+        }
+    }
+
+    .o_kpi_map_table {
+        --kpi-map-rule-light: #d9d9d9;
+        --kpi-map-rule-medium: #8c8c8c;
+        --kpi-map-rule-strong: #000;
+
+        font-size: 9pt;
+
+        a {
+            color: inherit !important;
+        }
+
+        thead {
+            display: table-header-group;
+        }
+
+        tr {
+            break-inside: avoid;
+        }
+    }
+}

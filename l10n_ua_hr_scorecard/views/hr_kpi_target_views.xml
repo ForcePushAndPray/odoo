@@ -5,50 +5,139 @@
         <field name="name">hr.kpi.target.form</field>
         <field name="model">hr.kpi.target</field>
         <field name="arch" type="xml">
-            <form string="KPI Target">
+            <form string="KPI Target" create="0">
                 <header>
                     <button name="action_confirm" string="Confirm" type="object"
                             class="btn-primary" invisible="state != 'draft'"/>
                     <button name="action_draft" string="Reset to Draft" type="object"
                             invisible="state != 'confirmed'"/>
-                    <button name="action_open_assignments" string="Assignments" type="object"
-                            class="btn-secondary"
-                            groups="l10n_ua_hr_base.group_hr_ua_officer"/>
-                    <button name="action_open_kpi" string="KPI Settings" type="object"
-                            class="btn-secondary"
+                    <button name="%(action_hr_kpi_target_copy)d" type="action"
+                            string="Copy to Another Period" invisible="not id"
+                            context="{'active_model': 'hr.kpi.target', 'active_ids': [id]}"
                             groups="l10n_ua_hr_base.group_hr_ua_officer"/>
                     <field name="state" widget="statusbar"
                            statusbar_visible="draft,confirmed"/>
                 </header>
                 <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button name="action_open_kpi" type="object"
+                                class="oe_stat_button" icon="fa-bullseye"
+                                invisible="not id or not kpi_id">
+                            <div class="o_stat_info">
+                                <span class="o_stat_text">KPI</span>
+                            </div>
+                        </button>
+                        <button name="action_open_jobs" type="object" class="oe_stat_button"
+                                icon="fa-briefcase" invisible="not id">
+                            <field name="job_count" widget="statinfo" string="Job Positions"/>
+                        </button>
+                        <button name="action_open_employees" type="object" class="oe_stat_button"
+                                icon="fa-users" invisible="not id">
+                            <field name="employee_count" widget="statinfo" string="Employees"/>
+                        </button>
+                    </div>
                     <group>
-                        <group>
-                            <field name="kpi_id" readonly="state == 'confirmed'"/>
-                            <field name="period_id" readonly="state == 'confirmed'"/>
-                            <field name="company_id" groups="base.group_multi_company"/>
-                        </group>
-                        <group>
+                        <group string="KPI">
+                            <field name="kpi_id" readonly="state == 'confirmed'"
+                                   domain="[('state', '=', 'confirmed'), ('company_id', 'in', [company_id, False])]"
+                                   options="{'no_create': True}"/>
                             <field name="calculation_method"/>
                             <field name="higher_is_better"/>
                             <field name="uom_name"/>
+                            <field name="company_id" groups="base.group_multi_company"
+                                   readonly="state == 'confirmed'"
+                                   options="{'no_create': True, 'no_open': True}"/>
+                        </group>
+                        <group string="Period">
+                            <field name="period_type" required="1"
+                                   readonly="state == 'confirmed'"/>
+                            <field name="period_year" required="1"
+                                   readonly="state == 'confirmed'"/>
+                            <field name="period_quarter"
+                                   invisible="period_type != 'quarter'"
+                                   required="period_type == 'quarter'"
+                                   readonly="state == 'confirmed'"/>
+                            <field name="period_month"
+                                   invisible="period_type != 'month'"
+                                   required="period_type == 'month'"
+                                   readonly="state == 'confirmed'"/>
                         </group>
                     </group>
+                    <div class="alert alert-info" role="status" invisible="not period_missing">
+                        This KPI period does not exist yet. It will be generated automatically on save.
+                    </div>
                     <group>
                         <group string="Values">
-                            <field name="planned_value"
-                                   readonly="state == 'confirmed' or calculation_method == 'binary'"/>
-                            <field name="actual_value"
-                                   readonly="state == 'confirmed' or calculation_method == 'binary'"/>
-                            <field name="binary_achieved"
-                                   readonly="state == 'confirmed' or calculation_method != 'binary'"/>
+                            <field name="planned_value" readonly="state == 'confirmed'"/>
+                            <field name="data_source" invisible="1"/>
+                            <field name="use_formula" invisible="1"/>
+                            <field name="computed_actual" invisible="1"/>
+                            <field name="fetch_ready" invisible="1"/>
+                            <field name="selected_date_from" invisible="1"/>
+                            <field name="selected_date_to" invisible="1"/>
+                            <label for="actual_value"/>
+                            <div class="o_row d-flex align-items-center gap-2">
+                                <field name="actual_value" class="oe_inline"
+                                       readonly="state == 'confirmed' or computed_actual"/>
+                                <button name="action_update_from_system" type="object"
+                                        string="Get" class="btn btn-sm btn-secondary"
+                                        invisible="not computed_actual or state != 'draft' or not fetch_ready"
+                                        help="Get the data from the source reports and compute the actual value."/>
+                                <div class="btn btn-sm btn-secondary disabled" role="button" aria-disabled="true"
+                                     invisible="not computed_actual or state != 'draft' or fetch_ready"
+                                     title="Select every source report for exactly the period of the target to get the data.">Get</div>
+                            </div>
                         </group>
                         <group string="Result">
                             <field name="achievement"/>
                         </group>
                     </group>
+                    <group string="Source Reports" invisible="data_source != 'system'">
+                        <field name="source_ids" nolabel="1" colspan="2"
+                               readonly="state == 'confirmed'">
+                            <list editable="bottom" create="0" delete="0"
+                                  decoration-danger="report_id and not dates_match">
+                                <field name="model" column_invisible="1"/>
+                                <field name="company_id" column_invisible="1"/>
+                                <field name="report_id" column_invisible="1"/>
+                                <field name="model_name" width="190px"/>
+                                <field name="pnl_report_id"
+                                       domain="[('company_id', '=', company_id), ('state', '=', 'confirmed')]"
+                                       options="{'no_create': True}"
+                                       invisible="model != 'l10n_ua.pnl.report'"/>
+                                <field name="date_from"/>
+                                <field name="date_to"/>
+                                <field name="dates_match" widget="boolean"/>
+                            </list>
+                        </field>
+                        <div colspan="2" class="text-muted small">
+                            The dates of every report must be exactly the dates of the period of the target,
+                            otherwise the changes cannot be saved.
+                        </div>
+                    </group>
+                    <group string="Formula" invisible="not use_formula">
+                        <field name="formula" readonly="1"/>
+                        <field name="input_ids" nolabel="1" colspan="2"
+                               readonly="state == 'confirmed'">
+                            <list editable="bottom" create="0" delete="0">
+                                <field name="code"/>
+                                <field name="name"/>
+                                <field name="system_field" string="Odoo Parameter"/>
+                                <field name="value" readonly="1"/>
+                            </list>
+                        </field>
+                    </group>
                 </sheet>
             </form>
         </field>
+    </record>
+
+    <record id="action_hr_kpi_target_create" model="ir.actions.act_window">
+        <field name="name">New KPI Target</field>
+        <field name="res_model">hr.kpi.target</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="hr_kpi_target_view_form"/>
+        <field name="target">new</field>
     </record>
 
     <record id="hr_kpi_target_view_list" model="ir.ui.view">
@@ -56,41 +145,31 @@
         <field name="model">hr.kpi.target</field>
         <field name="arch" type="xml">
             <list string="KPI Targets"
-                  editable="bottom"
+                  js_class="l10n_ua_hr_scorecard_search_panel_refresh_list"
+                  create="0"
                   decoration-success="state == 'confirmed'"
                   decoration-info="state == 'draft'">
-                <control>
-                    <create string="New"/>
-                    <button name="%(action_hr_kpi_bulk_assign)d" type="action"
-                            string="Assign" class="btn-secondary"
+                <header>
+                    <button name="%(action_hr_kpi_target_create)d" type="action"
+                            string="New" class="btn-primary" display="always"
                             groups="l10n_ua_hr_base.group_hr_ua_officer"/>
-                </control>
-                <field name="period_id" readonly="state == 'confirmed'"/>
-                <field name="kpi_id" readonly="state == 'confirmed'"/>		
+                    <button name="action_update_from_system" type="object"
+                            string="Get Data"
+                            groups="l10n_ua_hr_base.group_hr_ua_officer"/>
+                    <button name="%(action_hr_kpi_target_copy)d" type="action"
+                            string="Copy to Another Period"
+                            groups="l10n_ua_hr_base.group_hr_ua_officer"/>
+                </header>
+                <field name="kpi_id"/>
+                <field name="period_id"/>
                 <field name="calculation_method" column_invisible="1"/>
                 <field name="uom_name" optional="show"/>
-                <field name="planned_value"
-                       readonly="state == 'confirmed' or calculation_method == 'binary'"/>
-                <field name="actual_value"
-                       readonly="state == 'confirmed' or calculation_method == 'binary'"/>
-                <field name="binary_achieved"
-                       readonly="state == 'confirmed' or calculation_method != 'binary'"/>
+                <field name="planned_value"/>
+                <field name="actual_value"/>
                 <field name="achievement"/>
                 <field name="state" widget="badge"
                        decoration-success="state == 'confirmed'"
                        decoration-info="state == 'draft'"/>
-                <button name="action_confirm" string="Confirm" type="object"
-                        icon="fa-check" invisible="state == 'confirmed'"
-                        groups="l10n_ua_hr_base.group_hr_ua_officer"/>
-                <button name="action_draft" string="Reset" type="object"
-                        icon="fa-undo" invisible="state == 'draft'"
-                        groups="l10n_ua_hr_base.group_hr_ua_officer"/>
-                <button name="action_open_assignments" string="Assignments" type="object"
-                        icon="fa-users"
-                        groups="l10n_ua_hr_base.group_hr_ua_officer"/>
-                <button name="action_open_kpi" string="Settings" type="object"
-                        icon="fa-cog"
-                        groups="l10n_ua_hr_base.group_hr_ua_officer"/>
             </list>
         </field>
     </record>
@@ -99,7 +178,8 @@
         <field name="name">hr.kpi.target.kanban</field>
         <field name="model">hr.kpi.target</field>
         <field name="arch" type="xml">
-            <kanban default_group_by="kpi_id" class="o_kanban_small_column">
+            <kanban default_group_by="kpi_id" class="o_kanban_small_column" create="0" quick_create="false"
+                    js_class="l10n_ua_hr_scorecard_search_panel_refresh_kanban">
                 <field name="kpi_id"/>
                 <field name="period_id"/>
                 <field name="planned_value"/>

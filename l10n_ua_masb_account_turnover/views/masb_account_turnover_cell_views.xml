@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="masb_account_turnover_cell_view_pivot" model="ir.ui.view">
+        <field name="name">masb.account.turnover.cell.pivot</field>
+        <field name="model">masb.account.turnover.cell</field>
+        <field name="arch" type="xml">
+            <pivot string="Statement Cells" sample="0">
+                <field name="dimension_name" type="row"/>
+                <field name="column_id" type="col"/>
+                <field name="amount" type="measure"/>
+            </pivot>
+        </field>
+    </record>
+
+    <record id="masb_account_turnover_cell_view_list" model="ir.ui.view">
+        <field name="name">masb.account.turnover.cell.list</field>
+        <field name="model">masb.account.turnover.cell</field>
+        <field name="arch" type="xml">
+            <list string="Statement Cells" create="false" edit="false">
+                <field name="account_id"/>
+                <field name="dimension_name"/>
+                <field name="cost_element" optional="hide"/>
+                <field name="block"/>
+                <field name="column_id"/>
+                <field name="amount" sum="Total"/>
+                <field name="currency_id" column_invisible="1"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="masb_account_turnover_cell_view_search" model="ir.ui.view">
+        <field name="name">masb.account.turnover.cell.search</field>
+        <field name="model">masb.account.turnover.cell</field>
+        <field name="arch" type="xml">
+            <search string="Statement Cells">
+                <field name="dimension_name"/>
+                <field name="partner_id"/>
+                <field name="analytic_account_id"/>
+                <field name="account_id"/>
+                <field name="column_id"/>
+                <!--
+                    The two row kinds must never be summed together: an element
+                    row breaks down the very turnover its main row already
+                    holds. One of the filters is always on.
+                -->
+                <filter name="group_rows" string="Main rows"
+                        domain="[('line_type', '=', 'group')]"/>
+                <filter name="element_rows" string="Cost elements"
+                        domain="[('line_type', '=', 'element')]"/>
+                <separator/>
+                <filter name="debit_block" string="Debit turnover"
+                        domain="[('block', '=', 'debit')]"/>
+                <filter name="credit_block" string="Credit turnover"
+                        domain="[('block', '=', 'credit')]"/>
+                <group>
+                    <filter name="group_row" string="Row"
+                            context="{'group_by': 'dimension_name'}"/>
+                    <filter name="group_account" string="Account"
+                            context="{'group_by': 'account_id'}"/>
+                    <filter name="group_element" string="Cost element"
+                            context="{'group_by': 'cost_element'}"/>
+                    <filter name="group_column" string="Column"
+                            context="{'group_by': 'column_id'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+</odoo>

@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="masb_account_turnover_type_view_list" model="ir.ui.view">
+        <field name="name">masb.account.turnover.type.list</field>
+        <field name="model">masb.account.turnover.type</field>
+        <field name="arch" type="xml">
+            <list string="Statement Types">
+                <field name="sequence" widget="handle"/>
+                <field name="name"/>
+                <field name="account_prefixes"/>
+                <field name="dimension_kind"/>
+                <field name="balance_layout"/>
+                <field name="company_id" groups="base.group_multi_company"
+                       placeholder="Shared"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="masb_account_turnover_type_view_form" model="ir.ui.view">
+        <field name="name">masb.account.turnover.type.form</field>
+        <field name="model">masb.account.turnover.type</field>
+        <field name="arch" type="xml">
+            <form string="Statement Type">
+                <sheet>
+                    <widget name="web_ribbon" title="Archived" bg_color="text-bg-danger"
+                            invisible="active"/>
+                    <div class="oe_title">
+                        <h1><field name="name" placeholder="e.g. Account 631 Domestic suppliers"/></h1>
+                    </div>
+                    <group>
+                        <group name="scope" string="Scope">
+                            <field name="account_prefixes"/>
+                            <field name="dimension_kind" widget="radio"/>
+                            <field name="analytic_plan_id"
+                                   invisible="dimension_kind != 'analytic'"/>
+                            <field name="subconto_type_id"
+                                   invisible="dimension_kind != 'subconto'"
+                                   required="dimension_kind == 'subconto'"/>
+                            <field name="company_id"
+                                   groups="base.group_multi_company"
+                                   placeholder="Shared"/>
+                            <field name="active" invisible="1"/>
+                        </group>
+                        <group name="blank" string="Blank">
+                            <field name="row_label"/>
+                            <field name="no_dimension_label"/>
+                            <field name="balance_layout" widget="radio"/>
+                            <field name="use_cost_elements"/>
+                            <field name="skip_empty_rows"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Columns" name="columns">
+                            <field name="column_ids"
+                                   context="{'default_company_id': company_id}">
+                                <list editable="bottom">
+                                    <field name="sequence" widget="handle"/>
+                                    <field name="block"/>
+                                    <field name="name"/>
+                                    <field name="account_prefixes"/>
+                                    <field name="cost_element"
+                                           column_invisible="not parent.use_cost_elements"/>
+                                    <field name="company_id"
+                                           groups="base.group_multi_company"
+                                           placeholder="Shared"/>
+                                </list>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="masb_account_turnover_type_action" model="ir.actions.act_window">
+        <field name="name">Statement Types</field>
+        <field name="res_model">masb.account.turnover.type</field>
+        <field name="view_mode">list,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Describe a journal-order and ledger of one more account
+            </p>
+            <p>
+                A statement type says which account is covered, what its rows
+                are and which corresponding accounts get a column of their own.
+            </p>
+        </field>
+    </record>
+
+</odoo>

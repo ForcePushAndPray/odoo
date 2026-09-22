@@ -7,6 +7,7 @@ class HrScorecardLine(models.Model):
     _name = 'hr.scorecard.line'
     _description = 'Scorecard KPI Line'
     _order = 'sequence, id'
+    _check_company_auto = True
 
     scorecard_id = fields.Many2one(
         'hr.scorecard',
@@ -16,16 +17,16 @@ class HrScorecardLine(models.Model):
         index=True,
     )
     sequence = fields.Integer(default=10)
-    kpi_id = fields.Many2one('hr.kpi', string='KPI', required=True)
+    kpi_id = fields.Many2one('hr.kpi', string='KPI', required=True, check_company=True)
     period_id = fields.Many2one(
         'hr.kpi.period',
         related='scorecard_id.period_id',
         store=True,
         readonly=True,
     )
-    employee_id = fields.Many2one(
-        'hr.employee',
-        related='scorecard_id.employee_id',
+    job_id = fields.Many2one(
+        'hr.job',
+        related='scorecard_id.job_id',
         store=True,
         readonly=True,
         index=True,
@@ -99,17 +100,16 @@ class HrScorecardLine(models.Model):
             if line.weight < 0 or line.weight > 100:
                 raise ValidationError(_('Weight must be between 0 and 100.'))
 
-    @api.depends('kpi_id', 'scorecard_id.period_id', 'scorecard_id.company_id')
+    @api.depends('kpi_id', 'scorecard_id.period_id', 'scorecard_id.job_id', 'scorecard_id.company_id')
     def _compute_target_id(self):
         Target = self.env['hr.kpi.target']
         for line in self:
-            if not line.kpi_id or not line.scorecard_id.period_id:
+            scorecard = line.scorecard_id
+            if not line.kpi_id or not scorecard.period_id or not scorecard.job_id:
                 line.target_id = False
                 continue
             line.target_id = Target.get_or_create(
-                line.kpi_id,
-                line.scorecard_id.period_id,
-                line.scorecard_id.company_id,
+                line.kpi_id, scorecard.period_id, scorecard.company_id,
             )
 
     @api.depends('achievement', 'weight')

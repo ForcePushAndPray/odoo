@@ -6,17 +6,10 @@
               parent="hr.menu_hr_root"
               sequence="55"/>
 
-    <menuitem id="menu_hr_kpi_targets"
-              name="Targets"
-              parent="menu_hr_scorecard_root"
-              action="action_hr_kpi_targets"
-              sequence="5"
-              groups="l10n_ua_hr_base.group_hr_ua_officer"/>
-
     <menuitem id="menu_hr_scorecard"
-              name="Scorecards"
+              name="KPI Map"
               parent="menu_hr_scorecard_root"
-              action="action_hr_scorecard"
+              action="action_hr_kpi_map_open"
               sequence="10"/>
 
     <menuitem id="menu_hr_scorecard_employee_config"
@@ -33,15 +26,27 @@
               groups="l10n_ua_hr_base.group_hr_ua_manager"/>
 
     <menuitem id="menu_hr_kpi"
-              name="KPIs"
+              name="KPI Directory"
               parent="menu_hr_scorecard_config"
               action="action_hr_kpi"
               sequence="10"/>
 
     <menuitem id="menu_hr_kpi_period"
-              name="Periods"
+              name="Period Directory"
               parent="menu_hr_scorecard_config"
               action="action_hr_kpi_period"
               sequence="20"/>
+
+    <menuitem id="menu_hr_kpi_assignment"
+              name="KPI Assignment"
+              parent="menu_hr_scorecard_config"
+              action="action_hr_kpi_assignment"
+              sequence="25"/>
+
+    <menuitem id="menu_hr_kpi_targets"
+              name="Targets"
+              parent="menu_hr_scorecard_config"
+              action="action_hr_kpi_targets"
+              sequence="30"/>
 
 </odoo>

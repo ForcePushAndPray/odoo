@@ -9,23 +9,32 @@
                 <header>
                     <button name="action_accrue_bonuses" string="Accrue Bonuses" type="object"
                             groups="l10n_ua_hr_base.group_hr_ua_officer"
-                            help="Create hr.bonus records for every confirmed/closed scorecard in this period."/>
+                            help="Create hr.bonus records for the employees of every confirmed/closed scorecard in this period."/>
                 </header>
                 <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button name="action_open_targets" type="object" class="oe_stat_button"
+                                icon="fa-crosshairs" invisible="not id">
+                            <field name="target_count" widget="statinfo" string="Targets"/>
+                        </button>
+                    </div>
                     <div class="oe_title">
-                        <label for="name"/>
-                        <h1><field name="name" placeholder="e.g. Q1 2026"/></h1>
+                        <h1><field name="display_name"/></h1>
                     </div>
                     <group>
                         <group>
                             <field name="period_type"/>
+                            <field name="year" options="{'format': false}"/>
+                            <field name="quarter"
+                                   invisible="period_type != 'quarter'"
+                                   required="period_type == 'quarter'"/>
+                            <field name="month"
+                                   invisible="period_type != 'month'"
+                                   required="period_type == 'month'"/>
                             <field name="company_id"
                                    options="{'no_create': True, 'no_open': True}"
                                    groups="base.group_multi_company"/>
-                        </group>
-                        <group>
-                            <field name="date_from"/>
-                            <field name="date_to"/>
+                            <field name="parent_id" invisible="not parent_id"/>
                         </group>
                     </group>
                 </sheet>
@@ -37,12 +46,33 @@
         <field name="name">hr.kpi.period.list</field>
         <field name="model">hr.kpi.period</field>
         <field name="arch" type="xml">
-            <list string="KPI Periods">
-                <field name="name"/>
+            <list string="KPI Periods" decoration-muted="target_count == 0">
+                <field name="display_name" string="Period"/>
                 <field name="period_type"/>
+                <field name="year" options="{'format': false}"/>
                 <field name="date_from"/>
                 <field name="date_to"/>
+                <field name="target_count"/>
             </list>
+        </field>
+    </record>
+
+    <record id="hr_kpi_period_view_search" model="ir.ui.view">
+        <field name="name">hr.kpi.period.search</field>
+        <field name="model">hr.kpi.period</field>
+        <field name="arch" type="xml">
+            <search string="KPI Periods">
+                <field name="name"/>
+                <field name="year"/>
+                <separator/>
+                <filter string="Without KPI Targets" name="filter_without_targets"
+                        domain="[('target_count', '=', 0)]"/>
+                <filter string="With KPI Targets" name="filter_with_targets"
+                        domain="[('target_count', '>', 0)]"/>
+                <separator/>
+                <filter string="Period Type" name="group_period_type" context="{'group_by': 'period_type'}"/>
+                <filter string="Year" name="group_year" context="{'group_by': 'year'}"/>
+            </search>
         </field>
     </record>
 
@@ -50,6 +80,7 @@
         <field name="name">KPI Periods</field>
         <field name="res_model">hr.kpi.period</field>
         <field name="view_mode">list,form</field>
+        <field name="search_view_id" ref="hr_kpi_period_view_search"/>
     </record>
 
 </odoo>

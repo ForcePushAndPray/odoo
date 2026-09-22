@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+
+    <t t-name="l10n_ua_hr_scorecard.KpiFormulaField">
+        <div class="o_kpi_formula_field w-100">
+            <span t-if="props.readonly" class="font-monospace" t-esc="value"/>
+            <t t-else="">
+                <input t-ref="input" type="text" class="o_input font-monospace w-100"
+                       t-att-id="props.id" t-att-value="value"
+                       t-att-placeholder="props.placeholder"
+                       t-on-change="onChange"/>
+                <div class="d-flex flex-wrap align-items-center gap-1 mt-2">
+                    <button t-foreach="variables" t-as="variable" t-key="variable.id"
+                            type="button" class="btn btn-sm btn-outline-primary font-monospace"
+                            t-att-title="variableTitle(variable)"
+                            t-on-click="() => this.insert(variable.code)"
+                            t-esc="variable.code"/>
+                    <span t-if="variables.length" class="vr mx-1"/>
+                    <button t-foreach="operators" t-as="operator" t-key="operator"
+                            type="button" class="btn btn-sm btn-outline-secondary font-monospace"
+                            t-on-click="() => this.insert(operator)"
+                            t-esc="operator"/>
+                </div>
+            </t>
+        </div>
+    </t>
+
+</templates>

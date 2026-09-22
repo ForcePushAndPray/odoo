@@ -1,0 +1,1300 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* l10n_ua_masb_account_turnover
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 19.0\n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: uk_UA\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+
+#. module: l10n_ua_masb_account_turnover
+#. odoo-python
+#: code:addons/l10n_ua_masb_account_turnover/models/masb_account_turnover.py:0
+msgid "%(row)s - %(column)s"
+msgstr "%(row)s — %(column)s"
+
+#. module: l10n_ua_masb_account_turnover
+#. odoo-python
+#: code:addons/l10n_ua_masb_account_turnover/models/masb_account_turnover.py:0
+msgid "%(type)s, %(date_from)s - %(date_to)s"
+msgstr "%(type)s за %(date_from)s - %(date_to)s"
+
+#. module: l10n_ua_masb_account_turnover
+#: model:masb.account.turnover.column,name:l10n_ua_masb_account_turnover.column_23_debit_13
+msgid "13 depreciation"
+msgstr "13 амортизація"
+
+#. module: l10n_ua_masb_account_turnover
+#: model:masb.account.turnover.column,name:l10n_ua_masb_account_turnover.column_631_credit_152
+msgid "152 fixed assets"
+msgstr "152 придбання основних засобів"
+
+#. module: l10n_ua_masb_account_turnover
+#: model:masb.account.turnover.column,name:l10n_ua_masb_account_turnover.column_631_credit_153
+msgid "153 other non-current assets"
+msgstr "153 інші необоротні матеріальні активи"
+
+#. module: l10n_ua_masb_account_turnover
+#: model:masb.account.turnover.column,name:l10n_ua_masb_account_turnover.column_23_debit_201
+msgid "201 building materials"
+msgstr "201 будматеріали"
+
+#. module: l10n_ua_masb_account_turnover
+#: model:masb.account.turnover.column,name:l10n_ua_masb_account_turnover.column_631_credit_201
+msgid "201 raw materials"
+msgstr "201 сировина й матеріали"
+
+#. module: l10n_ua_masb_account_turnover
+#: model:masb.account.turnover.column,name:l10n_ua_masb_account_turnover.column_23_debit_203
+#: model:masb.account.turnover.column,name:l10n_ua_masb_account_turnover.column_631_credit_203
+msgid "203 fuel"
+msgstr "203 ПММ"
+
+#. module: l10n_ua_masb_account_turnover
+#: model:masb.account.turnover.column,name:l10n_ua_masb_account_turnover.column_23_debit_207
+#: model:masb.account.turnover.column,name:l10n_ua_masb_account_turnover.column_631_credit_207
+msgid "207 spare parts"
+msgstr "207 запчастини"
+
+#. module: l10n_ua_masb_account_turnover
+#: model:masb.account.turnover.column,name:l10n_ua_masb_account_turnover.column_23_debit_209
+#: model:masb.account.turnover.column,name:l10n_ua_masb_account_turnover.column_631_credit_209
+msgid "209 other materials"
+msgstr "209 інші матеріали"
+
+#. module: l10n_ua_masb_account_turnover
+#: model:masb.account.turnover.column,name:l10n_ua_masb_account_turnover.column_23_debit_22
+#: model:masb.account.turnover.column,name:l10n_ua_masb_account_turnover.column_631_credit_22
+msgid "22 low value items"
+msgstr "22 МШП"
+
+#. module: l10n_ua_masb_account_turnover
+#: model:masb.account.turnover.column,name:l10n_ua_masb_account_turnover.column_23_credit_23
+msgid "23 internal transfer"
+msgstr "23 внутрішнє переміщення"
+
+#. module: l10n_ua_masb_account_turnover
+#: model:masb.account.turnover.column,name:l10n_ua_masb_account_turnover.column_631_credit_23
+msgid "23 production"
+msgstr "23 виробництво"
+
+#. module: l10n_ua_masb_account_turnover
+#: model:masb.account.turnover.column,name:l10n_ua_masb_account_turnover.column_23_debit_231_233
+msgid "231, 233 auxiliary production"
+msgstr "231, 233 допоміжне виробництво"
+
+#. module: l10n_ua_masb_account_turnover
+#: model:masb.account.turnover.column,name:l10n_ua_masb_account_turnover.column_23_debit_235_236
+msgid "235, 236 machinery"
+msgstr "235, 236 машини й механізми"
+
+#. module: l10n_ua_masb_account_turnover
+#: model:masb.account.turnover.column,name:l10n_ua_masb_account_turnover.column_23_credit_26
+#: model:masb.account.turnover.column,name:l10n_ua_masb_account_turnover.column_23_debit_26
+msgid "26 finished goods"
+msgstr "26 готові вироби"
+
+#. module: l10n_ua_masb_account_turnover
+#: model:masb.account.turnover.column,name:l10n_ua_masb_account_turnover.column_631_debit_311
+msgid "311 current accounts"
+msgstr "311 поточні рахунки"
+
+#. module: l10n_ua_masb_account_turnover
+#: model:masb.account.turnover.column,name:l10n_ua_masb_account_turnover.column_631_debit_312
+msgid "312 foreign currency accounts"
+msgstr "312 валютні рахунки"
+
+#. module: l10n_ua_masb_account_turnover
+#: model:masb.account.turnover.column,name:l10n_ua_masb_account_turnover.column_631_debit_313
+msgid "313 other bank accounts"
+msgstr "313 інші рахунки в банку"
+
+#. module: l10n_ua_masb_account_turnover
+#: model:masb.account.turnover.column,name:l10n_ua_masb_account_turnover.column_631_debit_314
+msgid "314 other foreign currency bank accounts"
+msgstr "314 інші рахунки в банку в іноземній валюті"
+
+#. module: l10n_ua_masb_account_turnover
+#: model:masb.account.turnover.column,name:l10n_ua_masb_account_turnover.column_631_credit_371
+#: model:masb.account.turnover.column,name:l10n_ua_masb_account_turnover.column_631_debit_371
+msgid "371 advances paid"
+msgstr "371 видані аванси"
+
+#. module: l10n_ua_masb_account_turnover
+#: model:masb.account.turnover.column,name:l10n_ua_masb_account_turnover.column_23_credit_39
+msgid "39 deferred costs"
+msgstr "39 витрати майбутніх періодів"
+
+#. module: l10n_ua_masb_account_turnover
+#: model:masb.account.turnover.column,name:l10n_ua_masb_account_turnover.column_23_debit_39
+msgid "39 prior period costs"
+msgstr "39 витрати минулих періодів"
+
+#. module: l10n_ua_masb_account_turnover
+#: model:masb.account.turnover.column,name:l10n_ua_masb_account_turnover.column_23_debit_471
+msgid "471 vacation provision"
+msgstr "471 резерв відпусток"
+
+#. module: l10n_ua_masb_account_turnover
+#: model:masb.account.turnover.column,name:l10n_ua_masb_account_turnover.column_23_debit_631_685
+msgid "631, 685 utilities and services"
+msgstr "631, 685 газ, електроенергія, послуги"
+
+#. module: l10n_ua_masb_account_turnover
+#: model:masb.account.turnover.column,name:l10n_ua_masb_account_turnover.column_631_credit_644
+msgid "644 tax credit"
+msgstr "644 податковий кредит"
+
+#. module: l10n_ua_masb_account_turnover
+#: model:masb.account.turnover.column,name:l10n_ua_masb_account_turnover.column_23_debit_651
+msgid "651 social contributions"
+msgstr "651 ЄСВ"
+
+#. module: l10n_ua_masb_account_turnover
+#: model:masb.account.turnover.column,name:l10n_ua_masb_account_turnover.column_23_debit_661
+msgid "661 wages"
+msgstr "661 заробітна плата"
+
+#. module: l10n_ua_masb_account_turnover
+#: model:masb.account.turnover.column,name:l10n_ua_masb_account_turnover.column_23_credit_90
+msgid "90 cost of sales"
+msgstr "90 собівартість реалізації"
+
+#. module: l10n_ua_masb_account_turnover
+#: model:masb.account.turnover.column,name:l10n_ua_masb_account_turnover.column_23_debit_91
+#: model:masb.account.turnover.column,name:l10n_ua_masb_account_turnover.column_631_credit_91
+msgid "91 production overheads"
+msgstr "91 загальновиробничі витрати"
+
+#. module: l10n_ua_masb_account_turnover
+#: model:masb.account.turnover.column,name:l10n_ua_masb_account_turnover.column_23_credit_94
+msgid "94 other operating expenses"
+msgstr "94 інші операційні витрати"
+
+#. module: l10n_ua_masb_account_turnover
+#: model:masb.account.turnover.column,name:l10n_ua_masb_account_turnover.column_631_credit_948
+msgid "948 fines and penalties"
+msgstr "948 штрафи, пені, неустойки"
+
+#. module: l10n_ua_masb_account_turnover
+#: model:masb.account.turnover.column,name:l10n_ua_masb_account_turnover.column_631_credit_949
+msgid "949 other operating expenses"
+msgstr "949 інші витрати операційної діяльності"
+
+#. module: l10n_ua_masb_account_turnover
+#: model_terms:ir.actions.act_window,help:l10n_ua_masb_account_turnover.masb_account_turnover_type_action
+msgid ""
+"A statement type says which account is covered, what its rows\n"
+"                are and which corresponding accounts get a column of their own."
+msgstr ""
+"Вид відомості визначає, який рахунок вона охоплює, що є її\n"
+"                рядками і які кореспондуючі рахунки мають окрему колонку."
+
+#. module: l10n_ua_masb_account_turnover
+#. odoo-python
+#: code:addons/l10n_ua_masb_account_turnover/models/masb_account_turnover.py:0
+#: model:ir.model.fields,field_description:l10n_ua_masb_account_turnover.field_masb_account_turnover_cell__account_id
+#: model:ir.model.fields,field_description:l10n_ua_masb_account_turnover.field_masb_account_turnover_line__account_id
+#: model_terms:ir.ui.view,arch_db:l10n_ua_masb_account_turnover.masb_account_turnover_cell_view_search
+msgid "Account"
+msgstr "Рахунок"
+
+#. module: l10n_ua_masb_account_turnover
+#: model:masb.account.turnover.type,name:l10n_ua_masb_account_turnover.type_account_23
+msgid "Account 23 Production"
+msgstr "Рах. 23 «Виробництво»"
+
+#. module: l10n_ua_masb_account_turnover
+#: model:masb.account.turnover.type,name:l10n_ua_masb_account_turnover.type_account_631
+msgid "Account 631 Domestic suppliers"
+msgstr "Рах. 631 «Розрахунки з вітчизняними постачальниками»"
+
+#. module: l10n_ua_masb_account_turnover
+#: model:ir.model.fields,field_description:l10n_ua_masb_account_turnover.field_masb_account_turnover__account_prefix
+#: model:ir.model.fields,field_description:l10n_ua_masb_account_turnover.field_masb_account_turnover_column__account_prefixes
+#: model:ir.model.fields,field_description:l10n_ua_masb_account_turnover.field_masb_account_turnover_type__account_prefixes
+msgid "Account Prefixes"
+msgstr "Префікси рахунків"
+
+#. module: l10n_ua_masb_account_turnover
+#: model:ir.model,name:l10n_ua_masb_account_turnover.model_masb_account_turnover
+msgid "Account Turnover Statement"
+msgstr "Журнал-ордер і відомість по рахунку"
+
+#. module: l10n_ua_masb_account_turnover
+#: model:ir.model,name:l10n_ua_masb_account_turnover.model_masb_account_turnover_cell
+msgid "Account Turnover Statement Cell"
+msgstr "Комірка журналу-ордера"
+
+#. module: l10n_ua_masb_account_turnover
+#: model:ir.model,name:l10n_ua_masb_account_turnover.model_masb_account_turnover_column
+msgid "Account Turnover Statement Column"
+msgstr "Колонка журналу-ордера"
+
+#. module: l10n_ua_masb_account_turnover
+#: model:ir.model,name:l10n_ua_masb_account_turnover.model_masb_account_turnover_line
+msgid "Account Turnover Statement Line"
+msgstr "Рядок журналу-ордера"
+
+#. module: l10n_ua_masb_account_turnover
+#: model:ir.model,name:l10n_ua_masb_account_turnover.model_masb_account_turnover_type
+msgid "Account Turnover Statement Type"
+msgstr "Вид журналу-ордера"
+
+#. module: l10n_ua_masb_account_turnover
+#: model:ir.model.fields,field_description:l10n_ua_masb_account_turnover.field_account_analytic_account__masb_responsible_id
+#: model:ir.model.fields,field_description:l10n_ua_masb_account_turnover.field_masb_account_turnover_line__responsible_name
+msgid "Accountable Person"
+msgstr "МВО"
+
+#. module: l10n_ua_masb_account_turnover
+#: model:ir.model.fields,field_description:l10n_ua_masb_account_turnover.field_masb_account_turnover_column__active
+#: model:ir.model.fields,field_description:l10n_ua_masb_account_turnover.field_masb_account_turnover_type__active
+msgid "Active"
+msgstr "Активно"
+
+#. module: l10n_ua_masb_account_turnover
+#: model:ir.model.fields,field_description:l10n_ua_masb_account_turnover.field_masb_account_turnover_cell__amount
+msgid "Amount"
+msgstr "Сума"
+
+#. module: l10n_ua_masb_account_turnover
+#: model:ir.model.fields,field_description:l10n_ua_masb_account_turnover.field_masb_account_turnover__analytic_plan_id
+#: model:ir.model.fields,field_description:l10n_ua_masb_account_turnover.field_masb_account_turnover_type__analytic_plan_id
+msgid "Analytic Plan"
+msgstr "Аналітичний план"
+
+#. module: l10n_ua_masb_account_turnover
+#: model:ir.model.fields.selection,name:l10n_ua_masb_account_turnover.selection__masb_account_turnover__dimension_kind__analytic
+#: model:ir.model.fields.selection,name:l10n_ua_masb_account_turnover.selection__masb_account_turnover_type__dimension_kind__analytic
+msgid "Analytic plan"
+msgstr "Аналітичний план"
+
+#. module: l10n_ua_masb_account_turnover
+#: model_terms:ir.ui.view,arch_db:l10n_ua_masb_account_turnover.masb_account_turnover_type_view_form
+msgid "Archived"
+msgstr "Архівовані"
+
+#. module: l10n_ua_masb_account_turnover
+#: model:ir.model.fields,field_description:l10n_ua_masb_account_turnover.field_masb_account_turnover__balance_layout
+#: model:ir.model.fields,field_description:l10n_ua_masb_account_turnover.field_masb_account_turnover_type__balance_layout
+msgid "Balance"
+msgstr "Сальдо"
+
+#. module: l10n_ua_masb_account_turnover
+#: model:ir.model.fields,help:l10n_ua_masb_account_turnover.field_masb_account_turnover_line__closing_balance
+msgid "Balance at the end of the period, debit positive."
+msgstr "Сальдо на кінець періоду; дебетове — додатне."
+
+#. module: l10n_ua_masb_account_turnover
+#: model:ir.model.fields,help:l10n_ua_masb_account_turnover.field_masb_account_turnover_line__opening_balance
+msgid "Balance before the period, debit positive."
+msgstr "Сальдо до початку періоду; дебетове — додатне."
+
+#. module: l10n_ua_masb_account_turnover
+#: model_terms:ir.ui.view,arch_db:l10n_ua_masb_account_turnover.masb_account_turnover_type_view_form
+msgid "Blank"
+msgstr "Бланк"
+
+#. module: l10n_ua_masb_account_turnover
+#: model:ir.model.fields,field_description:l10n_ua_masb_account_turnover.field_masb_account_turnover_cell__block
+#: model:ir.model.fields,field_description:l10n_ua_masb_account_turnover.field_masb_account_turnover_column__block
+msgid "Block"
+msgstr "Блок"
+
+#. module: l10n_ua_masb_account_turnover
+#: model:ir.model.fields,help:l10n_ua_masb_account_turnover.field_masb_account_turnover_type__use_cost_elements
+msgid ""
+"Break every row down by cost element (materials, other direct costs, prior "
+"period costs, production overheads). Meant for the production accounts; "
+"every debit column then needs a cost element."
+msgstr ""
+"Розбивати кожен рядок за елементами витрат (матеріали, інші прямі витрати, "
+"розподіл витрат минулих періодів, загальновиробничі витрати). Призначено для"
+" рахунків виробництва; кожна дебетова колонка тоді потребує елемента витрат."
+
+#. module: l10n_ua_masb_account_turnover
+#: model_terms:ir.actions.act_window,help:l10n_ua_masb_account_turnover.masb_account_turnover_action
+msgid "Build a journal-order and ledger of an account"
+msgstr "Сформуйте журнал-ордер і відомість по рахунку"
+
+#. module: l10n_ua_masb_account_turnover
+#: model:ir.model.fields,field_description:l10n_ua_masb_account_turnover.field_masb_account_turnover_type__no_dimension_label
+msgid "Caption Of The Unassigned Row"
+msgstr "Назва рядка без аналітики"
+
+#. module: l10n_ua_masb_account_turnover
+#: model:ir.model.fields,field_description:l10n_ua_masb_account_turnover.field_masb_account_turnover_line__cell_ids
+msgid "Cells"
+msgstr "Комірки"
+
+#. module: l10n_ua_masb_account_turnover
+#. odoo-python
+#: code:addons/l10n_ua_masb_account_turnover/models/masb_account_turnover.py:0
+msgid "Closing balance"
+msgstr "Сальдо на кінець"
+
+#. module: l10n_ua_masb_account_turnover
+#: model:ir.model.fields,field_description:l10n_ua_masb_account_turnover.field_masb_account_turnover_line__closing_balance
+msgid "Closing Balance"
+msgstr "Сальдо на кінець"
+
+#. module: l10n_ua_masb_account_turnover
+#. odoo-python
+#: code:addons/l10n_ua_masb_account_turnover/models/masb_account_turnover.py:0
+msgid "Closing balance, credit"
+msgstr "Сальдо на кінець, кредит"
+
+#. module: l10n_ua_masb_account_turnover
+#. odoo-python
+#: code:addons/l10n_ua_masb_account_turnover/models/masb_account_turnover.py:0
+msgid "Closing balance, debit"
+msgstr "Сальдо на кінець, дебет"
+
+#. module: l10n_ua_masb_account_turnover
+#: model:ir.model.fields,field_description:l10n_ua_masb_account_turnover.field_masb_account_turnover_line__closing_credit
+msgid "Closing Credit"
+msgstr "Сальдо на кінець, кредит"
+
+#. module: l10n_ua_masb_account_turnover
+#: model:ir.model.fields,field_description:l10n_ua_masb_account_turnover.field_masb_account_turnover_line__closing_debit
+msgid "Closing Debit"
+msgstr "Сальдо на кінець, дебет"
+
+#. module: l10n_ua_masb_account_turnover
+#: model:ir.model.fields,field_description:l10n_ua_masb_account_turnover.field_masb_account_turnover_cell__column_id
+#: model:ir.model.fields,field_description:l10n_ua_masb_account_turnover.field_masb_account_turnover_column__name
+#: model_terms:ir.ui.view,arch_db:l10n_ua_masb_account_turnover.masb_account_turnover_cell_view_search
+msgid "Column"
+msgstr "Колонка"
+
+#. module: l10n_ua_masb_account_turnover
+#. odoo-python
+#: code:addons/l10n_ua_masb_account_turnover/models/masb_account_turnover_column.py:0
+msgid ""
+"Column \"%(name)s\" belongs to the debit block of a statement with cost "
+"elements, so it needs a cost element."
+msgstr ""
+"Колонка «%(name)s» належить до дебетового блоку відомості з елементами "
+"витрат, тож їй потрібен елемент витрат."
+
+#. module: l10n_ua_masb_account_turnover
+#. odoo-python
+#: code:addons/l10n_ua_masb_account_turnover/models/masb_account_turnover_column.py:0
+msgid "Column \"%(name)s\" has no usable account prefix."
+msgstr "У колонці «%(name)s» немає жодного придатного префікса рахунку."
+
+#. module: l10n_ua_masb_account_turnover
+#: model:ir.model.fields,field_description:l10n_ua_masb_account_turnover.field_masb_account_turnover_type__column_ids
+#: model_terms:ir.ui.view,arch_db:l10n_ua_masb_account_turnover.masb_account_turnover_type_view_form
+msgid "Columns"
+msgstr "Колонки"
+
+#. module: l10n_ua_masb_account_turnover
+#: model:ir.model.fields,help:l10n_ua_masb_account_turnover.field_masb_account_turnover__account_prefix
+#: model:ir.model.fields,help:l10n_ua_masb_account_turnover.field_masb_account_turnover_type__account_prefixes
+msgid ""
+"Comma separated prefixes of the accounts covered by the statement, e.g. "
+"\"631\" or \"231, 233, 235, 236\"."
+msgstr ""
+"Префікси рахунків, які охоплює відомість, через кому — наприклад «631» або "
+"«231, 233, 235, 236»."
+
+#. module: l10n_ua_masb_account_turnover
+#: model:ir.model.fields,help:l10n_ua_masb_account_turnover.field_masb_account_turnover_column__account_prefixes
+msgid ""
+"Comma separated prefixes of the corresponding account code, e.g. \"201, "
+"91\". A corresponding account falls into this column when its code starts "
+"with any of them."
+msgstr ""
+"Префікси коду кореспондуючого рахунку через кому, наприклад «201, 91». "
+"Рахунок потрапляє в цю колонку, якщо його код починається з будь-якого з "
+"них."
+
+#. module: l10n_ua_masb_account_turnover
+#: model:ir.model.fields,field_description:l10n_ua_masb_account_turnover.field_masb_account_turnover__company_id
+#: model:ir.model.fields,field_description:l10n_ua_masb_account_turnover.field_masb_account_turnover_cell__company_id
+#: model:ir.model.fields,field_description:l10n_ua_masb_account_turnover.field_masb_account_turnover_column__company_id
+#: model:ir.model.fields,field_description:l10n_ua_masb_account_turnover.field_masb_account_turnover_line__company_id
+#: model:ir.model.fields,field_description:l10n_ua_masb_account_turnover.field_masb_account_turnover_type__company_id
+msgid "Company"
+msgstr "Компанія"
+
+#. module: l10n_ua_masb_account_turnover
+#: model_terms:ir.ui.view,arch_db:l10n_ua_masb_account_turnover.masb_account_turnover_view_form
+msgid "Compute"
+msgstr "Розрахувати"
+
+#. module: l10n_ua_masb_account_turnover
+#. odoo-python
+#: code:addons/l10n_ua_masb_account_turnover/models/masb_account_turnover.py:0
+msgid "Compute the statement before exporting it."
+msgstr "Розрахуйте відомість, перш ніж вивантажувати її."
+
+#. module: l10n_ua_masb_account_turnover
+#. odoo-javascript
+#: code:addons/l10n_ua_masb_account_turnover/static/src/account_turnover_matrix/matrix.js:0
+msgid "Computing…"
+msgstr "Обчислення…"
+
+#. module: l10n_ua_masb_account_turnover
+#: model_terms:ir.ui.view,arch_db:l10n_ua_masb_account_turnover.masb_account_turnover_view_form
+msgid "Confirm"
+msgstr "Підтвердити"
+
+#. module: l10n_ua_masb_account_turnover
+#: model:ir.model.fields.selection,name:l10n_ua_masb_account_turnover.selection__masb_account_turnover__state__confirmed
+#: model_terms:ir.ui.view,arch_db:l10n_ua_masb_account_turnover.masb_account_turnover_view_search
+msgid "Confirmed"
+msgstr "Підтверджено"
+
+#. module: l10n_ua_masb_account_turnover
+#. odoo-python
+#: code:addons/l10n_ua_masb_account_turnover/models/masb_account_turnover.py:0
+#: model_terms:ir.ui.view,arch_db:l10n_ua_masb_account_turnover.masb_account_turnover_view_form
+msgid "Control"
+msgstr "Контроль"
+
+#. module: l10n_ua_masb_account_turnover
+#: model:ir.model.fields,field_description:l10n_ua_masb_account_turnover.field_masb_account_turnover__control_credit
+msgid "Control Credit Turnover"
+msgstr "Контроль: оборот за кредитом"
+
+#. module: l10n_ua_masb_account_turnover
+#: model:ir.model.fields,field_description:l10n_ua_masb_account_turnover.field_masb_account_turnover__control_debit
+msgid "Control Debit Turnover"
+msgstr "Контроль: оборот за дебетом"
+
+#. module: l10n_ua_masb_account_turnover
+#. odoo-python
+#: code:addons/l10n_ua_masb_account_turnover/models/masb_account_turnover.py:0
+msgid "Control, credit"
+msgstr "Контроль, кредит"
+
+#. module: l10n_ua_masb_account_turnover
+#: model:ir.model.fields,field_description:l10n_ua_masb_account_turnover.field_masb_account_turnover_cell__cost_element
+#: model:ir.model.fields,field_description:l10n_ua_masb_account_turnover.field_masb_account_turnover_column__cost_element
+#: model:ir.model.fields,field_description:l10n_ua_masb_account_turnover.field_masb_account_turnover_line__cost_element
+msgid "Cost Element"
+msgstr "Елемент витрат"
+
+#. module: l10n_ua_masb_account_turnover
+#: model:ir.model.fields.selection,name:l10n_ua_masb_account_turnover.selection__masb_account_turnover_cell__line_type__element
+#: model:ir.model.fields.selection,name:l10n_ua_masb_account_turnover.selection__masb_account_turnover_line__line_type__element
+#: model_terms:ir.ui.view,arch_db:l10n_ua_masb_account_turnover.masb_account_turnover_cell_view_search
+msgid "Cost element"
+msgstr "Елемент витрат"
+
+#. module: l10n_ua_masb_account_turnover
+#: model:ir.model.fields,field_description:l10n_ua_masb_account_turnover.field_masb_account_turnover__use_cost_elements
+#: model:ir.model.fields,field_description:l10n_ua_masb_account_turnover.field_masb_account_turnover_type__use_cost_elements
+msgid "Cost Elements"
+msgstr "Елементи витрат"
+
+#. module: l10n_ua_masb_account_turnover
+#: model_terms:ir.ui.view,arch_db:l10n_ua_masb_account_turnover.masb_account_turnover_cell_view_search
+msgid "Cost elements"
+msgstr "Елементи витрат"
+
+#. module: l10n_ua_masb_account_turnover
+#: model:ir.model.fields,field_description:l10n_ua_masb_account_turnover.field_masb_account_turnover__create_uid
+#: model:ir.model.fields,field_description:l10n_ua_masb_account_turnover.field_masb_account_turnover_cell__create_uid
+#: model:ir.model.fields,field_description:l10n_ua_masb_account_turnover.field_masb_account_turnover_column__create_uid
+#: model:ir.model.fields,field_description:l10n_ua_masb_account_turnover.field_masb_account_turnover_line__create_uid
+#: model:ir.model.fields,field_description:l10n_ua_masb_account_turnover.field_masb_account_turnover_type__create_uid
+msgid "Created by"
+msgstr "Створив"
+
+#. module: l10n_ua_masb_account_turnover
+#: model:ir.model.fields,field_description:l10n_ua_masb_account_turnover.field_masb_account_turnover__create_date
+#: model:ir.model.fields,field_description:l10n_ua_masb_account_turnover.field_masb_account_turnover_cell__create_date
+#: model:ir.model.fields,field_description:l10n_ua_masb_account_turnover.field_masb_account_turnover_column__create_date
+#: model:ir.model.fields,field_description:l10n_ua_masb_account_turnover.field_masb_account_turnover_line__create_date
+#: model:ir.model.fields,field_description:l10n_ua_masb_account_turnover.field_masb_account_turnover_type__create_date
+msgid "Created on"
+msgstr "Створено"
+
+#. module: l10n_ua_masb_account_turnover
+#: model:ir.model.fields.selection,name:l10n_ua_masb_account_turnover.selection__masb_account_turnover_cell__block__credit
+#: model:ir.model.fields.selection,name:l10n_ua_masb_account_turnover.selection__masb_account_turnover_column__block__credit
+#: model_terms:ir.ui.view,arch_db:l10n_ua_masb_account_turnover.masb_account_turnover_cell_view_search
+msgid "Credit turnover"
+msgstr "Оборот за кредитом"
+
+#. module: l10n_ua_masb_account_turnover
+#. odoo-python
+#: code:addons/l10n_ua_masb_account_turnover/models/masb_account_turnover.py:0
+msgid ""
+"Credit turnover is not attributable to a single cost element: the figure is "
+"the write-off spread over the elements in proportion to their debit "
+"turnover. Open the main row instead."
+msgstr ""
+"Кредитовий оборот не належить окремому елементу витрат: ця сума — списання, "
+"рознесене між елементами пропорційно їхнім дебетовим оборотам. Відкрийте "
+"основний рядок."
+
+#. module: l10n_ua_masb_account_turnover
+#: model:ir.model.fields,field_description:l10n_ua_masb_account_turnover.field_masb_account_turnover__currency_id
+#: model:ir.model.fields,field_description:l10n_ua_masb_account_turnover.field_masb_account_turnover_cell__currency_id
+#: model:ir.model.fields,field_description:l10n_ua_masb_account_turnover.field_masb_account_turnover_line__currency_id
+msgid "Currency"
+msgstr "Валюта"
+
+#. module: l10n_ua_masb_account_turnover
+#: model:ir.model.fields.selection,name:l10n_ua_masb_account_turnover.selection__masb_account_turnover__balance_layout__expanded
+#: model:ir.model.fields.selection,name:l10n_ua_masb_account_turnover.selection__masb_account_turnover_type__balance_layout__expanded
+msgid "Debit and credit columns"
+msgstr "Колонки дебету й кредиту"
+
+#. module: l10n_ua_masb_account_turnover
+#: model:ir.model.fields,help:l10n_ua_masb_account_turnover.field_masb_account_turnover_column__block
+msgid ""
+"Debit block holds the accounts credited against the statement account (where"
+" the debit turnover came from), credit block holds the accounts debited from"
+" it (where the credit turnover went)."
+msgstr ""
+"Дебетовий блок містить рахунки, з кредиту яких списано на рахунок відомості "
+"(звідки прийшов дебетовий оборот), кредитовий — рахунки, у дебет яких "
+"списано з нього (куди пішов кредитовий оборот)."
+
+#. module: l10n_ua_masb_account_turnover
+#: model:ir.model.fields.selection,name:l10n_ua_masb_account_turnover.selection__masb_account_turnover_cell__block__debit
+#: model:ir.model.fields.selection,name:l10n_ua_masb_account_turnover.selection__masb_account_turnover_column__block__debit
+#: model_terms:ir.ui.view,arch_db:l10n_ua_masb_account_turnover.masb_account_turnover_cell_view_search
+msgid "Debit turnover"
+msgstr "Оборот за дебетом"
+
+#. module: l10n_ua_masb_account_turnover
+#: model:ir.model.fields,help:l10n_ua_masb_account_turnover.field_masb_account_turnover__control_debit
+msgid ""
+"Debit turnover of the statement accounts taken straight from the journal "
+"items, without correspondence. The statement is only trustworthy while it "
+"equals the debit total."
+msgstr ""
+"Дебетовий оборот рахунків відомості, узятий прямо з проводок, без "
+"відновлення кореспонденції. Відомості можна вірити, лише поки він дорівнює "
+"підсумку за дебетом."
+
+#. module: l10n_ua_masb_account_turnover
+#: model_terms:ir.actions.act_window,help:l10n_ua_masb_account_turnover.masb_account_turnover_type_action
+msgid "Describe a journal-order and ledger of one more account"
+msgstr "Опишіть журнал-ордер і відомість ще одного рахунку"
+
+#. module: l10n_ua_masb_account_turnover
+#: model:ir.model.fields,field_description:l10n_ua_masb_account_turnover.field_masb_account_turnover_line__dimension_model
+msgid "Dimension Model"
+msgstr "Модель виміру"
+
+#. module: l10n_ua_masb_account_turnover
+#: model:ir.model.fields,field_description:l10n_ua_masb_account_turnover.field_masb_account_turnover_line__dimension_res_id
+msgid "Dimension Record"
+msgstr "Запис виміру"
+
+#. module: l10n_ua_masb_account_turnover
+#: model:ir.model.fields,field_description:l10n_ua_masb_account_turnover.field_masb_account_turnover__display_name
+#: model:ir.model.fields,field_description:l10n_ua_masb_account_turnover.field_masb_account_turnover_cell__display_name
+#: model:ir.model.fields,field_description:l10n_ua_masb_account_turnover.field_masb_account_turnover_column__display_name
+#: model:ir.model.fields,field_description:l10n_ua_masb_account_turnover.field_masb_account_turnover_line__display_name
+#: model:ir.model.fields,field_description:l10n_ua_masb_account_turnover.field_masb_account_turnover_type__display_name
+msgid "Display Name"
+msgstr "Назва для відображення"
+
+#. module: l10n_ua_masb_account_turnover
+#: model:ir.model.fields.selection,name:l10n_ua_masb_account_turnover.selection__masb_account_turnover__state__draft
+#: model_terms:ir.ui.view,arch_db:l10n_ua_masb_account_turnover.masb_account_turnover_view_search
+msgid "Draft"
+msgstr "Чернетка"
+
+#. module: l10n_ua_masb_account_turnover
+#: model_terms:ir.ui.view,arch_db:l10n_ua_masb_account_turnover.masb_account_turnover_type_view_form
+msgid "e.g. Account 631 Domestic suppliers"
+msgstr "напр. Рах. 631 «Розрахунки з вітчизняними постачальниками»"
+
+#. module: l10n_ua_masb_account_turnover
+#: model_terms:ir.ui.view,arch_db:l10n_ua_masb_account_turnover.masb_account_turnover_view_form
+msgid "Export XLSX"
+msgstr "Вивантажити XLSX"
+
+#. module: l10n_ua_masb_account_turnover
+#: model:ir.model.fields,help:l10n_ua_masb_account_turnover.field_masb_account_turnover_type__row_label
+msgid "Header of the row column, e.g. \"Supplier\"."
+msgstr "Заголовок колонки з назвами рядків, наприклад «Постачальник»."
+
+#. module: l10n_ua_masb_account_turnover
+#: model:ir.model.fields,help:l10n_ua_masb_account_turnover.field_masb_account_turnover_column__name
+msgid "Header shown in the statement, e.g. \"201/91 building materials\"."
+msgstr "Заголовок колонки у відомості, наприклад «201 будматеріали»."
+
+#. module: l10n_ua_masb_account_turnover
+#: model:ir.model.fields,field_description:l10n_ua_masb_account_turnover.field_masb_account_turnover__id
+#: model:ir.model.fields,field_description:l10n_ua_masb_account_turnover.field_masb_account_turnover_cell__id
+#: model:ir.model.fields,field_description:l10n_ua_masb_account_turnover.field_masb_account_turnover_column__id
+#: model:ir.model.fields,field_description:l10n_ua_masb_account_turnover.field_masb_account_turnover_line__id
+#: model:ir.model.fields,field_description:l10n_ua_masb_account_turnover.field_masb_account_turnover_type__id
+msgid "ID"
+msgstr "ID"
+
+#. module: l10n_ua_masb_account_turnover
+#: model:ir.model.fields,field_description:l10n_ua_masb_account_turnover.field_masb_account_turnover__is_balanced
+msgid "Is Balanced"
+msgstr "Звіт збігається з проводками"
+
+#. module: l10n_ua_masb_account_turnover
+#: model_terms:ir.ui.view,arch_db:l10n_ua_masb_account_turnover.masb_account_turnover_view_form
+msgid "Journal-Order and Ledger"
+msgstr "Журнал-ордер і відомість"
+
+#. module: l10n_ua_masb_account_turnover
+#: model:ir.ui.menu,name:l10n_ua_masb_account_turnover.menu_masb_account_turnover_type
+msgid "Journal-Order and Ledger Types"
+msgstr "Види журналів-ордерів і відомостей"
+
+#. module: l10n_ua_masb_account_turnover
+#: model:ir.actions.act_window,name:l10n_ua_masb_account_turnover.masb_account_turnover_action
+#: model:ir.ui.menu,name:l10n_ua_masb_account_turnover.menu_masb_account_turnover
+#: model_terms:ir.ui.view,arch_db:l10n_ua_masb_account_turnover.masb_account_turnover_view_list
+#: model_terms:ir.ui.view,arch_db:l10n_ua_masb_account_turnover.masb_account_turnover_view_search
+msgid "Journal-Orders and Ledgers"
+msgstr "Журнали-ордери та відомості"
+
+#. module: l10n_ua_masb_account_turnover
+#: model:ir.model.fields,help:l10n_ua_masb_account_turnover.field_masb_account_turnover__show_all_columns
+msgid ""
+"Keep every configured column in the statement, even the ones with no "
+"turnover. The accountant reads the form as a fixed blank, where a column "
+"stays in its place even when it is empty; turn it off to get a narrow "
+"statement of what actually moved."
+msgstr ""
+"Лишати у відомості всі налаштовані колонки, навіть ті, де немає оборотів. "
+"Бухгалтер читає форму як сталий бланк, де колонка стоїть на своєму місці "
+"навіть порожня; вимкніть, щоб отримати вузьку відомість тільки з того, що "
+"рухалося."
+
+#. module: l10n_ua_masb_account_turnover
+#: model:ir.model.fields,help:l10n_ua_masb_account_turnover.field_masb_account_turnover_type__no_dimension_label
+msgid ""
+"Label of the row that collects turnover without a value of the dimension, "
+"e.g. \"No supplier\"."
+msgstr ""
+"Назва рядка, у який потрапляють обороти без значення виміру, наприклад «Без "
+"постачальника»."
+
+#. module: l10n_ua_masb_account_turnover
+#: model:ir.model.fields,field_description:l10n_ua_masb_account_turnover.field_masb_account_turnover__write_uid
+#: model:ir.model.fields,field_description:l10n_ua_masb_account_turnover.field_masb_account_turnover_cell__write_uid
+#: model:ir.model.fields,field_description:l10n_ua_masb_account_turnover.field_masb_account_turnover_column__write_uid
+#: model:ir.model.fields,field_description:l10n_ua_masb_account_turnover.field_masb_account_turnover_line__write_uid
+#: model:ir.model.fields,field_description:l10n_ua_masb_account_turnover.field_masb_account_turnover_type__write_uid
+msgid "Last Updated by"
+msgstr "Востаннє оновив"
+
+#. module: l10n_ua_masb_account_turnover
+#: model:ir.model.fields,field_description:l10n_ua_masb_account_turnover.field_masb_account_turnover__write_date
+#: model:ir.model.fields,field_description:l10n_ua_masb_account_turnover.field_masb_account_turnover_cell__write_date
+#: model:ir.model.fields,field_description:l10n_ua_masb_account_turnover.field_masb_account_turnover_column__write_date
+#: model:ir.model.fields,field_description:l10n_ua_masb_account_turnover.field_masb_account_turnover_line__write_date
+#: model:ir.model.fields,field_description:l10n_ua_masb_account_turnover.field_masb_account_turnover_type__write_date
+msgid "Last Updated on"
+msgstr "Останнє оновлення"
+
+#. module: l10n_ua_masb_account_turnover
+#: model:ir.model.fields,help:l10n_ua_masb_account_turnover.field_masb_account_turnover_column__company_id
+msgid ""
+"Leave empty to share the column between the companies of the statement type."
+" A column of one company refines the blank of a shared type for that company"
+" only."
+msgstr ""
+"Залиште порожнім, щоб колонка була спільною для компаній виду відомості. "
+"Колонка окремої компанії уточнює бланк спільного виду лише для цієї "
+"компанії."
+
+#. module: l10n_ua_masb_account_turnover
+#: model:ir.model.fields,help:l10n_ua_masb_account_turnover.field_masb_account_turnover_type__company_id
+msgid "Leave empty to share the statement type between companies."
+msgstr "Залиште порожнім, щоб вид відомості був спільним для всіх компаній."
+
+#. module: l10n_ua_masb_account_turnover
+#: model:ir.model.fields,help:l10n_ua_masb_account_turnover.field_masb_account_turnover_type__skip_empty_rows
+msgid ""
+"Leave out rows with no opening balance and no turnover in the period - for a"
+" settlement account, every counterparty that was ever settled with would "
+"otherwise stay in the statement forever."
+msgstr ""
+"Не показувати рядки без сальдо на початок і без оборотів за період: інакше "
+"на рахунку розрахунків у відомості назавжди лишався б кожен контрагент, з "
+"яким колись розраховувалися."
+
+#. module: l10n_ua_masb_account_turnover
+#: model:ir.model.fields,field_description:l10n_ua_masb_account_turnover.field_masb_account_turnover_cell__line_id
+msgid "Line"
+msgstr "Рядок"
+
+#. module: l10n_ua_masb_account_turnover
+#: model:ir.model.fields,field_description:l10n_ua_masb_account_turnover.field_masb_account_turnover_cell__line_type
+#: model:ir.model.fields,field_description:l10n_ua_masb_account_turnover.field_masb_account_turnover_line__line_type
+msgid "Line Type"
+msgstr "Тип рядка"
+
+#. module: l10n_ua_masb_account_turnover
+#: model:ir.model.fields,field_description:l10n_ua_masb_account_turnover.field_masb_account_turnover__line_ids
+#: model_terms:ir.ui.view,arch_db:l10n_ua_masb_account_turnover.masb_account_turnover_view_form
+msgid "Lines"
+msgstr "Рядки"
+
+#. module: l10n_ua_masb_account_turnover
+#: model_terms:ir.ui.view,arch_db:l10n_ua_masb_account_turnover.masb_account_turnover_cell_view_search
+msgid "Main rows"
+msgstr "Основні рядки"
+
+#. module: l10n_ua_masb_account_turnover
+#: model:ir.model.fields,help:l10n_ua_masb_account_turnover.field_account_analytic_account__masb_responsible_id
+msgid ""
+"Materially accountable person of the subdivision, printed in the production "
+"cost statement."
+msgstr ""
+"Матеріально відповідальна особа підрозділу. Друкується у відомості по "
+"рахунку 23."
+
+#. module: l10n_ua_masb_account_turnover
+#: model:ir.model.fields.selection,name:l10n_ua_masb_account_turnover.selection__masb_account_turnover_cell__cost_element__material
+#: model:ir.model.fields.selection,name:l10n_ua_masb_account_turnover.selection__masb_account_turnover_column__cost_element__material
+#: model:ir.model.fields.selection,name:l10n_ua_masb_account_turnover.selection__masb_account_turnover_line__cost_element__material
+msgid "Materials"
+msgstr "Матеріали"
+
+#. module: l10n_ua_masb_account_turnover
+#: model:ir.model.fields,field_description:l10n_ua_masb_account_turnover.field_masb_account_turnover__name
+msgid "Name"
+msgstr "Назва"
+
+#. module: l10n_ua_masb_account_turnover
+#: model:ir.model.fields,help:l10n_ua_masb_account_turnover.field_masb_account_turnover_line__responsible_name
+msgid ""
+"Name of the accountable person as it stood when the statement was computed. "
+"Stored rather than read through the analytic account, so that a closed "
+"period keeps the name it was signed with."
+msgstr ""
+"Ім’я матеріально відповідальної особи на момент розрахунку відомості. "
+"Зберігається, а не читається через аналітичний рахунок, щоб закритий період "
+"лишався з тим прізвищем, з яким його підписали."
+
+#. module: l10n_ua_masb_account_turnover
+#: model:ir.model.fields,help:l10n_ua_masb_account_turnover.field_masb_account_turnover_line__dimension_name
+msgid ""
+"Name of the row value as it stood when the statement was computed, so that a"
+" closed period keeps the names it was signed with."
+msgstr ""
+"Назва значення рядка на момент розрахунку відомості, щоб закритий період "
+"лишався з тими назвами, з якими його підписали."
+
+#. module: l10n_ua_masb_account_turnover
+#. odoo-python
+#: code:addons/l10n_ua_masb_account_turnover/models/masb_account_turnover.py:0
+msgid "New"
+msgstr "Новий"
+
+#. module: l10n_ua_masb_account_turnover
+#. odoo-python
+#: code:addons/l10n_ua_masb_account_turnover/models/masb_account_turnover.py:0
+msgid "No account of company %(company)s starts with %(prefixes)s."
+msgstr ""
+"У компанії %(company)s немає рахунку, код якого починається з %(prefixes)s."
+
+#. module: l10n_ua_masb_account_turnover
+#: model:masb.account.turnover.type,no_dimension_label:l10n_ua_masb_account_turnover.type_account_23
+msgid "No subdivision"
+msgstr "Без підрозділу"
+
+#. module: l10n_ua_masb_account_turnover
+#: model:masb.account.turnover.type,no_dimension_label:l10n_ua_masb_account_turnover.type_account_631
+msgid "No supplier"
+msgstr "Без постачальника"
+
+#. module: l10n_ua_masb_account_turnover
+#. odoo-python
+#: code:addons/l10n_ua_masb_account_turnover/models/masb_account_turnover_line.py:0
+msgid "Not specified"
+msgstr "Не вказано"
+
+#. module: l10n_ua_masb_account_turnover
+#. odoo-javascript
+#: code:addons/l10n_ua_masb_account_turnover/static/src/account_turnover_matrix/matrix.js:0
+msgid "Open the journal items behind this figure"
+msgstr "Відкрити проводки, які формують цю суму"
+
+#. module: l10n_ua_masb_account_turnover
+#. odoo-python
+#: code:addons/l10n_ua_masb_account_turnover/models/masb_account_turnover.py:0
+msgid "Opening balance"
+msgstr "Сальдо на початок"
+
+#. module: l10n_ua_masb_account_turnover
+#: model:ir.model.fields,field_description:l10n_ua_masb_account_turnover.field_masb_account_turnover_line__opening_balance
+msgid "Opening Balance"
+msgstr "Сальдо на початок"
+
+#. module: l10n_ua_masb_account_turnover
+#. odoo-python
+#: code:addons/l10n_ua_masb_account_turnover/models/masb_account_turnover.py:0
+msgid "Opening balance, credit"
+msgstr "Сальдо на початок, кредит"
+
+#. module: l10n_ua_masb_account_turnover
+#. odoo-python
+#: code:addons/l10n_ua_masb_account_turnover/models/masb_account_turnover.py:0
+msgid "Opening balance, debit"
+msgstr "Сальдо на початок, дебет"
+
+#. module: l10n_ua_masb_account_turnover
+#: model:ir.model.fields,field_description:l10n_ua_masb_account_turnover.field_masb_account_turnover_line__opening_credit
+msgid "Opening Credit"
+msgstr "Сальдо на початок, кредит"
+
+#. module: l10n_ua_masb_account_turnover
+#: model:ir.model.fields,field_description:l10n_ua_masb_account_turnover.field_masb_account_turnover_line__opening_debit
+msgid "Opening Debit"
+msgstr "Сальдо на початок, дебет"
+
+#. module: l10n_ua_masb_account_turnover
+#. odoo-python
+#: code:addons/l10n_ua_masb_account_turnover/models/masb_account_turnover.py:0
+msgid "Other"
+msgstr "Інше"
+
+#. module: l10n_ua_masb_account_turnover
+#: model:ir.model.fields.selection,name:l10n_ua_masb_account_turnover.selection__masb_account_turnover_cell__cost_element__direct
+#: model:ir.model.fields.selection,name:l10n_ua_masb_account_turnover.selection__masb_account_turnover_column__cost_element__direct
+#: model:ir.model.fields.selection,name:l10n_ua_masb_account_turnover.selection__masb_account_turnover_line__cost_element__direct
+msgid "Other direct costs"
+msgstr "Інші прямі витрати"
+
+#. module: l10n_ua_masb_account_turnover
+#: model_terms:ir.ui.view,arch_db:l10n_ua_masb_account_turnover.masb_account_turnover_view_form
+msgid ""
+"Part of the turnover carries no analytics. Those amounts\n"
+"                        are shown in a row of their own at the end of the\n"
+"                        statement."
+msgstr ""
+"Частина оборотів не має аналітики. Ці суми показані\n"
+"                        в окремому рядку наприкінці\n"
+"                        відомості."
+
+#. module: l10n_ua_masb_account_turnover
+#: model:ir.model.fields,field_description:l10n_ua_masb_account_turnover.field_masb_account_turnover_cell__partner_id
+#: model:ir.model.fields,field_description:l10n_ua_masb_account_turnover.field_masb_account_turnover_line__partner_id
+msgid "Partner"
+msgstr "Контрагент"
+
+#. module: l10n_ua_masb_account_turnover
+#: model_terms:ir.ui.view,arch_db:l10n_ua_masb_account_turnover.masb_account_turnover_view_search
+msgid "Period"
+msgstr "Період"
+
+#. module: l10n_ua_masb_account_turnover
+#: model:ir.model.fields,field_description:l10n_ua_masb_account_turnover.field_masb_account_turnover__date_to
+msgid "Period End"
+msgstr "Кінець періоду"
+
+#. module: l10n_ua_masb_account_turnover
+#. odoo-python
+#: code:addons/l10n_ua_masb_account_turnover/models/masb_account_turnover.py:0
+msgid "Period end cannot be earlier than period start."
+msgstr "Кінець періоду не може бути раніше за початок."
+
+#. module: l10n_ua_masb_account_turnover
+#: model:ir.model.fields,field_description:l10n_ua_masb_account_turnover.field_masb_account_turnover__date_from
+msgid "Period Start"
+msgstr "Початок періоду"
+
+#. module: l10n_ua_masb_account_turnover
+#: model_terms:ir.actions.act_window,help:l10n_ua_masb_account_turnover.masb_account_turnover_action
+msgid "Pick the statement type, set the period and press Compute."
+msgstr "Оберіть вид відомості, задайте період і натисніть «Розрахувати»."
+
+#. module: l10n_ua_masb_account_turnover
+#: model_terms:ir.ui.view,arch_db:l10n_ua_masb_account_turnover.masb_account_turnover_view_form
+msgid "Pivot"
+msgstr "Зведена таблиця"
+
+#. module: l10n_ua_masb_account_turnover
+#: model:ir.model.fields.selection,name:l10n_ua_masb_account_turnover.selection__masb_account_turnover_cell__cost_element__prior
+#: model:ir.model.fields.selection,name:l10n_ua_masb_account_turnover.selection__masb_account_turnover_column__cost_element__prior
+#: model:ir.model.fields.selection,name:l10n_ua_masb_account_turnover.selection__masb_account_turnover_line__cost_element__prior
+msgid "Prior period costs"
+msgstr "Розподіл витрат минулих періодів"
+
+#. module: l10n_ua_masb_account_turnover
+#: model:ir.model.fields.selection,name:l10n_ua_masb_account_turnover.selection__masb_account_turnover_cell__cost_element__overhead
+#: model:ir.model.fields.selection,name:l10n_ua_masb_account_turnover.selection__masb_account_turnover_column__cost_element__overhead
+#: model:ir.model.fields.selection,name:l10n_ua_masb_account_turnover.selection__masb_account_turnover_line__cost_element__overhead
+msgid "Production overheads"
+msgstr "Загальновиробничі витрати"
+
+#. module: l10n_ua_masb_account_turnover
+#. odoo-python
+#: code:addons/l10n_ua_masb_account_turnover/models/masb_account_turnover.py:0
+msgid "Reset the statement to draft before recomputing."
+msgstr "Поверніть відомість у чернетку, щоб перерахувати її."
+
+#. module: l10n_ua_masb_account_turnover
+#: model_terms:ir.ui.view,arch_db:l10n_ua_masb_account_turnover.masb_account_turnover_view_form
+msgid "Reset to Draft"
+msgstr "Повернути в чернетку"
+
+#. module: l10n_ua_masb_account_turnover
+#: model:ir.model.fields,help:l10n_ua_masb_account_turnover.field_masb_account_turnover__analytic_plan_id
+msgid ""
+"Root analytic plan whose accounts are the rows of the statement. Only "
+"accounts of this plan are read from the analytic distribution."
+msgstr ""
+"Кореневий аналітичний план, рахунки якого стають рядками відомості. З "
+"аналітичного розподілу читаються рахунки лише цього плану."
+
+#. module: l10n_ua_masb_account_turnover
+#: model:ir.model.fields,help:l10n_ua_masb_account_turnover.field_masb_account_turnover_type__analytic_plan_id
+msgid ""
+"Root analytic plan whose accounts become the rows. Leave empty to use the "
+"default project plan of the database."
+msgstr ""
+"Кореневий аналітичний план, рахунки якого стають рядками. Залиште порожнім, "
+"щоб узяти типовий план проєктів бази."
+
+#. module: l10n_ua_masb_account_turnover
+#. odoo-python
+#: code:addons/l10n_ua_masb_account_turnover/models/masb_account_turnover.py:0
+#: model:ir.model.fields,field_description:l10n_ua_masb_account_turnover.field_masb_account_turnover_cell__dimension_name
+#: model:ir.model.fields,field_description:l10n_ua_masb_account_turnover.field_masb_account_turnover_line__dimension_name
+#: model_terms:ir.ui.view,arch_db:l10n_ua_masb_account_turnover.masb_account_turnover_cell_view_search
+msgid "Row"
+msgstr "Рядок"
+
+#. module: l10n_ua_masb_account_turnover
+#: model:ir.model.fields,field_description:l10n_ua_masb_account_turnover.field_masb_account_turnover_type__row_label
+msgid "Row Caption"
+msgstr "Заголовок колонки рядків"
+
+#. module: l10n_ua_masb_account_turnover
+#: model:ir.model.fields,help:l10n_ua_masb_account_turnover.field_masb_account_turnover_column__cost_element
+msgid ""
+"Row group the amounts of this column are reported in. Required for the debit"
+" block of a statement with cost elements; credit amounts are spread over the"
+" cost elements in proportion to their debit turnover."
+msgstr ""
+"Група рядків, у якій показуються суми цієї колонки. Обов’язкова для "
+"дебетового блоку відомості з елементами витрат; кредитові суми розносяться "
+"між елементами витрат пропорційно їхнім дебетовим оборотам."
+
+#. module: l10n_ua_masb_account_turnover
+#: model:ir.model.fields.selection,name:l10n_ua_masb_account_turnover.selection__masb_account_turnover_cell__line_type__group
+#: model:ir.model.fields.selection,name:l10n_ua_masb_account_turnover.selection__masb_account_turnover_line__line_type__group
+msgid "Row total"
+msgstr "Основний рядок"
+
+#. module: l10n_ua_masb_account_turnover
+#: model:ir.model.fields,field_description:l10n_ua_masb_account_turnover.field_masb_account_turnover__dimension_kind
+#: model:ir.model.fields,field_description:l10n_ua_masb_account_turnover.field_masb_account_turnover_type__dimension_kind
+msgid "Rows By"
+msgstr "Рядки за"
+
+#. module: l10n_ua_masb_account_turnover
+#: model_terms:ir.ui.view,arch_db:l10n_ua_masb_account_turnover.masb_account_turnover_type_view_form
+msgid "Scope"
+msgstr "Що охоплює"
+
+#. module: l10n_ua_masb_account_turnover
+#: model:ir.model.fields,field_description:l10n_ua_masb_account_turnover.field_masb_account_turnover_column__sequence
+#: model:ir.model.fields,field_description:l10n_ua_masb_account_turnover.field_masb_account_turnover_line__sequence
+#: model:ir.model.fields,field_description:l10n_ua_masb_account_turnover.field_masb_account_turnover_type__sequence
+msgid "Sequence"
+msgstr "Послідовність"
+
+#. module: l10n_ua_masb_account_turnover
+#. odoo-python
+#: code:addons/l10n_ua_masb_account_turnover/models/masb_account_turnover.py:0
+msgid "Set at least one account prefix."
+msgstr "Вкажіть хоча б один префікс рахунку."
+
+#. module: l10n_ua_masb_account_turnover
+#. odoo-python
+#: code:addons/l10n_ua_masb_account_turnover/models/masb_account_turnover.py:0
+msgid "Set the analytic plan whose accounts are the rows of the statement."
+msgstr "Вкажіть аналітичний план, рахунки якого стають рядками відомості."
+
+#. module: l10n_ua_masb_account_turnover
+#. odoo-python
+#: code:addons/l10n_ua_masb_account_turnover/models/masb_account_turnover.py:0
+msgid "Set the subconto type whose values are the rows of the statement."
+msgstr "Вкажіть вид субконто, значення якого стають рядками відомості."
+
+#. module: l10n_ua_masb_account_turnover
+#: model_terms:ir.ui.view,arch_db:l10n_ua_masb_account_turnover.masb_account_turnover_type_view_form
+#: model_terms:ir.ui.view,arch_db:l10n_ua_masb_account_turnover.masb_account_turnover_type_view_list
+msgid "Shared"
+msgstr "Спільна"
+
+#. module: l10n_ua_masb_account_turnover
+#: model:ir.model.fields,field_description:l10n_ua_masb_account_turnover.field_masb_account_turnover__show_all_columns
+msgid "Show All Columns"
+msgstr "Показувати всі колонки"
+
+#. module: l10n_ua_masb_account_turnover
+#: model:ir.model.fields.selection,name:l10n_ua_masb_account_turnover.selection__masb_account_turnover__balance_layout__net
+#: model:ir.model.fields.selection,name:l10n_ua_masb_account_turnover.selection__masb_account_turnover_type__balance_layout__net
+msgid "Single column"
+msgstr "Одна колонка"
+
+#. module: l10n_ua_masb_account_turnover
+#: model:ir.model.fields,help:l10n_ua_masb_account_turnover.field_masb_account_turnover_type__balance_layout
+msgid ""
+"Single column: the balance is shown as one signed amount, debit positive - "
+"right for an account that only ever has a debit balance. Debit and credit "
+"columns: every row shows its balance on its own side and the total adds the "
+"debit and the credit balances separately instead of netting them, the way "
+"settlement accounts are read."
+msgstr ""
+"Одна колонка: сальдо показується однією сумою зі знаком, дебетове — додатне;"
+" підходить для рахунку, який має лише дебетове сальдо. Колонки дебету й "
+"кредиту: кожен рядок показує сальдо на своєму боці, а підсумок окремо додає "
+"дебетові й кредитові сальдо, не згортаючи їх, — так читають рахунки "
+"розрахунків (розгорнуте сальдо)."
+
+#. module: l10n_ua_masb_account_turnover
+#: model:ir.model.fields,field_description:l10n_ua_masb_account_turnover.field_masb_account_turnover_type__skip_empty_rows
+msgid "Skip Empty Rows"
+msgstr "Пропускати порожні рядки"
+
+#. module: l10n_ua_masb_account_turnover
+#: model:ir.model.fields,field_description:l10n_ua_masb_account_turnover.field_masb_account_turnover__state
+msgid "State"
+msgstr "Стан"
+
+#. module: l10n_ua_masb_account_turnover
+#: model:ir.model.fields,field_description:l10n_ua_masb_account_turnover.field_masb_account_turnover_cell__sheet_id
+#: model:ir.model.fields,field_description:l10n_ua_masb_account_turnover.field_masb_account_turnover_line__sheet_id
+#: model_terms:ir.ui.view,arch_db:l10n_ua_masb_account_turnover.masb_account_turnover_view_form
+msgid "Statement"
+msgstr "Відомість"
+
+#. module: l10n_ua_masb_account_turnover
+#: model_terms:ir.ui.view,arch_db:l10n_ua_masb_account_turnover.masb_account_turnover_cell_view_list
+#: model_terms:ir.ui.view,arch_db:l10n_ua_masb_account_turnover.masb_account_turnover_cell_view_pivot
+#: model_terms:ir.ui.view,arch_db:l10n_ua_masb_account_turnover.masb_account_turnover_cell_view_search
+msgid "Statement Cells"
+msgstr "Комірки відомості"
+
+#. module: l10n_ua_masb_account_turnover
+#: model_terms:ir.ui.view,arch_db:l10n_ua_masb_account_turnover.masb_account_turnover_line_view_list
+msgid "Statement Lines"
+msgstr "Рядки відомості"
+
+#. module: l10n_ua_masb_account_turnover
+#: model:ir.model.fields,field_description:l10n_ua_masb_account_turnover.field_masb_account_turnover__type_id
+#: model:ir.model.fields,field_description:l10n_ua_masb_account_turnover.field_masb_account_turnover_column__type_id
+#: model:ir.model.fields,field_description:l10n_ua_masb_account_turnover.field_masb_account_turnover_type__name
+#: model_terms:ir.ui.view,arch_db:l10n_ua_masb_account_turnover.masb_account_turnover_type_view_form
+#: model_terms:ir.ui.view,arch_db:l10n_ua_masb_account_turnover.masb_account_turnover_view_search
+msgid "Statement Type"
+msgstr "Вид відомості"
+
+#. module: l10n_ua_masb_account_turnover
+#. odoo-python
+#: code:addons/l10n_ua_masb_account_turnover/models/masb_account_turnover_type.py:0
+msgid "Statement type \"%(name)s\" has no usable account prefix."
+msgstr ""
+"У виді відомості «%(name)s» немає жодного придатного префікса рахунку."
+
+#. module: l10n_ua_masb_account_turnover
+#. odoo-python
+#: code:addons/l10n_ua_masb_account_turnover/models/masb_account_turnover_type.py:0
+msgid ""
+"Statement type \"%(name)s\" takes its rows from a subconto, so it needs a "
+"subconto type."
+msgstr ""
+"Вид відомості «%(name)s» бере рядки із субконто, тож йому потрібен вид "
+"субконто."
+
+#. module: l10n_ua_masb_account_turnover
+#: model:ir.actions.act_window,name:l10n_ua_masb_account_turnover.masb_account_turnover_type_action
+#: model_terms:ir.ui.view,arch_db:l10n_ua_masb_account_turnover.masb_account_turnover_type_view_list
+msgid "Statement Types"
+msgstr "Види відомостей"
+
+#. module: l10n_ua_masb_account_turnover
+#: model:ir.model.fields.selection,name:l10n_ua_masb_account_turnover.selection__masb_account_turnover__dimension_kind__subconto
+#: model:ir.model.fields.selection,name:l10n_ua_masb_account_turnover.selection__masb_account_turnover_type__dimension_kind__subconto
+msgid "Subconto"
+msgstr "Субконто"
+
+#. module: l10n_ua_masb_account_turnover
+#: model:ir.model.fields,field_description:l10n_ua_masb_account_turnover.field_masb_account_turnover__subconto_type_id
+#: model:ir.model.fields,field_description:l10n_ua_masb_account_turnover.field_masb_account_turnover_type__subconto_type_id
+msgid "Subconto Type"
+msgstr "Вид субконто"
+
+#. module: l10n_ua_masb_account_turnover
+#: model:ir.model.fields,help:l10n_ua_masb_account_turnover.field_masb_account_turnover__subconto_type_id
+msgid "Subconto whose values are the rows of the statement."
+msgstr "Субконто, значення якого стають рядками відомості."
+
+#. module: l10n_ua_masb_account_turnover
+#: model:ir.model.fields,help:l10n_ua_masb_account_turnover.field_masb_account_turnover_type__subconto_type_id
+msgid "Subconto whose values become the rows of the statement."
+msgstr "Субконто, значення якого стають рядками відомості."
+
+#. module: l10n_ua_masb_account_turnover
+#: model:ir.model.fields,field_description:l10n_ua_masb_account_turnover.field_masb_account_turnover_cell__analytic_account_id
+#: model:ir.model.fields,field_description:l10n_ua_masb_account_turnover.field_masb_account_turnover_line__analytic_account_id
+msgid "Subdivision"
+msgstr "Підрозділ"
+
+#. module: l10n_ua_masb_account_turnover
+#: model:masb.account.turnover.type,row_label:l10n_ua_masb_account_turnover.type_account_23
+msgid "Subdivision / cost element"
+msgstr "Підрозділ / елемент витрат"
+
+#. module: l10n_ua_masb_account_turnover
+#: model:masb.account.turnover.type,row_label:l10n_ua_masb_account_turnover.type_account_631
+msgid "Supplier"
+msgstr "Постачальник"
+
+#. module: l10n_ua_masb_account_turnover
+#. odoo-python
+#: code:addons/l10n_ua_masb_account_turnover/models/masb_account_turnover.py:0
+msgid ""
+"The closing balance is not a set of entries: it is the opening balance plus "
+"the turnover of the period."
+msgstr ""
+"Сальдо на кінець — не набір проводок: це сальдо на початок плюс обороти "
+"періоду."
+
+#. module: l10n_ua_masb_account_turnover
+#. odoo-python
+#: code:addons/l10n_ua_masb_account_turnover/models/masb_account_turnover.py:0
+msgid "The statement does not match the journal items."
+msgstr "Відомість не збігається з проводками."
+
+#. module: l10n_ua_masb_account_turnover
+#: model_terms:ir.ui.view,arch_db:l10n_ua_masb_account_turnover.masb_account_turnover_view_form
+msgid ""
+"The statement does not match the journal items. Recompute\n"
+"                        it; if the difference stays, an entry mixes several debit\n"
+"                        and credit lines whose pairing cannot be restored."
+msgstr ""
+"Відомість не збігається з проводками. Перерахуйте її; якщо різниця\n"
+"                        лишається, у якійсь проводці змішані кілька дебетових і\n"
+"                        кредитових рядків, пару яких відновити неможливо."
+
+#. module: l10n_ua_masb_account_turnover
+#. odoo-javascript
+#: code:addons/l10n_ua_masb_account_turnover/static/src/account_turnover_matrix/matrix.js:0
+msgid "The statement is empty. Set the period and press Compute."
+msgstr "Відомість порожня. Задайте період і натисніть «Розрахувати»."
+
+#. module: l10n_ua_masb_account_turnover
+#. odoo-python
+#: code:addons/l10n_ua_masb_account_turnover/models/masb_account_turnover.py:0
+msgid "This figure does not belong to the statement."
+msgstr "Ця сума не належить цій відомості."
+
+#. module: l10n_ua_masb_account_turnover
+#: model:ir.model.fields,help:l10n_ua_masb_account_turnover.field_masb_account_turnover_type__name
+msgid "Title of the statement, e.g. \"Account 631 Domestic suppliers\"."
+msgstr ""
+"Назва відомості, наприклад «Рах. 631 «Розрахунки з вітчизняними "
+"постачальниками»»."
+
+#. module: l10n_ua_masb_account_turnover
+#. odoo-python
+#: code:addons/l10n_ua_masb_account_turnover/models/masb_account_turnover.py:0
+msgid "TOTAL"
+msgstr "ВСЬОГО"
+
+#. module: l10n_ua_masb_account_turnover
+#: model_terms:ir.ui.view,arch_db:l10n_ua_masb_account_turnover.masb_account_turnover_cell_view_list
+msgid "Total"
+msgstr "Разом"
+
+#. module: l10n_ua_masb_account_turnover
+#: model:ir.model.fields,field_description:l10n_ua_masb_account_turnover.field_masb_account_turnover__total_credit
+msgid "Total Credit"
+msgstr "Всього по кредиту"
+
+#. module: l10n_ua_masb_account_turnover
+#. odoo-python
+#: code:addons/l10n_ua_masb_account_turnover/models/masb_account_turnover.py:0
+#: model_terms:ir.ui.view,arch_db:l10n_ua_masb_account_turnover.masb_account_turnover_line_view_list
+#: model_terms:ir.ui.view,arch_db:l10n_ua_masb_account_turnover.masb_account_turnover_view_form
+#: model_terms:ir.ui.view,arch_db:l10n_ua_masb_account_turnover.masb_account_turnover_view_list
+msgid "Total credit"
+msgstr "Всього по кредиту"
+
+#. module: l10n_ua_masb_account_turnover
+#: model:ir.model.fields,field_description:l10n_ua_masb_account_turnover.field_masb_account_turnover__total_debit
+msgid "Total Debit"
+msgstr "Всього по дебету"
+
+#. module: l10n_ua_masb_account_turnover
+#. odoo-python
+#: code:addons/l10n_ua_masb_account_turnover/models/masb_account_turnover.py:0
+#: model_terms:ir.ui.view,arch_db:l10n_ua_masb_account_turnover.masb_account_turnover_line_view_list
+#: model_terms:ir.ui.view,arch_db:l10n_ua_masb_account_turnover.masb_account_turnover_view_form
+#: model_terms:ir.ui.view,arch_db:l10n_ua_masb_account_turnover.masb_account_turnover_view_list
+msgid "Total debit"
+msgstr "Всього по дебету"
+
+#. module: l10n_ua_masb_account_turnover
+#: model:ir.model.fields,field_description:l10n_ua_masb_account_turnover.field_masb_account_turnover_line__turnover_credit
+msgid "Turnover Credit"
+msgstr "Оборот за кредитом"
+
+#. module: l10n_ua_masb_account_turnover
+#: model:ir.model.fields,field_description:l10n_ua_masb_account_turnover.field_masb_account_turnover_line__turnover_debit
+msgid "Turnover Debit"
+msgstr "Оборот за дебетом"
+
+#. module: l10n_ua_masb_account_turnover
+#: model:ir.model.fields,help:l10n_ua_masb_account_turnover.field_masb_account_turnover__unassigned_amount
+msgid ""
+"Turnover, debit plus credit, that carries no value of the row dimension. "
+"Anything above zero means journal items were posted without a subdivision, a"
+" partner or whatever the rows are."
+msgstr ""
+"Обороти (дебет плюс кредит), у яких немає значення виміру рядків. Будь-яке "
+"значення понад нуль означає, що проводки провели без підрозділу, контрагента"
+" чи того, за чим будуються рядки."
+
+#. module: l10n_ua_masb_account_turnover
+#: model:ir.model.fields,help:l10n_ua_masb_account_turnover.field_masb_account_turnover_type__dimension_kind
+msgid ""
+"Where the value of a row comes from. Analytic plan: the analytic "
+"distribution of the journal item, which may split one item between several "
+"rows. Subconto: the subconto value of the journal item or, when none was "
+"entered, the matching field of the item itself (the partner of a bill, the "
+"product of an invoice line)."
+msgstr ""
+"Звідки береться значення рядка. Аналітичний план: аналітичний розподіл рядка"
+" проводки, який може розділити один рядок проводки між кількома рядками "
+"відомості. Субконто: значення субконто рядка проводки, а якщо його не внесли"
+" — відповідне поле самого рядка (контрагент рахунку, товар рядка накладної)."
+
+#. module: l10n_ua_masb_account_turnover
+#: model:ir.model.fields,field_description:l10n_ua_masb_account_turnover.field_masb_account_turnover__unassigned_amount
+msgid "Without Analytics"
+msgstr "Без аналітики"
+
+#. module: l10n_ua_masb_account_turnover
+#: model:ir.model.fields,field_description:l10n_ua_masb_account_turnover.field_masb_account_turnover__xlsx_file
+msgid "XLSX"
+msgstr "XLSX"
+
+#. module: l10n_ua_masb_account_turnover
+#: model:ir.model.fields,field_description:l10n_ua_masb_account_turnover.field_masb_account_turnover__xlsx_filename
+msgid "Xlsx Filename"
+msgstr "Ім'я файлу XLSX"

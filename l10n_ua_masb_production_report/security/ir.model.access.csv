@@ -1,9 +1,0 @@
-id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_masb_production_column_user,masb.production.column.user,model_masb_production_column,account.group_account_readonly,1,0,0,0
-access_masb_production_column_manager,masb.production.column.manager,model_masb_production_column,account.group_account_manager,1,1,1,1
-access_masb_production_report_user,masb.production.report.user,model_masb_production_report,account.group_account_readonly,1,0,0,0
-access_masb_production_report_accountant,masb.production.report.accountant,model_masb_production_report,account.group_account_user,1,1,1,1
-access_masb_production_report_line_user,masb.production.report.line.user,model_masb_production_report_line,account.group_account_readonly,1,0,0,0
-access_masb_production_report_line_accountant,masb.production.report.line.accountant,model_masb_production_report_line,account.group_account_user,1,1,1,1
-access_masb_production_report_cell_user,masb.production.report.cell.user,model_masb_production_report_cell,account.group_account_readonly,1,0,0,0
-access_masb_production_report_cell_accountant,masb.production.report.cell.accountant,model_masb_production_report_cell,account.group_account_user,1,1,1,1

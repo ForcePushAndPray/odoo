@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+
+    <!--
+        The markup is the one Odoo's own list renderer produces
+        (``o_list_renderer`` / ``o_list_table`` / ``o_data_row`` /
+        ``o_list_number``), so the statement looks and behaves like any other
+        table in the backend: same paddings, same hover, same numeric alignment,
+        same horizontal scrolling through ``table-responsive``. Only what a list
+        view has no answer for - wrapping column captions and the two heavier
+        row kinds - is added on top in the stylesheet.
+    -->
+    <t t-name="l10n_ua_masb_account_turnover.AccountTurnoverMatrix">
+        <div class="o_masb_turnover_matrix">
+            <div t-if="state.loading" class="text-muted p-2">
+                <t t-esc="loadingLabel"/>
+            </div>
+            <div t-elif="isEmpty" class="text-muted p-2">
+                <t t-esc="emptyLabel"/>
+            </div>
+            <t t-else="">
+                <div class="o_list_renderer o_renderer table-responsive">
+                    <table class="o_list_table table table-sm table-hover position-relative mb-0 o_list_table_ungrouped">
+                        <thead>
+                            <tr>
+                                <th t-foreach="grid.columns" t-as="column"
+                                    t-key="column.key"
+                                    t-att-data-name="column.key">
+                                    <span t-att-class="column.numeric ? 'o_list_number_th' : ''"
+                                          t-esc="column.label"/>
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr t-foreach="grid.rows" t-as="row" t-key="row_index"
+                                t-att-class="rowClass(row)">
+                                <td t-foreach="row.cells" t-as="value"
+                                    t-key="value_index"
+                                    t-att-class="cellClass(row, grid.columns[value_index], value_index, value)"
+                                    t-att-title="isDrillable(row, grid.columns[value_index], value) ? drillTitle : false"
+                                    t-on-click="() => this.onCellClick(row, grid.columns[value_index], value)">
+                                    <t t-esc="format(value, grid.columns[value_index])"/>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <table class="table table-sm w-auto mt-3 o_masb_turnover_control">
+                    <tbody>
+                        <tr>
+                            <td class="fw-bold pe-4"><t t-esc="grid.control_label"/></td>
+                            <td class="o_list_number">
+                                <t t-esc="format(grid.control_debit, {numeric: true})"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="fw-bold pe-4">
+                                <t t-esc="grid.control_credit_label"/>
+                            </td>
+                            <td class="o_list_number">
+                                <t t-esc="format(grid.control_credit, {numeric: true})"/>
+                            </td>
+                        </tr>
+                        <tr t-if="!grid.is_balanced">
+                            <td colspan="2" class="text-danger">
+                                <t t-esc="grid.mismatch_label"/>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </t>
+        </div>
+    </t>
+
+</templates>

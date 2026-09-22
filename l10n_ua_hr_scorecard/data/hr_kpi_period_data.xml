@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Nest periods created before the month/quarter/year hierarchy existed. -->
+    <function model="hr.kpi.period" name="_sync_all_parents"/>
+
+    <!-- Source report and formula value lines of draft KPI targets. -->
+    <function model="hr.kpi.target" name="_sync_all_formula_lines"/>
+
+    <!-- "Achieved" of binary KPI targets is derived from planned and actual values. -->
+    <function model="hr.kpi.target" name="_recompute_binary_achievement"/>
+
+</odoo>

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!--
+        The two statements MASB keeps today. Records are noupdate: once
+        installed, the statement types belong to the accountant, not to the
+        next module upgrade.
+    -->
+    <data noupdate="1">
+
+        <record id="type_account_23" model="masb.account.turnover.type">
+            <field name="name">Account 23 Production</field>
+            <field name="sequence">10</field>
+            <field name="account_prefixes">23</field>
+            <field name="dimension_kind">analytic</field>
+            <field name="use_cost_elements" eval="True"/>
+            <field name="balance_layout">net</field>
+            <field name="skip_empty_rows" eval="False"/>
+            <field name="row_label">Subdivision / cost element</field>
+            <field name="no_dimension_label">No subdivision</field>
+            <field name="company_id" eval="False"/>
+        </record>
+
+        <record id="type_account_631" model="masb.account.turnover.type">
+            <field name="name">Account 631 Domestic suppliers</field>
+            <field name="sequence">20</field>
+            <field name="account_prefixes">631</field>
+            <field name="dimension_kind">subconto</field>
+            <field name="subconto_type_id"
+                   ref="l10n_ua_account_base.subconto_type_partner"/>
+            <field name="use_cost_elements" eval="False"/>
+            <field name="balance_layout">expanded</field>
+            <field name="skip_empty_rows" eval="True"/>
+            <field name="row_label">Supplier</field>
+            <field name="no_dimension_label">No supplier</field>
+            <field name="company_id" eval="False"/>
+        </record>
+
+    </data>
+</odoo>

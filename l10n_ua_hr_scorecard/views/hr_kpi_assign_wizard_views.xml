@@ -15,12 +15,13 @@
                                groups="base.group_multi_company"/>
                     </group>
                     <group>
-                        <field name="employee_ids" widget="many2many_tags"
+                        <field name="job_ids" widget="many2many_tags"
                                options="{'no_create': True}"/>
                     </group>
                     <p class="text-muted">
-                        Selecting an employee adds the KPI; deselecting removes it.
-                        Removal requires the underlying scorecard to be in Draft state.
+                        Selecting a job position adds the KPI to its scorecard; deselecting
+                        removes it. Removal requires the scorecard to be in Draft state.
+                        Employees are taken from the job position automatically.
                     </p>
                 </sheet>
                 <footer>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <!-- Rendered by the l10n_ua_hr_scorecard_kpi_map view (static/src/kpi_map):
+         the arch only selects that view on top of the KPI targets search. -->
+    <record id="hr_kpi_map_view" model="ir.ui.view">
+        <field name="name">hr.kpi.target.kpi.map</field>
+        <field name="model">hr.kpi.target</field>
+        <field name="priority">100</field>
+        <field name="arch" type="xml">
+            <list string="KPI Map" js_class="l10n_ua_hr_scorecard_kpi_map" create="0" export_xlsx="0">
+                <field name="kpi_id"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="action_hr_kpi_map_open" model="ir.actions.server">
+        <field name="name">KPI Map</field>
+        <field name="model_id" ref="model_hr_kpi_target"/>
+        <field name="state">code</field>
+        <field name="code">action = env['hr.kpi.map'].action_open()</field>
+    </record>
+
+</odoo>

@@ -4,29 +4,29 @@
 
         <record id="kpi_sales_target" model="hr.kpi">
             <field name="name">Sales Target</field>
-            <field name="code">SALES_TGT</field>
             <field name="calculation_method">coefficient</field>
             <field name="uom_name">UAH</field>
         </record>
 
         <record id="kpi_customer_visits" model="hr.kpi">
             <field name="name">Customer Visits</field>
-            <field name="code">CST_VST</field>
             <field name="calculation_method">coefficient</field>
             <field name="uom_name">visits</field>
         </record>
 
         <record id="kpi_quarterly_report" model="hr.kpi">
             <field name="name">Quarterly Report Submitted</field>
-            <field name="code">RPT_Q</field>
             <field name="calculation_method">binary</field>
         </record>
 
         <record id="period_q1_2026" model="hr.kpi.period">
-            <field name="name">Q1 2026</field>
             <field name="period_type">quarter</field>
-            <field name="date_from">2026-01-01</field>
-            <field name="date_to">2026-03-31</field>
+            <field name="year">2026</field>
+            <field name="quarter">1</field>
+        </record>
+
+        <record id="job_sales_manager" model="hr.job">
+            <field name="name">Sales Manager (KPI demo)</field>
         </record>
 
         <record id="target_sales_q1" model="hr.kpi.target">
@@ -44,6 +44,16 @@
         <record id="target_report_q1" model="hr.kpi.target">
             <field name="kpi_id" ref="kpi_quarterly_report"/>
             <field name="period_id" ref="period_q1_2026"/>
+        </record>
+
+        <record id="assignment_sales_manager" model="hr.kpi.assignment">
+            <field name="job_id" ref="job_sales_manager"/>
+            <field name="date_from">2026-01-01</field>
+            <field name="line_ids" eval="[
+                (0, 0, {'kpi_id': ref('kpi_sales_target'), 'weight': 50}),
+                (0, 0, {'kpi_id': ref('kpi_customer_visits'), 'weight': 30}),
+                (0, 0, {'kpi_id': ref('kpi_quarterly_report'), 'weight': 20}),
+            ]"/>
         </record>
 
     </data>

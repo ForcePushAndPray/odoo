@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!--
+        Multi-company record rules.
+
+        Statements, their rows and cells are documents of one company and are
+        visible in that company only - the same scope as the journal items they
+        are computed from (``account.account_move_line_comp_rule``).
+
+        Statement types and their columns are configuration: shared when they
+        carry no company, and otherwise visible to that company only.
+    -->
+
+    <record id="masb_account_turnover_comp_rule" model="ir.rule">
+        <field name="name">Journal-order and ledger: multi-company</field>
+        <field name="model_id" ref="model_masb_account_turnover"/>
+        <field name="domain_force">[('company_id', 'in', company_ids)]</field>
+    </record>
+
+    <record id="masb_account_turnover_line_comp_rule" model="ir.rule">
+        <field name="name">Journal-order and ledger line: multi-company</field>
+        <field name="model_id" ref="model_masb_account_turnover_line"/>
+        <field name="domain_force">[('company_id', 'in', company_ids)]</field>
+    </record>
+
+    <record id="masb_account_turnover_cell_comp_rule" model="ir.rule">
+        <field name="name">Journal-order and ledger cell: multi-company</field>
+        <field name="model_id" ref="model_masb_account_turnover_cell"/>
+        <field name="domain_force">[('company_id', 'in', company_ids)]</field>
+    </record>
+
+    <record id="masb_account_turnover_type_comp_rule" model="ir.rule">
+        <field name="name">Journal-order and ledger type: multi-company</field>
+        <field name="model_id" ref="model_masb_account_turnover_type"/>
+        <field name="domain_force">['|', ('company_id', '=', False), ('company_id', 'in', company_ids)]</field>
+    </record>
+
+    <record id="masb_account_turnover_column_comp_rule" model="ir.rule">
+        <field name="name">Journal-order and ledger column: multi-company</field>
+        <field name="model_id" ref="model_masb_account_turnover_column"/>
+        <field name="domain_force">['|', ('company_id', '=', False), ('company_id', 'in', company_ids)]</field>
+    </record>
+
+</odoo>

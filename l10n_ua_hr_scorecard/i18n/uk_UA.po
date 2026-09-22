@@ -1,0 +1,2643 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* l10n_ua_hr_scorecard
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 19.0\n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: uk_UA\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+
+#. module: l10n_ua_hr_scorecard
+#. odoo-python
+#: code:addons/l10n_ua_hr_scorecard/models/hr_kpi_assignment.py:0
+msgid "%(job)s from %(date)s"
+msgstr "%(job)s з %(date)s"
+
+#. module: l10n_ua_hr_scorecard
+#. odoo-python
+#: code:addons/l10n_ua_hr_scorecard/models/hr_kpi_target_copy_wizard.py:0
+msgid "%(kpi)s: %(period)s (a target for %(existing)s already exists)"
+msgstr "%(kpi)s: %(period)s (вже є цільове значення за період %(existing)s)"
+
+#. module: l10n_ua_hr_scorecard
+#. odoo-python
+#: code:addons/l10n_ua_hr_scorecard/models/hr_kpi_target_copy_wizard.py:0
+msgid "%s KPI targets copied"
+msgstr "Скопійовано цільових значень KPI: %s"
+
+#. module: l10n_ua_hr_scorecard
+#: model:ir.model.fields,help:l10n_ua_hr_scorecard.field_hr_kpi_target__achievement
+#: model:ir.model.fields,help:l10n_ua_hr_scorecard.field_hr_scorecard_line__achievement
+msgid ""
+"100% for Binary if achieved, else 0%. For Coefficient: actual/planned x 100%"
+" (inverted when Higher is better = False)."
+msgstr ""
+"Для бінарного методу: 100%, якщо досягнуто, інакше 0%. Для коефіцієнта: "
+"факт/план x 100% (обернено, якщо «Більше — краще» вимкнено)."
+
+#. module: l10n_ua_hr_scorecard
+#: model_terms:ir.ui.view,arch_db:l10n_ua_hr_scorecard.hr_kpi_target_view_form
+msgid "<span class=\"o_stat_text\">KPI</span>"
+msgstr "<span class=\"o_stat_text\">KPI</span>"
+
+#. module: l10n_ua_hr_scorecard
+#: model:ir.model.constraint,message:l10n_ua_hr_scorecard.constraint_hr_kpi_assignment_line_assignment_kpi_uniq
+msgid "A KPI appears only once in an assignment."
+msgstr "KPI може бути в призначенні лише один раз."
+
+#. module: l10n_ua_hr_scorecard
+#: model:ir.model.constraint,message:l10n_ua_hr_scorecard.constraint_hr_scorecard_employee_config_employee_company_uniq
+msgid ""
+"A KPI compensation config already exists for this employee in this company."
+msgstr ""
+"Налаштування винагороди за KPI для цього працівника в цій компанії вже "
+"існує."
+
+#. module: l10n_ua_hr_scorecard
+#: model:ir.model.constraint,message:l10n_ua_hr_scorecard.constraint_hr_kpi_target_kpi_period_company_uniq
+msgid "A KPI target already exists for this KPI and period."
+msgstr "Цільове значення для цього KPI і періоду вже існує."
+
+#. module: l10n_ua_hr_scorecard
+#: model:ir.model.constraint,message:l10n_ua_hr_scorecard.constraint_hr_kpi_target_source_target_model_uniq
+msgid "A KPI target has one source report per report type."
+msgstr "Цільове значення KPI має один звіт-джерело на кожен тип звіту."
+
+#. module: l10n_ua_hr_scorecard
+#: model:ir.model.constraint,message:l10n_ua_hr_scorecard.constraint_hr_kpi_target_input_target_variable_uniq
+msgid "A KPI target has one value per formula variable."
+msgstr "Цільове значення KPI має одне значення на кожну змінну формули."
+
+#. module: l10n_ua_hr_scorecard
+#: model:ir.model.constraint,message:l10n_ua_hr_scorecard.constraint_hr_kpi_assignment_job_date_company_uniq
+msgid "A job position already has a KPI assignment from this date."
+msgstr "Посада вже має призначення KPI з цієї дати."
+
+#. module: l10n_ua_hr_scorecard
+#: model:ir.model.constraint,message:l10n_ua_hr_scorecard.constraint_hr_scorecard_job_period_uniq
+msgid "A scorecard already exists for this job position and period."
+msgstr "Картка KPI для цієї посади і періоду вже існує."
+
+#. module: l10n_ua_hr_scorecard
+#. odoo-python
+#: code:addons/l10n_ua_hr_scorecard/models/hr_kpi_target.py:0
+msgid "A source report of the KPI target %s does not exist."
+msgstr "Звіт-джерело цільового значення KPI %s не існує."
+
+#. module: l10n_ua_hr_scorecard
+#: model_terms:ir.ui.view,arch_db:l10n_ua_hr_scorecard.hr_kpi_period_view_form
+#: model_terms:ir.ui.view,arch_db:l10n_ua_hr_scorecard.hr_scorecard_view_form
+msgid "Accrue Bonuses"
+msgstr "Нарахувати премії"
+
+#. module: l10n_ua_hr_scorecard
+#: model:ir.model.fields,field_description:l10n_ua_hr_scorecard.field_hr_scorecard_employee_result__accrued_amount
+msgid "Accrued"
+msgstr "Нараховано"
+
+#. module: l10n_ua_hr_scorecard
+#: model:ir.model.fields,field_description:l10n_ua_hr_scorecard.field_hr_scorecard__advance_bonus_ids
+msgid "Accrued Advances"
+msgstr "Нараховані аванси"
+
+#. module: l10n_ua_hr_scorecard
+#: model:ir.model.fields,field_description:l10n_ua_hr_scorecard.field_hr_scorecard__bonus_ids
+msgid "Accrued Bonuses"
+msgstr "Нараховані премії"
+
+#. module: l10n_ua_hr_scorecard
+#: model:ir.model.fields,field_description:l10n_ua_hr_scorecard.field_hr_scorecard__final_bonus_ids
+msgid "Accrued Final Bonuses"
+msgstr "Нараховані остаточні премії"
+
+#. module: l10n_ua_hr_scorecard
+#: model:ir.model.fields,field_description:l10n_ua_hr_scorecard.field_hr_kpi_target__binary_achieved
+#: model:ir.model.fields,field_description:l10n_ua_hr_scorecard.field_hr_scorecard_line__binary_achieved
+msgid "Achieved"
+msgstr "Досягнуто"
+
+#. module: l10n_ua_hr_scorecard
+#: model:ir.model.fields,field_description:l10n_ua_hr_scorecard.field_hr_kpi_target__achievement
+#: model:ir.model.fields,field_description:l10n_ua_hr_scorecard.field_hr_scorecard_line__achievement
+msgid "Achievement (%)"
+msgstr "Виконання (%)"
+
+#. module: l10n_ua_hr_scorecard
+#. odoo-javascript
+#: code:addons/l10n_ua_hr_scorecard/static/src/kpi_map/kpi_map.xml:0
+msgid "Achievement, %"
+msgstr "Виконання, %"
+
+#. module: l10n_ua_hr_scorecard
+#: model_terms:ir.ui.view,arch_db:l10n_ua_hr_scorecard.hr_kpi_target_view_kanban
+msgid "Achievement:"
+msgstr "Виконання:"
+
+#. module: l10n_ua_hr_scorecard
+#: model:ir.model.fields,field_description:l10n_ua_hr_scorecard.field_hr_scorecard__message_needaction
+msgid "Action Needed"
+msgstr "Необхідна дія"
+
+#. module: l10n_ua_hr_scorecard
+#: model:ir.model.fields,field_description:l10n_ua_hr_scorecard.field_hr_kpi__active
+#: model:ir.model.fields,field_description:l10n_ua_hr_scorecard.field_hr_kpi_assignment__active
+#: model:ir.model.fields,field_description:l10n_ua_hr_scorecard.field_hr_scorecard_employee_config__active
+msgid "Active"
+msgstr "Активно"
+
+#. module: l10n_ua_hr_scorecard
+#: model:ir.model.fields,field_description:l10n_ua_hr_scorecard.field_hr_scorecard__activity_ids
+msgid "Activities"
+msgstr "Дії"
+
+#. module: l10n_ua_hr_scorecard
+#: model:ir.model.fields,field_description:l10n_ua_hr_scorecard.field_hr_scorecard__activity_exception_decoration
+msgid "Activity Exception Decoration"
+msgstr "Оформлення виключення дії"
+
+#. module: l10n_ua_hr_scorecard
+#: model:ir.model.fields,field_description:l10n_ua_hr_scorecard.field_hr_scorecard__activity_state
+msgid "Activity State"
+msgstr "Стан дії"
+
+#. module: l10n_ua_hr_scorecard
+#: model:ir.model.fields,field_description:l10n_ua_hr_scorecard.field_hr_scorecard__activity_type_icon
+msgid "Activity Type Icon"
+msgstr "Іконка типу дії"
+
+#. module: l10n_ua_hr_scorecard
+#. odoo-javascript
+#: code:addons/l10n_ua_hr_scorecard/static/src/kpi_map/kpi_map.xml:0
+msgid "Actual"
+msgstr "Факт"
+
+#. module: l10n_ua_hr_scorecard
+#: model:ir.model.fields,field_description:l10n_ua_hr_scorecard.field_hr_kpi_target__actual_value
+#: model:ir.model.fields,field_description:l10n_ua_hr_scorecard.field_hr_scorecard_line__actual_value
+msgid "Actual Value"
+msgstr "Фактичне значення"
+
+#. module: l10n_ua_hr_scorecard
+#: model_terms:ir.ui.view,arch_db:l10n_ua_hr_scorecard.hr_kpi_target_copy_wizard_view_form
+msgid ""
+"Actual values, source reports and statuses are not copied. A KPI that already\n"
+"                    has a target for this period, or for an overlapping one, is skipped."
+msgstr ""
+"Фактичні значення, звіти-джерела та статуси не копіюються. KPI, який уже\n"
+"                    має цільове значення за цей або перетинний період, пропускається."
+
+#. module: l10n_ua_hr_scorecard
+#: model_terms:ir.ui.view,arch_db:l10n_ua_hr_scorecard.hr_kpi_target_view_kanban
+msgid "Actual:"
+msgstr "Факт:"
+
+#. module: l10n_ua_hr_scorecard
+#. odoo-python
+#: code:addons/l10n_ua_hr_scorecard/models/hr_scorecard.py:0
+msgid "Add at least one KPI line before confirming."
+msgstr "Перед підтвердженням додайте щонайменше один рядок KPI."
+
+#. module: l10n_ua_hr_scorecard
+#. odoo-python
+#: code:addons/l10n_ua_hr_scorecard/models/hr_kpi.py:0
+msgid "Add at least one variable to the formula of KPI %s."
+msgstr "Додайте хоча б одну змінну до формули KPI %s."
+
+#. module: l10n_ua_hr_scorecard
+#: model:ir.model.fields.selection,name:l10n_ua_hr_scorecard.selection__hr_kpi__system_field__administrative_expenses
+#: model:ir.model.fields.selection,name:l10n_ua_hr_scorecard.selection__hr_kpi_target_input__system_field__administrative_expenses
+#: model:ir.model.fields.selection,name:l10n_ua_hr_scorecard.selection__hr_kpi_variable__system_field__administrative_expenses
+msgid "Administrative expenses"
+msgstr "Адміністративні витрати"
+
+#. module: l10n_ua_hr_scorecard
+#: model:ir.model.fields.selection,name:l10n_ua_hr_scorecard.selection__hr_kpi_period__month__4
+#: model:ir.model.fields.selection,name:l10n_ua_hr_scorecard.selection__hr_kpi_target__period_month__4
+#: model:ir.model.fields.selection,name:l10n_ua_hr_scorecard.selection__hr_kpi_target_copy_wizard__period_month__4
+msgid "April"
+msgstr "Квітень"
+
+#. module: l10n_ua_hr_scorecard
+#: model_terms:ir.ui.view,arch_db:l10n_ua_hr_scorecard.hr_kpi_assignment_view_form
+#: model_terms:ir.ui.view,arch_db:l10n_ua_hr_scorecard.hr_kpi_assignment_view_search
+#: model_terms:ir.ui.view,arch_db:l10n_ua_hr_scorecard.hr_kpi_view_form
+#: model_terms:ir.ui.view,arch_db:l10n_ua_hr_scorecard.hr_kpi_view_search
+#: model_terms:ir.ui.view,arch_db:l10n_ua_hr_scorecard.hr_scorecard_employee_config_view_form
+#: model_terms:ir.ui.view,arch_db:l10n_ua_hr_scorecard.hr_scorecard_employee_config_view_search
+msgid "Archived"
+msgstr "Архівовано"
+
+#. module: l10n_ua_hr_scorecard
+#: model:ir.model.fields,help:l10n_ua_hr_scorecard.field_hr_kpi__formula
+#: model:ir.model.fields,help:l10n_ua_hr_scorecard.field_hr_kpi_target__formula
+msgid ""
+"Arithmetic expression of the variable codes and numbers, with + - * / and "
+"parentheses, e.g. (A - B) / C * 100."
+msgstr ""
+"Арифметичний вираз з кодів змінних і чисел, з + - * / та дужками, напр. (A -"
+" B) / C * 100."
+
+#. module: l10n_ua_hr_scorecard
+#: model:ir.model,name:l10n_ua_hr_scorecard.model_hr_kpi_assign_wizard
+msgid "Assign KPI to Job Positions"
+msgstr "Призначення KPI посадам"
+
+#. module: l10n_ua_hr_scorecard
+#: model_terms:ir.actions.act_window,help:l10n_ua_hr_scorecard.action_hr_kpi_assignment
+msgid "Assign KPIs to job positions"
+msgstr "Призначте KPI посадам"
+
+#. module: l10n_ua_hr_scorecard
+#: model:ir.model.fields,field_description:l10n_ua_hr_scorecard.field_hr_kpi_assignment_line__assignment_id
+msgid "Assignment"
+msgstr "Призначення"
+
+#. module: l10n_ua_hr_scorecard
+#: model:ir.model.fields,field_description:l10n_ua_hr_scorecard.field_hr_scorecard__message_attachment_count
+msgid "Attachment Count"
+msgstr "Кількість вкладень"
+
+#. module: l10n_ua_hr_scorecard
+#: model:ir.model.fields.selection,name:l10n_ua_hr_scorecard.selection__hr_kpi_period__month__8
+#: model:ir.model.fields.selection,name:l10n_ua_hr_scorecard.selection__hr_kpi_target__period_month__8
+#: model:ir.model.fields.selection,name:l10n_ua_hr_scorecard.selection__hr_kpi_target_copy_wizard__period_month__8
+msgid "August"
+msgstr "Серпень"
+
+#. module: l10n_ua_hr_scorecard
+#. odoo-python
+#: code:addons/l10n_ua_hr_scorecard/models/hr_scorecard.py:0
+msgid "Auto-accrued from scorecard %s"
+msgstr "Автоматично нараховано з картки KPI %s"
+
+#. module: l10n_ua_hr_scorecard
+#: model_terms:ir.ui.view,arch_db:l10n_ua_hr_scorecard.hr_kpi_view_search
+msgid "Binary"
+msgstr "Бінарний"
+
+#. module: l10n_ua_hr_scorecard
+#: model:ir.model.fields.selection,name:l10n_ua_hr_scorecard.selection__hr_kpi__calculation_method__binary
+#: model:ir.model.fields.selection,name:l10n_ua_hr_scorecard.selection__hr_kpi_target__calculation_method__binary
+#: model:ir.model.fields.selection,name:l10n_ua_hr_scorecard.selection__hr_scorecard_line__calculation_method__binary
+msgid "Binary (achieved / not achieved)"
+msgstr "Бінарний (досягнуто / не досягнуто)"
+
+#. module: l10n_ua_hr_scorecard
+#: model:ir.model.fields,field_description:l10n_ua_hr_scorecard.field_hr_scorecard_employee_result__bonus_amount
+msgid "Bonus Amount"
+msgstr "Сума премії"
+
+#. module: l10n_ua_hr_scorecard
+#: model:ir.model.fields,field_description:l10n_ua_hr_scorecard.field_hr_scorecard_employee_config__bonus_base
+msgid "Bonus Base"
+msgstr "База премії"
+
+#. module: l10n_ua_hr_scorecard
+#: model:ir.model.fields,field_description:l10n_ua_hr_scorecard.field_hr_scorecard__bonus_count
+msgid "Bonus Count"
+msgstr "Кількість премій"
+
+#. module: l10n_ua_hr_scorecard
+#: model_terms:ir.ui.view,arch_db:l10n_ua_hr_scorecard.hr_scorecard_employee_config_view_form
+msgid "Bonus Defaults"
+msgstr "Параметри премії за замовчуванням"
+
+#. module: l10n_ua_hr_scorecard
+#: model:ir.model.fields,field_description:l10n_ua_hr_scorecard.field_hr_scorecard_employee_config__bonus_model
+#: model:ir.model.fields,field_description:l10n_ua_hr_scorecard.field_hr_scorecard_employee_result__bonus_model
+#: model_terms:ir.ui.view,arch_db:l10n_ua_hr_scorecard.hr_scorecard_employee_config_view_search
+msgid "Bonus Model"
+msgstr "Модель премії"
+
+#. module: l10n_ua_hr_scorecard
+#: model:ir.model.fields,field_description:l10n_ua_hr_scorecard.field_hr_scorecard_employee_config__bonus_pct
+msgid "Bonus Share (%)"
+msgstr "Частка премії (%)"
+
+#. module: l10n_ua_hr_scorecard
+#: model:ir.model.fields,field_description:l10n_ua_hr_scorecard.field_hr_scorecard_employee_config__bonus_type_id
+#: model:ir.model.fields,field_description:l10n_ua_hr_scorecard.field_hr_scorecard_employee_result__bonus_type_id
+msgid "Bonus Type"
+msgstr "Тип премії"
+
+#. module: l10n_ua_hr_scorecard
+#: model:ir.model.fields,help:l10n_ua_hr_scorecard.field_hr_scorecard_employee_result__planned_bonus
+msgid "Bonus base from the employee KPI config for the whole period."
+msgstr "База премії з налаштувань KPI працівника за весь період."
+
+#. module: l10n_ua_hr_scorecard
+#. odoo-python
+#: code:addons/l10n_ua_hr_scorecard/models/hr_scorecard.py:0
+#: model_terms:ir.ui.view,arch_db:l10n_ua_hr_scorecard.hr_scorecard_view_form
+msgid "Bonuses"
+msgstr "Премії"
+
+#. module: l10n_ua_hr_scorecard
+#: model:ir.model.fields,field_description:l10n_ua_hr_scorecard.field_hr_kpi__calculation_method
+#: model:ir.model.fields,field_description:l10n_ua_hr_scorecard.field_hr_kpi_target__calculation_method
+#: model:ir.model.fields,field_description:l10n_ua_hr_scorecard.field_hr_scorecard_line__calculation_method
+#: model_terms:ir.ui.view,arch_db:l10n_ua_hr_scorecard.hr_kpi_view_search
+msgid "Calculation Method"
+msgstr "Метод розрахунку"
+
+#. module: l10n_ua_hr_scorecard
+#: model_terms:ir.ui.view,arch_db:l10n_ua_hr_scorecard.hr_kpi_assign_wizard_view_form
+msgid "Cancel"
+msgstr "Скасувати"
+
+#. module: l10n_ua_hr_scorecard
+#. odoo-python
+#: code:addons/l10n_ua_hr_scorecard/models/hr_kpi_assign_wizard.py:0
+msgid ""
+"Cannot remove KPI %(kpi)s from job position %(job)s in %(period)s because "
+"the scorecard is %(state)s. Reset the scorecard to draft first."
+msgstr ""
+"Неможливо зняти KPI %(kpi)s з посади %(job)s у періоді %(period)s, оскільки "
+"картка KPI має статус «%(state)s». Спочатку поверніть картку в чернетку."
+
+#. module: l10n_ua_hr_scorecard
+#. odoo-python
+#: code:addons/l10n_ua_hr_scorecard/models/hr_scorecard.py:0
+msgid ""
+"Cannot reset a scorecard with accrued bonuses. Cancel the linked hr.bonus "
+"records first."
+msgstr ""
+"Неможливо повернути в чернетку картку KPI з нарахованими преміями. Спочатку "
+"скасуйте пов’язані записи hr.bonus."
+
+#. module: l10n_ua_hr_scorecard
+#: model_terms:ir.ui.view,arch_db:l10n_ua_hr_scorecard.hr_scorecard_view_form
+msgid "Close"
+msgstr "Закрити"
+
+#. module: l10n_ua_hr_scorecard
+#: model:ir.model.fields.selection,name:l10n_ua_hr_scorecard.selection__hr_kpi_period__state__closed
+#: model:ir.model.fields.selection,name:l10n_ua_hr_scorecard.selection__hr_scorecard__state__closed
+#: model:ir.model.fields.selection,name:l10n_ua_hr_scorecard.selection__hr_scorecard_line__scorecard_state__closed
+msgid "Closed"
+msgstr "Закрито"
+
+#. module: l10n_ua_hr_scorecard
+#. odoo-python
+#: code:addons/l10n_ua_hr_scorecard/models/hr_scorecard.py:0
+msgid "Closed scorecards cannot be reset to draft."
+msgstr "Закриті картки KPI не можна повернути в чернетку."
+
+#. module: l10n_ua_hr_scorecard
+#: model:ir.model.fields,field_description:l10n_ua_hr_scorecard.field_hr_kpi_period__name
+#: model:ir.model.fields,field_description:l10n_ua_hr_scorecard.field_hr_kpi_target_input__code
+#: model:ir.model.fields,field_description:l10n_ua_hr_scorecard.field_hr_kpi_variable__code
+msgid "Code"
+msgstr "Код"
+
+#. module: l10n_ua_hr_scorecard
+#: model_terms:ir.ui.view,arch_db:l10n_ua_hr_scorecard.hr_kpi_view_search
+msgid "Coefficient"
+msgstr "Коефіцієнт"
+
+#. module: l10n_ua_hr_scorecard
+#: model:ir.model.fields,help:l10n_ua_hr_scorecard.field_hr_kpi__source_models
+msgid ""
+"Comma-separated technical names of the models of the reports the targets "
+"read from."
+msgstr ""
+"Технічні назви моделей звітів, з яких читають цільові значення, через кому."
+
+#. module: l10n_ua_hr_scorecard
+#: model:ir.model.fields,field_description:l10n_ua_hr_scorecard.field_hr_kpi__company_id
+#: model:ir.model.fields,field_description:l10n_ua_hr_scorecard.field_hr_kpi_assign_wizard__company_id
+#: model:ir.model.fields,field_description:l10n_ua_hr_scorecard.field_hr_kpi_assignment__company_id
+#: model:ir.model.fields,field_description:l10n_ua_hr_scorecard.field_hr_kpi_assignment_line__company_id
+#: model:ir.model.fields,field_description:l10n_ua_hr_scorecard.field_hr_kpi_period__company_id
+#: model:ir.model.fields,field_description:l10n_ua_hr_scorecard.field_hr_kpi_target__company_id
+#: model:ir.model.fields,field_description:l10n_ua_hr_scorecard.field_hr_kpi_target_source__company_id
+#: model:ir.model.fields,field_description:l10n_ua_hr_scorecard.field_hr_scorecard__company_id
+#: model:ir.model.fields,field_description:l10n_ua_hr_scorecard.field_hr_scorecard_employee_config__company_id
+#: model:ir.model.fields,field_description:l10n_ua_hr_scorecard.field_hr_scorecard_line__company_id
+#: model_terms:ir.ui.view,arch_db:l10n_ua_hr_scorecard.hr_scorecard_employee_config_view_search
+msgid "Company"
+msgstr "Компанія"
+
+#. module: l10n_ua_hr_scorecard
+#: model_terms:ir.ui.view,arch_db:l10n_ua_hr_scorecard.hr_scorecard_employee_config_view_form
+msgid "Compensation Split"
+msgstr "Структура винагороди"
+
+#. module: l10n_ua_hr_scorecard
+#: model:ir.model.fields,field_description:l10n_ua_hr_scorecard.field_hr_kpi_target__computed_actual
+msgid "Computed Actual Value"
+msgstr "Розрахункове фактичне значення"
+
+#. module: l10n_ua_hr_scorecard
+#: model:ir.ui.menu,name:l10n_ua_hr_scorecard.menu_hr_scorecard_config
+msgid "Configuration"
+msgstr "Налаштування"
+
+#. module: l10n_ua_hr_scorecard
+#: model_terms:ir.ui.view,arch_db:l10n_ua_hr_scorecard.hr_kpi_target_view_form
+#: model_terms:ir.ui.view,arch_db:l10n_ua_hr_scorecard.hr_kpi_view_form
+#: model_terms:ir.ui.view,arch_db:l10n_ua_hr_scorecard.hr_scorecard_view_form
+msgid "Confirm"
+msgstr "Підтвердити"
+
+#. module: l10n_ua_hr_scorecard
+#. odoo-python
+#: code:addons/l10n_ua_hr_scorecard/models/hr_scorecard.py:0
+msgid "Confirm the scorecard before accruing bonuses."
+msgstr "Підтвердьте картку KPI перед нарахуванням премій."
+
+#. module: l10n_ua_hr_scorecard
+#. odoo-python
+#: code:addons/l10n_ua_hr_scorecard/models/hr_kpi_target.py:0
+msgid ""
+"Confirm the source reports of the KPI target %(target)s first: %(reports)s."
+msgstr ""
+"Спочатку затвердіть звіти-джерела цільового значення KPI %(target)s: "
+"%(reports)s."
+
+#. module: l10n_ua_hr_scorecard
+#: model:ir.model.fields.selection,name:l10n_ua_hr_scorecard.selection__hr_kpi__state__confirmed
+#: model:ir.model.fields.selection,name:l10n_ua_hr_scorecard.selection__hr_kpi_target__state__confirmed
+#: model:ir.model.fields.selection,name:l10n_ua_hr_scorecard.selection__hr_scorecard__state__confirmed
+#: model:ir.model.fields.selection,name:l10n_ua_hr_scorecard.selection__hr_scorecard_line__scorecard_state__confirmed
+#: model:ir.model.fields.selection,name:l10n_ua_hr_scorecard.selection__hr_scorecard_line__target_state__confirmed
+#: model_terms:ir.ui.view,arch_db:l10n_ua_hr_scorecard.hr_kpi_target_view_search
+#: model_terms:ir.ui.view,arch_db:l10n_ua_hr_scorecard.hr_kpi_view_search
+msgid "Confirmed"
+msgstr "Підтверджено"
+
+#. module: l10n_ua_hr_scorecard
+#. odoo-python
+#: code:addons/l10n_ua_hr_scorecard/models/hr_kpi_target.py:0
+msgid ""
+"Confirmed KPI targets keep their actual value: reset them to draft first."
+msgstr ""
+"Підтверджені цільові значення KPI зберігають фактичне значення: спочатку "
+"поверніть їх у чернетку."
+
+#. module: l10n_ua_hr_scorecard
+#. odoo-python
+#: code:addons/l10n_ua_hr_scorecard/models/hr_kpi_target_copy_wizard.py:0
+msgid "Copied KPI Target"
+msgstr "Скопійоване цільове значення KPI"
+
+#. module: l10n_ua_hr_scorecard
+#. odoo-python
+#: code:addons/l10n_ua_hr_scorecard/models/hr_kpi_target_copy_wizard.py:0
+msgid "Copied KPI Targets"
+msgstr "Скопійовані цільові значення KPI"
+
+#. module: l10n_ua_hr_scorecard
+#: model_terms:ir.ui.view,arch_db:l10n_ua_hr_scorecard.hr_kpi_target_copy_wizard_view_form
+msgid "Copy"
+msgstr "Копіювати"
+
+#. module: l10n_ua_hr_scorecard
+#: model:ir.model,name:l10n_ua_hr_scorecard.model_hr_kpi_target_copy_wizard
+#: model_terms:ir.ui.view,arch_db:l10n_ua_hr_scorecard.hr_kpi_target_copy_wizard_view_form
+msgid "Copy KPI Targets to Another Period"
+msgstr "Копіювання цільових значень KPI в інший період"
+
+#. module: l10n_ua_hr_scorecard
+#: model:ir.model.fields,field_description:l10n_ua_hr_scorecard.field_hr_kpi_target_copy_wizard__copy_planned_value
+msgid "Copy Planned Value"
+msgstr "Копіювати планове значення"
+
+#. module: l10n_ua_hr_scorecard
+#: model:ir.actions.act_window,name:l10n_ua_hr_scorecard.action_hr_kpi_target_copy
+#: model_terms:ir.ui.view,arch_db:l10n_ua_hr_scorecard.hr_kpi_target_view_form
+#: model_terms:ir.ui.view,arch_db:l10n_ua_hr_scorecard.hr_kpi_target_view_list
+msgid "Copy to Another Period"
+msgstr "Копіювати в інший період"
+
+#. module: l10n_ua_hr_scorecard
+#: model:ir.model.fields.selection,name:l10n_ua_hr_scorecard.selection__hr_kpi__system_field__cost_of_sales
+#: model:ir.model.fields.selection,name:l10n_ua_hr_scorecard.selection__hr_kpi_target_input__system_field__cost_of_sales
+#: model:ir.model.fields.selection,name:l10n_ua_hr_scorecard.selection__hr_kpi_variable__system_field__cost_of_sales
+msgid "Cost of products (goods, works, services) sold"
+msgstr "Собівартість реалізованої продукції (товарів, робіт, послуг)"
+
+#. module: l10n_ua_hr_scorecard
+#: model_terms:ir.ui.view,arch_db:l10n_ua_hr_scorecard.hr_kpi_period_view_form
+msgid ""
+"Create hr.bonus records for the employees of every confirmed/closed "
+"scorecard in this period."
+msgstr ""
+"Створити записи hr.bonus для працівників кожної підтвердженої/закритої "
+"картки KPI в цьому періоді."
+
+#. module: l10n_ua_hr_scorecard
+#: model_terms:ir.ui.view,arch_db:l10n_ua_hr_scorecard.hr_scorecard_view_form
+msgid ""
+"Create hr.bonus records for the employees of the job position. Already "
+"accrued bonuses are not duplicated."
+msgstr ""
+"Створити записи hr.bonus для працівників посади. Уже нараховані премії не "
+"дублюються."
+
+#. module: l10n_ua_hr_scorecard
+#: model:ir.model.fields,field_description:l10n_ua_hr_scorecard.field_hr_kpi__create_uid
+#: model:ir.model.fields,field_description:l10n_ua_hr_scorecard.field_hr_kpi_assign_wizard__create_uid
+#: model:ir.model.fields,field_description:l10n_ua_hr_scorecard.field_hr_kpi_assignment__create_uid
+#: model:ir.model.fields,field_description:l10n_ua_hr_scorecard.field_hr_kpi_assignment_line__create_uid
+#: model:ir.model.fields,field_description:l10n_ua_hr_scorecard.field_hr_kpi_map__create_uid
+#: model:ir.model.fields,field_description:l10n_ua_hr_scorecard.field_hr_kpi_period__create_uid
+#: model:ir.model.fields,field_description:l10n_ua_hr_scorecard.field_hr_kpi_target__create_uid
+#: model:ir.model.fields,field_description:l10n_ua_hr_scorecard.field_hr_kpi_target_copy_wizard__create_uid
+#: model:ir.model.fields,field_description:l10n_ua_hr_scorecard.field_hr_kpi_target_input__create_uid
+#: model:ir.model.fields,field_description:l10n_ua_hr_scorecard.field_hr_kpi_target_source__create_uid
+#: model:ir.model.fields,field_description:l10n_ua_hr_scorecard.field_hr_kpi_variable__create_uid
+#: model:ir.model.fields,field_description:l10n_ua_hr_scorecard.field_hr_scorecard__create_uid
+#: model:ir.model.fields,field_description:l10n_ua_hr_scorecard.field_hr_scorecard_employee_config__create_uid
+#: model:ir.model.fields,field_description:l10n_ua_hr_scorecard.field_hr_scorecard_employee_result__create_uid
+#: model:ir.model.fields,field_description:l10n_ua_hr_scorecard.field_hr_scorecard_line__create_uid
+msgid "Created by"
+msgstr "Створив"
+
+#. module: l10n_ua_hr_scorecard
+#: model:ir.model.fields,field_description:l10n_ua_hr_scorecard.field_hr_kpi__create_date
+#: model:ir.model.fields,field_description:l10n_ua_hr_scorecard.field_hr_kpi_assign_wizard__create_date
+#: model:ir.model.fields,field_description:l10n_ua_hr_scorecard.field_hr_kpi_assignment__create_date
+#: model:ir.model.fields,field_description:l10n_ua_hr_scorecard.field_hr_kpi_assignment_line__create_date
+#: model:ir.model.fields,field_description:l10n_ua_hr_scorecard.field_hr_kpi_map__create_date
+#: model:ir.model.fields,field_description:l10n_ua_hr_scorecard.field_hr_kpi_period__create_date
+#: model:ir.model.fields,field_description:l10n_ua_hr_scorecard.field_hr_kpi_target__create_date
+#: model:ir.model.fields,field_description:l10n_ua_hr_scorecard.field_hr_kpi_target_copy_wizard__create_date
+#: model:ir.model.fields,field_description:l10n_ua_hr_scorecard.field_hr_kpi_target_input__create_date
+#: model:ir.model.fields,field_description:l10n_ua_hr_scorecard.field_hr_kpi_target_source__create_date
+#: model:ir.model.fields,field_description:l10n_ua_hr_scorecard.field_hr_kpi_variable__create_date
+#: model:ir.model.fields,field_description:l10n_ua_hr_scorecard.field_hr_scorecard__create_date
+#: model:ir.model.fields,field_description:l10n_ua_hr_scorecard.field_hr_scorecard_employee_config__create_date
+#: model:ir.model.fields,field_description:l10n_ua_hr_scorecard.field_hr_scorecard_employee_result__create_date
+#: model:ir.model.fields,field_description:l10n_ua_hr_scorecard.field_hr_scorecard_line__create_date
+msgid "Created on"
+msgstr "Створено"
+
+#. module: l10n_ua_hr_scorecard
+#: model:ir.model.fields,field_description:l10n_ua_hr_scorecard.field_hr_scorecard__currency_id
+#: model:ir.model.fields,field_description:l10n_ua_hr_scorecard.field_hr_scorecard_employee_config__currency_id
+#: model:ir.model.fields,field_description:l10n_ua_hr_scorecard.field_hr_scorecard_employee_result__currency_id
+msgid "Currency"
+msgstr "Валюта"
+
+#. module: l10n_ua_hr_scorecard
+#: model:hr.kpi,name:l10n_ua_hr_scorecard.kpi_customer_visits
+msgid "Customer Visits"
+msgstr "Візити до клієнтів"
+
+#. module: l10n_ua_hr_scorecard
+#: model:ir.model.fields,field_description:l10n_ua_hr_scorecard.field_hr_kpi__data_source
+#: model:ir.model.fields,field_description:l10n_ua_hr_scorecard.field_hr_kpi_target__data_source
+msgid "Data Source"
+msgstr "Джерело даних"
+
+#. module: l10n_ua_hr_scorecard
+#: model:ir.model.fields,field_description:l10n_ua_hr_scorecard.field_hr_kpi_target_source__dates_match
+msgid "Dates Match"
+msgstr "Дати збігаються"
+
+#. module: l10n_ua_hr_scorecard
+#: model:ir.model.fields,field_description:l10n_ua_hr_scorecard.field_hr_scorecard_employee_result__period_days
+msgid "Days in Period"
+msgstr "Днів у періоді"
+
+#. module: l10n_ua_hr_scorecard
+#: model:ir.model.fields,field_description:l10n_ua_hr_scorecard.field_hr_scorecard_employee_result__days_in_position
+msgid "Days in Position"
+msgstr "Днів на посаді"
+
+#. module: l10n_ua_hr_scorecard
+#: model:ir.model.fields.selection,name:l10n_ua_hr_scorecard.selection__hr_kpi_period__month__12
+#: model:ir.model.fields.selection,name:l10n_ua_hr_scorecard.selection__hr_kpi_target__period_month__12
+#: model:ir.model.fields.selection,name:l10n_ua_hr_scorecard.selection__hr_kpi_target_copy_wizard__period_month__12
+msgid "December"
+msgstr "Грудень"
+
+#. module: l10n_ua_hr_scorecard
+#: model:ir.model.fields,help:l10n_ua_hr_scorecard.field_hr_scorecard_employee_config__bonus_base
+msgid ""
+"Default bonus amount used as the scorecard base when weighted KPI result "
+"equals 100%."
+msgstr ""
+"Сума премії за замовчуванням, що використовується як база картки KPI при "
+"зваженому результаті 100%."
+
+#. module: l10n_ua_hr_scorecard
+#: model_terms:ir.actions.act_window,help:l10n_ua_hr_scorecard.action_hr_kpi
+msgid "Define a new KPI"
+msgstr "Створіть новий KPI"
+
+#. module: l10n_ua_hr_scorecard
+#: model:ir.model.fields,field_description:l10n_ua_hr_scorecard.field_hr_scorecard__department_id
+#: model_terms:ir.ui.view,arch_db:l10n_ua_hr_scorecard.hr_kpi_assignment_view_search
+msgid "Department"
+msgstr "Підрозділ"
+
+#. module: l10n_ua_hr_scorecard
+#: model:ir.model.fields,field_description:l10n_ua_hr_scorecard.field_hr_kpi__description
+#: model:ir.model.fields,field_description:l10n_ua_hr_scorecard.field_hr_kpi_target_input__name
+#: model:ir.model.fields,field_description:l10n_ua_hr_scorecard.field_hr_kpi_variable__name
+#: model_terms:ir.ui.view,arch_db:l10n_ua_hr_scorecard.hr_kpi_view_form
+msgid "Description"
+msgstr "Опис"
+
+#. module: l10n_ua_hr_scorecard
+#: model_terms:ir.ui.view,arch_db:l10n_ua_hr_scorecard.hr_kpi_target_copy_wizard_view_form
+msgid "Discard"
+msgstr "Відмінити"
+
+#. module: l10n_ua_hr_scorecard
+#: model:ir.model.fields,field_description:l10n_ua_hr_scorecard.field_hr_kpi__display_name
+#: model:ir.model.fields,field_description:l10n_ua_hr_scorecard.field_hr_kpi_assign_wizard__display_name
+#: model:ir.model.fields,field_description:l10n_ua_hr_scorecard.field_hr_kpi_assignment__display_name
+#: model:ir.model.fields,field_description:l10n_ua_hr_scorecard.field_hr_kpi_assignment_line__display_name
+#: model:ir.model.fields,field_description:l10n_ua_hr_scorecard.field_hr_kpi_map__display_name
+#: model:ir.model.fields,field_description:l10n_ua_hr_scorecard.field_hr_kpi_period__display_name
+#: model:ir.model.fields,field_description:l10n_ua_hr_scorecard.field_hr_kpi_target__display_name
+#: model:ir.model.fields,field_description:l10n_ua_hr_scorecard.field_hr_kpi_target_copy_wizard__display_name
+#: model:ir.model.fields,field_description:l10n_ua_hr_scorecard.field_hr_kpi_target_input__display_name
+#: model:ir.model.fields,field_description:l10n_ua_hr_scorecard.field_hr_kpi_target_source__display_name
+#: model:ir.model.fields,field_description:l10n_ua_hr_scorecard.field_hr_kpi_variable__display_name
+#: model:ir.model.fields,field_description:l10n_ua_hr_scorecard.field_hr_scorecard__display_name
+#: model:ir.model.fields,field_description:l10n_ua_hr_scorecard.field_hr_scorecard_employee_config__display_name
+#: model:ir.model.fields,field_description:l10n_ua_hr_scorecard.field_hr_scorecard_employee_result__display_name
+#: model:ir.model.fields,field_description:l10n_ua_hr_scorecard.field_hr_scorecard_line__display_name
+msgid "Display Name"
+msgstr "Назва для відображення"
+
+#. module: l10n_ua_hr_scorecard
+#: model:ir.model.fields.selection,name:l10n_ua_hr_scorecard.selection__hr_kpi__state__draft
+#: model:ir.model.fields.selection,name:l10n_ua_hr_scorecard.selection__hr_kpi_target__state__draft
+#: model:ir.model.fields.selection,name:l10n_ua_hr_scorecard.selection__hr_scorecard__state__draft
+#: model:ir.model.fields.selection,name:l10n_ua_hr_scorecard.selection__hr_scorecard_line__scorecard_state__draft
+#: model:ir.model.fields.selection,name:l10n_ua_hr_scorecard.selection__hr_scorecard_line__target_state__draft
+#: model_terms:ir.ui.view,arch_db:l10n_ua_hr_scorecard.hr_kpi_target_view_search
+#: model_terms:ir.ui.view,arch_db:l10n_ua_hr_scorecard.hr_kpi_view_search
+msgid "Draft"
+msgstr "Чернетка"
+
+#. module: l10n_ua_hr_scorecard
+#: model:ir.model.constraint,message:l10n_ua_hr_scorecard.constraint_hr_kpi_variable_kpi_code_uniq
+msgid "Each variable of a KPI formula must have its own code."
+msgstr "Кожна змінна формули KPI повинна мати власний код."
+
+#. module: l10n_ua_hr_scorecard
+#. odoo-javascript
+#: code:addons/l10n_ua_hr_scorecard/static/src/kpi_map/kpi_map.xml:0
+#: model:ir.model.fields,field_description:l10n_ua_hr_scorecard.field_hr_scorecard_employee_config__employee_id
+#: model:ir.model.fields,field_description:l10n_ua_hr_scorecard.field_hr_scorecard_employee_result__employee_id
+msgid "Employee"
+msgstr "Працівник"
+
+#. module: l10n_ua_hr_scorecard
+#: model:ir.model.fields,field_description:l10n_ua_hr_scorecard.field_hr_kpi__employee_count
+#: model:ir.model.fields,field_description:l10n_ua_hr_scorecard.field_hr_kpi_assignment__employee_count
+#: model:ir.model.fields,field_description:l10n_ua_hr_scorecard.field_hr_kpi_target__employee_count
+#: model:ir.model.fields,field_description:l10n_ua_hr_scorecard.field_hr_scorecard__employee_count
+msgid "Employee Count"
+msgstr "Кількість працівників"
+
+#. module: l10n_ua_hr_scorecard
+#: model:ir.model,name:l10n_ua_hr_scorecard.model_hr_scorecard_employee_config
+msgid "Employee KPI Compensation Config"
+msgstr "Налаштування винагороди працівника за KPI"
+
+#. module: l10n_ua_hr_scorecard
+#: model_terms:ir.ui.view,arch_db:l10n_ua_hr_scorecard.hr_scorecard_employee_config_view_form
+msgid "Employee KPI Config"
+msgstr "Налаштування KPI працівника"
+
+#. module: l10n_ua_hr_scorecard
+#: model:ir.actions.act_window,name:l10n_ua_hr_scorecard.action_hr_scorecard_employee_config
+#: model:ir.ui.menu,name:l10n_ua_hr_scorecard.menu_hr_scorecard_employee_config
+#: model_terms:ir.ui.view,arch_db:l10n_ua_hr_scorecard.hr_scorecard_employee_config_view_list
+#: model_terms:ir.ui.view,arch_db:l10n_ua_hr_scorecard.hr_scorecard_employee_config_view_search
+msgid "Employee KPI Configs"
+msgstr "Налаштування KPI працівників"
+
+#. module: l10n_ua_hr_scorecard
+#. odoo-python
+#: code:addons/l10n_ua_hr_scorecard/models/hr_scorecard.py:0
+#: model_terms:ir.ui.view,arch_db:l10n_ua_hr_scorecard.hr_kpi_assignment_view_form
+#: model_terms:ir.ui.view,arch_db:l10n_ua_hr_scorecard.hr_kpi_target_view_form
+#: model_terms:ir.ui.view,arch_db:l10n_ua_hr_scorecard.hr_kpi_view_form
+#: model_terms:ir.ui.view,arch_db:l10n_ua_hr_scorecard.hr_scorecard_employee_result_view_list
+#: model_terms:ir.ui.view,arch_db:l10n_ua_hr_scorecard.hr_scorecard_view_form
+msgid "Employees"
+msgstr "Працівники"
+
+#. module: l10n_ua_hr_scorecard
+#: model:ir.model.fields,help:l10n_ua_hr_scorecard.field_hr_kpi__employee_count
+msgid "Employees currently holding a job position that has this KPI."
+msgstr "Працівники, які зараз обіймають посаду з цим KPI."
+
+#. module: l10n_ua_hr_scorecard
+#: model:ir.model.fields,help:l10n_ua_hr_scorecard.field_hr_kpi_target__employee_count
+msgid "Employees who held such a job position during the period."
+msgstr "Працівники, які обіймали таку посаду протягом періоду."
+
+#. module: l10n_ua_hr_scorecard
+#: model:ir.model.fields,help:l10n_ua_hr_scorecard.field_hr_scorecard__employee_count
+msgid ""
+"Employees who held the job position for at least one day of the period."
+msgstr "Працівники, які обіймали посаду хоча б один день періоду."
+
+#. module: l10n_ua_hr_scorecard
+#: model:ir.model.fields,help:l10n_ua_hr_scorecard.field_hr_kpi_assignment__employee_count
+msgid ""
+"Employees who hold the job position while the assignment is in force (up to "
+"today for an assignment still in force)."
+msgstr ""
+"Працівники, які обіймають посаду під час дії призначення (до сьогодні, якщо "
+"призначення ще діє)."
+
+#. module: l10n_ua_hr_scorecard
+#. odoo-python
+#: code:addons/l10n_ua_hr_scorecard/models/hr_kpi_target.py:0
+msgid "Employees with %(kpi)s in %(period)s"
+msgstr "Працівники з KPI %(kpi)s за %(period)s"
+
+#. module: l10n_ua_hr_scorecard
+#. odoo-python
+#: code:addons/l10n_ua_hr_scorecard/models/hr_kpi.py:0
+msgid "Employees with %s"
+msgstr "Працівники з KPI %s"
+
+#. module: l10n_ua_hr_scorecard
+#. odoo-python
+#: code:addons/l10n_ua_hr_scorecard/models/hr_kpi_assignment.py:0
+msgid "Employees with the KPIs of %s"
+msgstr "Працівники з KPI посади %s"
+
+#. module: l10n_ua_hr_scorecard
+#: model:ir.model.fields,field_description:l10n_ua_hr_scorecard.field_hr_kpi_period__date_to
+msgid "End Date"
+msgstr "Дата закінчення"
+
+#. module: l10n_ua_hr_scorecard
+#. odoo-python
+#: code:addons/l10n_ua_hr_scorecard/models/hr_kpi.py:0
+msgid "Enter the formula."
+msgstr "Введіть формулу."
+
+#. module: l10n_ua_hr_scorecard
+#: model:ir.model.fields,help:l10n_ua_hr_scorecard.field_hr_kpi_target__fetch_ready
+msgid ""
+"Every source report is selected and covers exactly the period of the target."
+msgstr ""
+"Усі звіти-джерела вибрано, і вони точно охоплюють період цільового значення."
+
+#. module: l10n_ua_hr_scorecard
+#: model:ir.model.fields.selection,name:l10n_ua_hr_scorecard.selection__hr_kpi_period__month__2
+#: model:ir.model.fields.selection,name:l10n_ua_hr_scorecard.selection__hr_kpi_target__period_month__2
+#: model:ir.model.fields.selection,name:l10n_ua_hr_scorecard.selection__hr_kpi_target_copy_wizard__period_month__2
+msgid "February"
+msgstr "Лютий"
+
+#. module: l10n_ua_hr_scorecard
+#: model:ir.model.fields,help:l10n_ua_hr_scorecard.field_hr_kpi__system_field
+msgid ""
+"Figure of an Odoo report used as the actual value. The report itself (e.g. a"
+" P&L statement, Form No. 2) is chosen on each KPI target."
+msgstr ""
+"Показник звіту Odoo, який використовується як фактичне значення. Сам звіт "
+"(напр. звіт про фінансові результати, Форма №2) вибирається в кожному "
+"цільовому значенні."
+
+#. module: l10n_ua_hr_scorecard
+#: model:ir.model.fields.selection,name:l10n_ua_hr_scorecard.selection__hr_kpi__system_field__financial_expenses
+#: model:ir.model.fields.selection,name:l10n_ua_hr_scorecard.selection__hr_kpi_target_input__system_field__financial_expenses
+#: model:ir.model.fields.selection,name:l10n_ua_hr_scorecard.selection__hr_kpi_variable__system_field__financial_expenses
+msgid "Financial expenses"
+msgstr "Фінансові витрати"
+
+#. module: l10n_ua_hr_scorecard
+#: model:ir.model.fields.selection,name:l10n_ua_hr_scorecard.selection__hr_kpi__system_field__financial_income
+#: model:ir.model.fields.selection,name:l10n_ua_hr_scorecard.selection__hr_kpi_target_input__system_field__financial_income
+#: model:ir.model.fields.selection,name:l10n_ua_hr_scorecard.selection__hr_kpi_variable__system_field__financial_income
+msgid "Financial income"
+msgstr "Фінансові доходи"
+
+#. module: l10n_ua_hr_scorecard
+#: model:ir.model.fields.selection,name:l10n_ua_hr_scorecard.selection__hr_kpi__system_field__profit_before_tax
+#: model:ir.model.fields.selection,name:l10n_ua_hr_scorecard.selection__hr_kpi_target_input__system_field__profit_before_tax
+#: model:ir.model.fields.selection,name:l10n_ua_hr_scorecard.selection__hr_kpi_variable__system_field__profit_before_tax
+msgid "Financial result before tax"
+msgstr "Фінансовий результат до оподаткування"
+
+#. module: l10n_ua_hr_scorecard
+#: model:ir.model.fields.selection,name:l10n_ua_hr_scorecard.selection__hr_kpi__system_field__operating_profit
+#: model:ir.model.fields.selection,name:l10n_ua_hr_scorecard.selection__hr_kpi_target_input__system_field__operating_profit
+#: model:ir.model.fields.selection,name:l10n_ua_hr_scorecard.selection__hr_kpi_variable__system_field__operating_profit
+msgid "Financial result from operating activities"
+msgstr "Фінансовий результат від операційної діяльності"
+
+#. module: l10n_ua_hr_scorecard
+#: model:ir.model.fields,help:l10n_ua_hr_scorecard.field_hr_kpi_target__selected_date_from
+msgid "First day of the period currently selected on the target."
+msgstr "Перший день періоду, вибраного в цільовому значенні."
+
+#. module: l10n_ua_hr_scorecard
+#: model:ir.model.fields,help:l10n_ua_hr_scorecard.field_hr_scorecard_employee_result__date_from
+msgid "First day of the period on which the employee held the job position."
+msgstr "Перший день періоду, коли працівник обіймав посаду."
+
+#. module: l10n_ua_hr_scorecard
+#: model:ir.model.fields,field_description:l10n_ua_hr_scorecard.field_hr_scorecard__message_follower_ids
+msgid "Followers"
+msgstr "Підписники"
+
+#. module: l10n_ua_hr_scorecard
+#: model:ir.model.fields,field_description:l10n_ua_hr_scorecard.field_hr_scorecard__message_partner_ids
+msgid "Followers (Partners)"
+msgstr "Підписники (Партнери)"
+
+#. module: l10n_ua_hr_scorecard
+#: model:ir.model.fields,help:l10n_ua_hr_scorecard.field_hr_scorecard__activity_type_icon
+msgid "Font awesome icon e.g. fa-tasks"
+msgstr "Іконка з чудовим шрифтом, напр. fa-tasks"
+
+#. module: l10n_ua_hr_scorecard
+#: model:ir.model.fields,help:l10n_ua_hr_scorecard.field_hr_kpi__use_formula
+#: model:ir.model.fields,help:l10n_ua_hr_scorecard.field_hr_kpi_target__use_formula
+msgid ""
+"For Odoo data: compute the actual value of the targets with a formula of "
+"parameters of Odoo reports and numbers."
+msgstr ""
+"Для даних з Odoo: розраховувати фактичне значення цільових значень за "
+"формулою з параметрів звітів Odoo і чисел."
+
+#. module: l10n_ua_hr_scorecard
+#: model:ir.model.fields,help:l10n_ua_hr_scorecard.field_hr_kpi_target__binary_achieved
+#: model:ir.model.fields,help:l10n_ua_hr_scorecard.field_hr_scorecard_line__binary_achieved
+msgid ""
+"For binary KPIs: whether the actual value reaches the planned value, i.e. is"
+" at least the plan, or at most the plan when \"Higher is better\" is "
+"unchecked."
+msgstr ""
+"Для бінарних KPI: чи досягає фактичне значення планового, тобто не менше "
+"плану, або не більше плану, якщо «Більше — краще» вимкнено."
+
+#. module: l10n_ua_hr_scorecard
+#: model:ir.model.fields,field_description:l10n_ua_hr_scorecard.field_hr_kpi__formula
+#: model:ir.model.fields,field_description:l10n_ua_hr_scorecard.field_hr_kpi_target__formula
+#: model_terms:ir.ui.view,arch_db:l10n_ua_hr_scorecard.hr_kpi_target_view_form
+#: model_terms:ir.ui.view,arch_db:l10n_ua_hr_scorecard.hr_kpi_view_form
+msgid "Formula"
+msgstr "Формула"
+
+#. module: l10n_ua_hr_scorecard
+#: model:ir.model.fields,field_description:l10n_ua_hr_scorecard.field_hr_kpi__use_formula
+#: model:ir.model.fields,field_description:l10n_ua_hr_scorecard.field_hr_kpi_target__use_formula
+msgid "Formula Builder"
+msgstr "Конструктор формули"
+
+#. module: l10n_ua_hr_scorecard
+#: model:ir.model.fields,field_description:l10n_ua_hr_scorecard.field_hr_kpi__formula_error
+msgid "Formula Error"
+msgstr "Помилка формули"
+
+#. module: l10n_ua_hr_scorecard
+#: model:ir.model.fields,field_description:l10n_ua_hr_scorecard.field_hr_kpi_target__input_ids
+msgid "Formula Values"
+msgstr "Значення для формули"
+
+#. module: l10n_ua_hr_scorecard
+#: model:ir.model.fields,help:l10n_ua_hr_scorecard.field_hr_kpi__uom_name
+#: model:ir.model.fields,help:l10n_ua_hr_scorecard.field_hr_kpi_target__uom_name
+#: model:ir.model.fields,help:l10n_ua_hr_scorecard.field_hr_scorecard_line__uom_name
+msgid "Free-form unit shown next to planned/actual values (UAH, pcs, %, ...)."
+msgstr ""
+"Довільна одиниця виміру, що показується поруч із плановим/фактичним "
+"значенням (грн, шт., %, ...)."
+
+#. module: l10n_ua_hr_scorecard
+#: model:ir.model.fields.selection,name:l10n_ua_hr_scorecard.selection__hr_kpi__calculation_method__coefficient
+#: model:ir.model.fields.selection,name:l10n_ua_hr_scorecard.selection__hr_kpi_target__calculation_method__coefficient
+#: model:ir.model.fields.selection,name:l10n_ua_hr_scorecard.selection__hr_scorecard_line__calculation_method__coefficient
+msgid "Fulfillment coefficient (actual / planned)"
+msgstr "Коефіцієнт виконання (факт / план)"
+
+#. module: l10n_ua_hr_scorecard
+#: model_terms:ir.ui.view,arch_db:l10n_ua_hr_scorecard.hr_kpi_target_view_form
+msgid "Get"
+msgstr "Отримати"
+
+#. module: l10n_ua_hr_scorecard
+#: model_terms:ir.ui.view,arch_db:l10n_ua_hr_scorecard.hr_kpi_target_view_list
+msgid "Get Data"
+msgstr "Отримати дані"
+
+#. module: l10n_ua_hr_scorecard
+#: model_terms:ir.ui.view,arch_db:l10n_ua_hr_scorecard.hr_kpi_target_view_form
+msgid "Get the data from the source reports and compute the actual value."
+msgstr "Отримати дані зі звітів-джерел і розрахувати фактичне значення."
+
+#. module: l10n_ua_hr_scorecard
+#: model:ir.model.fields.selection,name:l10n_ua_hr_scorecard.selection__hr_kpi__system_field__gross_profit
+#: model:ir.model.fields.selection,name:l10n_ua_hr_scorecard.selection__hr_kpi_target_input__system_field__gross_profit
+#: model:ir.model.fields.selection,name:l10n_ua_hr_scorecard.selection__hr_kpi_variable__system_field__gross_profit
+msgid "Gross profit (loss)"
+msgstr "Валовий прибуток (збиток)"
+
+#. module: l10n_ua_hr_scorecard
+#: model:ir.model.fields,field_description:l10n_ua_hr_scorecard.field_hr_scorecard__has_message
+msgid "Has Message"
+msgstr "Є повідомлення"
+
+#. module: l10n_ua_hr_scorecard
+#: model:ir.model.fields,field_description:l10n_ua_hr_scorecard.field_hr_kpi__higher_is_better
+#: model:ir.model.fields,field_description:l10n_ua_hr_scorecard.field_hr_kpi_target__higher_is_better
+#: model:ir.model.fields,field_description:l10n_ua_hr_scorecard.field_hr_scorecard_line__higher_is_better
+msgid "Higher is better"
+msgstr "Більше — краще"
+
+#. module: l10n_ua_hr_scorecard
+#: model:ir.model.fields,field_description:l10n_ua_hr_scorecard.field_hr_kpi__id
+#: model:ir.model.fields,field_description:l10n_ua_hr_scorecard.field_hr_kpi_assign_wizard__id
+#: model:ir.model.fields,field_description:l10n_ua_hr_scorecard.field_hr_kpi_assignment__id
+#: model:ir.model.fields,field_description:l10n_ua_hr_scorecard.field_hr_kpi_assignment_line__id
+#: model:ir.model.fields,field_description:l10n_ua_hr_scorecard.field_hr_kpi_map__id
+#: model:ir.model.fields,field_description:l10n_ua_hr_scorecard.field_hr_kpi_period__id
+#: model:ir.model.fields,field_description:l10n_ua_hr_scorecard.field_hr_kpi_target__id
+#: model:ir.model.fields,field_description:l10n_ua_hr_scorecard.field_hr_kpi_target_copy_wizard__id
+#: model:ir.model.fields,field_description:l10n_ua_hr_scorecard.field_hr_kpi_target_input__id
+#: model:ir.model.fields,field_description:l10n_ua_hr_scorecard.field_hr_kpi_target_source__id
+#: model:ir.model.fields,field_description:l10n_ua_hr_scorecard.field_hr_kpi_variable__id
+#: model:ir.model.fields,field_description:l10n_ua_hr_scorecard.field_hr_scorecard__id
+#: model:ir.model.fields,field_description:l10n_ua_hr_scorecard.field_hr_scorecard_employee_config__id
+#: model:ir.model.fields,field_description:l10n_ua_hr_scorecard.field_hr_scorecard_employee_result__id
+#: model:ir.model.fields,field_description:l10n_ua_hr_scorecard.field_hr_scorecard_line__id
+msgid "ID"
+msgstr "ID"
+
+#. module: l10n_ua_hr_scorecard
+#: model:ir.model.fields,field_description:l10n_ua_hr_scorecard.field_hr_scorecard__activity_exception_icon
+msgid "Icon"
+msgstr "Значок"
+
+#. module: l10n_ua_hr_scorecard
+#: model:ir.model.fields,help:l10n_ua_hr_scorecard.field_hr_scorecard__activity_exception_icon
+msgid "Icon to indicate an exception activity."
+msgstr "Іконка для визначення виключення дії."
+
+#. module: l10n_ua_hr_scorecard
+#: model:ir.model.fields,help:l10n_ua_hr_scorecard.field_hr_scorecard__message_needaction
+msgid "If checked, new messages require your attention."
+msgstr "Якщо позначено, то нові повідомлення будуть потребувати вашої уваги."
+
+#. module: l10n_ua_hr_scorecard
+#: model:ir.model.fields,help:l10n_ua_hr_scorecard.field_hr_scorecard__message_has_error
+#: model:ir.model.fields,help:l10n_ua_hr_scorecard.field_hr_scorecard__message_has_sms_error
+msgid "If checked, some messages have a delivery error."
+msgstr "Якщо позначено, деякі повідомлення мають помилку доставки."
+
+#. module: l10n_ua_hr_scorecard
+#: model:ir.model.fields,field_description:l10n_ua_hr_scorecard.field_hr_scorecard_employee_result__date_from
+msgid "In Position From"
+msgstr "На посаді з"
+
+#. module: l10n_ua_hr_scorecard
+#: model:ir.model.fields,field_description:l10n_ua_hr_scorecard.field_hr_scorecard_employee_result__date_to
+msgid "In Position To"
+msgstr "На посаді по"
+
+#. module: l10n_ua_hr_scorecard
+#. odoo-javascript
+#: code:addons/l10n_ua_hr_scorecard/static/src/kpi_map/kpi_map.js:0
+msgid "In the position %(days)s of %(period_days)s days of the period"
+msgstr "На посаді %(days)s з %(period_days)s днів періоду"
+
+#. module: l10n_ua_hr_scorecard
+#: model:ir.model.fields.selection,name:l10n_ua_hr_scorecard.selection__hr_kpi__system_field__income_tax_expense
+#: model:ir.model.fields.selection,name:l10n_ua_hr_scorecard.selection__hr_kpi_target_input__system_field__income_tax_expense
+#: model:ir.model.fields.selection,name:l10n_ua_hr_scorecard.selection__hr_kpi_variable__system_field__income_tax_expense
+msgid "Income tax expense (income)"
+msgstr "Витрати (дохід) з податку на прибуток"
+
+#. module: l10n_ua_hr_scorecard
+#: model:ir.model.fields,field_description:l10n_ua_hr_scorecard.field_hr_scorecard__message_is_follower
+msgid "Is Follower"
+msgstr "Стежить"
+
+#. module: l10n_ua_hr_scorecard
+#: model:ir.model.fields,help:l10n_ua_hr_scorecard.field_hr_kpi_target_source__pnl_report_id
+msgid "Its dates must be exactly the dates of the period of the target."
+msgstr "Його дати мають точно збігатися з датами періоду цільового значення."
+
+#. module: l10n_ua_hr_scorecard
+#: model:ir.model.fields.selection,name:l10n_ua_hr_scorecard.selection__hr_kpi_period__month__1
+#: model:ir.model.fields.selection,name:l10n_ua_hr_scorecard.selection__hr_kpi_target__period_month__1
+#: model:ir.model.fields.selection,name:l10n_ua_hr_scorecard.selection__hr_kpi_target_copy_wizard__period_month__1
+msgid "January"
+msgstr "Січень"
+
+#. module: l10n_ua_hr_scorecard
+#. odoo-javascript
+#: code:addons/l10n_ua_hr_scorecard/static/src/kpi_map/kpi_map.xml:0
+#: model:ir.model.fields,field_description:l10n_ua_hr_scorecard.field_hr_kpi_assignment__job_id
+#: model:ir.model.fields,field_description:l10n_ua_hr_scorecard.field_hr_kpi_assignment_line__job_id
+#: model:ir.model.fields,field_description:l10n_ua_hr_scorecard.field_hr_scorecard__job_id
+#: model:ir.model.fields,field_description:l10n_ua_hr_scorecard.field_hr_scorecard_employee_result__job_id
+#: model:ir.model.fields,field_description:l10n_ua_hr_scorecard.field_hr_scorecard_line__job_id
+msgid "Job Position"
+msgstr "Посада"
+
+#. module: l10n_ua_hr_scorecard
+#: model:ir.model.fields,field_description:l10n_ua_hr_scorecard.field_hr_kpi__job_count
+#: model:ir.model.fields,field_description:l10n_ua_hr_scorecard.field_hr_kpi_target__job_count
+msgid "Job Position Count"
+msgstr "Кількість посад"
+
+#. module: l10n_ua_hr_scorecard
+#: model:ir.model,name:l10n_ua_hr_scorecard.model_hr_scorecard
+msgid "Job Position KPI Scorecard"
+msgstr "Картка KPI посади"
+
+#. module: l10n_ua_hr_scorecard
+#: model:ir.model.fields,field_description:l10n_ua_hr_scorecard.field_hr_kpi_assign_wizard__job_ids
+#: model_terms:ir.ui.view,arch_db:l10n_ua_hr_scorecard.hr_kpi_target_view_form
+#: model_terms:ir.ui.view,arch_db:l10n_ua_hr_scorecard.hr_kpi_view_form
+msgid "Job Positions"
+msgstr "Посади"
+
+#. module: l10n_ua_hr_scorecard
+#. odoo-python
+#: code:addons/l10n_ua_hr_scorecard/models/hr_kpi_target.py:0
+msgid "Job Positions with %(kpi)s in %(period)s"
+msgstr "Посади з KPI %(kpi)s за %(period)s"
+
+#. module: l10n_ua_hr_scorecard
+#. odoo-python
+#: code:addons/l10n_ua_hr_scorecard/models/hr_kpi.py:0
+msgid "Job Positions with %s"
+msgstr "Посади з KPI %s"
+
+#. module: l10n_ua_hr_scorecard
+#: model:ir.model.fields,help:l10n_ua_hr_scorecard.field_hr_kpi_target__job_count
+msgid ""
+"Job positions whose KPI assignment in force at the start of the period "
+"includes the KPI."
+msgstr ""
+"Посади, призначення KPI яких, чинне на початок періоду, містить цей KPI."
+
+#. module: l10n_ua_hr_scorecard
+#: model:ir.model.fields,help:l10n_ua_hr_scorecard.field_hr_kpi__job_count
+msgid "Job positions whose KPI assignment in force today includes this KPI."
+msgstr "Посади, чинне на сьогодні призначення KPI яких містить цей KPI."
+
+#. module: l10n_ua_hr_scorecard
+#: model:ir.model.fields.selection,name:l10n_ua_hr_scorecard.selection__hr_kpi_period__month__7
+#: model:ir.model.fields.selection,name:l10n_ua_hr_scorecard.selection__hr_kpi_target__period_month__7
+#: model:ir.model.fields.selection,name:l10n_ua_hr_scorecard.selection__hr_kpi_target_copy_wizard__period_month__7
+msgid "July"
+msgstr "Липень"
+
+#. module: l10n_ua_hr_scorecard
+#: model:ir.model.fields.selection,name:l10n_ua_hr_scorecard.selection__hr_kpi_period__month__6
+#: model:ir.model.fields.selection,name:l10n_ua_hr_scorecard.selection__hr_kpi_target__period_month__6
+#: model:ir.model.fields.selection,name:l10n_ua_hr_scorecard.selection__hr_kpi_target_copy_wizard__period_month__6
+msgid "June"
+msgstr "Червень"
+
+#. module: l10n_ua_hr_scorecard
+#. odoo-javascript
+#: code:addons/l10n_ua_hr_scorecard/static/src/kpi_map/kpi_map.xml:0
+#: model:ir.model.fields,field_description:l10n_ua_hr_scorecard.field_hr_kpi_assign_wizard__kpi_id
+#: model:ir.model.fields,field_description:l10n_ua_hr_scorecard.field_hr_kpi_assignment_line__kpi_id
+#: model:ir.model.fields,field_description:l10n_ua_hr_scorecard.field_hr_kpi_target__kpi_id
+#: model:ir.model.fields,field_description:l10n_ua_hr_scorecard.field_hr_kpi_variable__kpi_id
+#: model:ir.model.fields,field_description:l10n_ua_hr_scorecard.field_hr_scorecard_line__kpi_id
+#: model:ir.ui.menu,name:l10n_ua_hr_scorecard.menu_hr_scorecard_root
+#: model_terms:ir.ui.view,arch_db:l10n_ua_hr_scorecard.hr_kpi_assignment_view_form
+#: model_terms:ir.ui.view,arch_db:l10n_ua_hr_scorecard.hr_kpi_assignment_view_search
+#: model_terms:ir.ui.view,arch_db:l10n_ua_hr_scorecard.hr_kpi_target_view_form
+#: model_terms:ir.ui.view,arch_db:l10n_ua_hr_scorecard.hr_kpi_target_view_search
+#: model_terms:ir.ui.view,arch_db:l10n_ua_hr_scorecard.hr_kpi_view_form
+msgid "KPI"
+msgstr "KPI"
+
+#. module: l10n_ua_hr_scorecard
+#. odoo-python
+#: code:addons/l10n_ua_hr_scorecard/models/hr_kpi_target.py:0
+msgid ""
+"KPI %(kpi)s already has a target for %(existing)s, which overlaps "
+"%(period)s. A KPI can have targets either for a period or for the periods "
+"inside it, not both."
+msgstr ""
+"KPI %(kpi)s вже має цільове значення за період %(existing)s, який "
+"перетинається з періодом %(period)s. KPI може мати цільові значення або за "
+"період, або за вкладені в нього періоди, але не за обидва одночасно."
+
+#. module: l10n_ua_hr_scorecard
+#. odoo-python
+#: code:addons/l10n_ua_hr_scorecard/models/hr_kpi.py:0
+msgid "KPI %(kpi)s: %(error)s"
+msgstr "KPI %(kpi)s: %(error)s"
+
+#. module: l10n_ua_hr_scorecard
+#: model:ir.actions.act_window,name:l10n_ua_hr_scorecard.action_hr_kpi_assignment
+#: model:ir.model,name:l10n_ua_hr_scorecard.model_hr_kpi_assignment
+#: model:ir.ui.menu,name:l10n_ua_hr_scorecard.menu_hr_kpi_assignment
+#: model_terms:ir.ui.view,arch_db:l10n_ua_hr_scorecard.hr_kpi_assignment_view_form
+#: model_terms:ir.ui.view,arch_db:l10n_ua_hr_scorecard.hr_kpi_assignment_view_list
+#: model_terms:ir.ui.view,arch_db:l10n_ua_hr_scorecard.hr_kpi_assignment_view_search
+msgid "KPI Assignment"
+msgstr "Призначення KPI"
+
+#. module: l10n_ua_hr_scorecard
+#: model:ir.model,name:l10n_ua_hr_scorecard.model_hr_kpi_assignment_line
+msgid "KPI Assignment Line"
+msgstr "Рядок призначення KPI"
+
+#. module: l10n_ua_hr_scorecard
+#: model_terms:ir.ui.view,arch_db:l10n_ua_hr_scorecard.hr_kpi_assign_wizard_view_form
+msgid "KPI Assignments"
+msgstr "Призначення KPI"
+
+#. module: l10n_ua_hr_scorecard
+#: model:ir.model.fields,field_description:l10n_ua_hr_scorecard.field_hr_kpi_assignment__kpi_count
+msgid "KPI Count"
+msgstr "Кількість KPI"
+
+#. module: l10n_ua_hr_scorecard
+#: model:ir.ui.menu,name:l10n_ua_hr_scorecard.menu_hr_kpi
+msgid "KPI Directory"
+msgstr "Довідник KPI"
+
+#. module: l10n_ua_hr_scorecard
+#. odoo-javascript
+#: code:addons/l10n_ua_hr_scorecard/static/src/kpi_formula/kpi_formula_field.js:0
+msgid "KPI Formula"
+msgstr "Формула KPI"
+
+#. module: l10n_ua_hr_scorecard
+#: model:ir.model,name:l10n_ua_hr_scorecard.model_hr_kpi_variable
+msgid "KPI Formula Variable"
+msgstr "Змінна формули KPI"
+
+#. module: l10n_ua_hr_scorecard
+#: model:ir.model.fields,field_description:l10n_ua_hr_scorecard.field_hr_scorecard__line_ids
+#: model_terms:ir.ui.view,arch_db:l10n_ua_hr_scorecard.hr_scorecard_view_form
+msgid "KPI Lines"
+msgstr "Рядки KPI"
+
+#. module: l10n_ua_hr_scorecard
+#. odoo-javascript
+#. odoo-python
+#: code:addons/l10n_ua_hr_scorecard/models/hr_kpi_map.py:0
+#: code:addons/l10n_ua_hr_scorecard/static/src/kpi_map/kpi_map.js:0
+#: model:ir.actions.server,name:l10n_ua_hr_scorecard.action_hr_kpi_map_open
+#: model:ir.model,name:l10n_ua_hr_scorecard.model_hr_kpi_map
+#: model:ir.ui.menu,name:l10n_ua_hr_scorecard.menu_hr_scorecard
+#: model_terms:ir.ui.view,arch_db:l10n_ua_hr_scorecard.hr_kpi_map_view
+msgid "KPI Map"
+msgstr "Карта KPI"
+
+#. module: l10n_ua_hr_scorecard
+#: model:ir.model,name:l10n_ua_hr_scorecard.model_hr_kpi_period
+#: model_terms:ir.ui.view,arch_db:l10n_ua_hr_scorecard.hr_kpi_period_view_form
+msgid "KPI Period"
+msgstr "Період KPI"
+
+#. module: l10n_ua_hr_scorecard
+#: model:ir.actions.act_window,name:l10n_ua_hr_scorecard.action_hr_kpi_period
+#: model_terms:ir.ui.view,arch_db:l10n_ua_hr_scorecard.hr_kpi_period_view_list
+#: model_terms:ir.ui.view,arch_db:l10n_ua_hr_scorecard.hr_kpi_period_view_search
+msgid "KPI Periods"
+msgstr "Періоди KPI"
+
+#. module: l10n_ua_hr_scorecard
+#: model:ir.model,name:l10n_ua_hr_scorecard.model_hr_kpi_target
+#: model:ir.model.fields,field_description:l10n_ua_hr_scorecard.field_hr_kpi_target_input__target_id
+#: model:ir.model.fields,field_description:l10n_ua_hr_scorecard.field_hr_kpi_target_source__target_id
+#: model_terms:ir.ui.view,arch_db:l10n_ua_hr_scorecard.hr_kpi_target_view_form
+msgid "KPI Target"
+msgstr "Цільове значення KPI"
+
+#. module: l10n_ua_hr_scorecard
+#: model:ir.model,name:l10n_ua_hr_scorecard.model_hr_kpi_target_input
+msgid "KPI Target Formula Input"
+msgstr "Значення змінної формули цільового значення KPI"
+
+#. module: l10n_ua_hr_scorecard
+#: model:ir.model,name:l10n_ua_hr_scorecard.model_hr_kpi_target_source
+msgid "KPI Target Source Report"
+msgstr "Звіт-джерело цільового значення KPI"
+
+#. module: l10n_ua_hr_scorecard
+#: model:ir.actions.act_window,name:l10n_ua_hr_scorecard.action_hr_kpi_targets
+#: model:ir.model.fields,field_description:l10n_ua_hr_scorecard.field_hr_kpi_period__target_ids
+#: model:ir.model.fields,field_description:l10n_ua_hr_scorecard.field_hr_kpi_target_copy_wizard__target_ids
+#: model_terms:ir.ui.view,arch_db:l10n_ua_hr_scorecard.hr_kpi_target_view_list
+#: model_terms:ir.ui.view,arch_db:l10n_ua_hr_scorecard.hr_kpi_target_view_search
+msgid "KPI Targets"
+msgstr "Цільові значення KPI"
+
+#. module: l10n_ua_hr_scorecard
+#: model:ir.model.fields,field_description:l10n_ua_hr_scorecard.field_hr_kpi_period__target_count
+msgid "KPI Targets Count"
+msgstr "Кількість цільових значень KPI"
+
+#. module: l10n_ua_hr_scorecard
+#. odoo-python
+#: code:addons/l10n_ua_hr_scorecard/models/hr_kpi.py:0
+#: code:addons/l10n_ua_hr_scorecard/models/hr_kpi_assignment.py:0
+#: code:addons/l10n_ua_hr_scorecard/models/hr_kpi_period.py:0
+msgid "KPI Targets of %s"
+msgstr "Цільові значення KPI: %s"
+
+#. module: l10n_ua_hr_scorecard
+#: model:ir.model.fields,help:l10n_ua_hr_scorecard.field_hr_kpi_assignment__target_count
+msgid ""
+"KPI targets of these KPIs for the periods starting while the assignment is "
+"in force."
+msgstr ""
+"Цільові значення цих KPI за періоди, що починаються під час дії призначення."
+
+#. module: l10n_ua_hr_scorecard
+#: model:ir.actions.act_window,name:l10n_ua_hr_scorecard.action_hr_kpi
+#: model:ir.model.fields,field_description:l10n_ua_hr_scorecard.field_hr_kpi_assignment__line_ids
+#: model_terms:ir.ui.view,arch_db:l10n_ua_hr_scorecard.hr_kpi_view_list
+#: model_terms:ir.ui.view,arch_db:l10n_ua_hr_scorecard.hr_kpi_view_search
+msgid "KPIs"
+msgstr "KPI"
+
+#. module: l10n_ua_hr_scorecard
+#: model_terms:ir.actions.act_window,help:l10n_ua_hr_scorecard.action_hr_kpi
+msgid ""
+"KPIs are reusable indicators with a planned target and a calculation method."
+msgstr ""
+"KPI — це показники для повторного використання з плановим значенням і "
+"методом розрахунку."
+
+#. module: l10n_ua_hr_scorecard
+#. odoo-python
+#: code:addons/l10n_ua_hr_scorecard/models/hr_kpi_assignment.py:0
+msgid "KPIs of %s"
+msgstr "KPI посади %s"
+
+#. module: l10n_ua_hr_scorecard
+#: model:ir.model,name:l10n_ua_hr_scorecard.model_hr_kpi
+msgid "Key Performance Indicator"
+msgstr "Ключовий показник ефективності"
+
+#. module: l10n_ua_hr_scorecard
+#: model:ir.model.fields,help:l10n_ua_hr_scorecard.field_hr_kpi_period__name
+msgid ""
+"Language-independent code of the period, e.g. 2026-Q1, 2026-01 or 2026."
+msgstr "Код періоду, не залежний від мови, напр. 2026-Q1, 2026-01 або 2026."
+
+#. module: l10n_ua_hr_scorecard
+#: model:ir.model.fields,field_description:l10n_ua_hr_scorecard.field_hr_kpi__write_uid
+#: model:ir.model.fields,field_description:l10n_ua_hr_scorecard.field_hr_kpi_assign_wizard__write_uid
+#: model:ir.model.fields,field_description:l10n_ua_hr_scorecard.field_hr_kpi_assignment__write_uid
+#: model:ir.model.fields,field_description:l10n_ua_hr_scorecard.field_hr_kpi_assignment_line__write_uid
+#: model:ir.model.fields,field_description:l10n_ua_hr_scorecard.field_hr_kpi_map__write_uid
+#: model:ir.model.fields,field_description:l10n_ua_hr_scorecard.field_hr_kpi_period__write_uid
+#: model:ir.model.fields,field_description:l10n_ua_hr_scorecard.field_hr_kpi_target__write_uid
+#: model:ir.model.fields,field_description:l10n_ua_hr_scorecard.field_hr_kpi_target_copy_wizard__write_uid
+#: model:ir.model.fields,field_description:l10n_ua_hr_scorecard.field_hr_kpi_target_input__write_uid
+#: model:ir.model.fields,field_description:l10n_ua_hr_scorecard.field_hr_kpi_target_source__write_uid
+#: model:ir.model.fields,field_description:l10n_ua_hr_scorecard.field_hr_kpi_variable__write_uid
+#: model:ir.model.fields,field_description:l10n_ua_hr_scorecard.field_hr_scorecard__write_uid
+#: model:ir.model.fields,field_description:l10n_ua_hr_scorecard.field_hr_scorecard_employee_config__write_uid
+#: model:ir.model.fields,field_description:l10n_ua_hr_scorecard.field_hr_scorecard_employee_result__write_uid
+#: model:ir.model.fields,field_description:l10n_ua_hr_scorecard.field_hr_scorecard_line__write_uid
+msgid "Last Updated by"
+msgstr "Востаннє оновив"
+
+#. module: l10n_ua_hr_scorecard
+#: model:ir.model.fields,field_description:l10n_ua_hr_scorecard.field_hr_kpi__write_date
+#: model:ir.model.fields,field_description:l10n_ua_hr_scorecard.field_hr_kpi_assign_wizard__write_date
+#: model:ir.model.fields,field_description:l10n_ua_hr_scorecard.field_hr_kpi_assignment__write_date
+#: model:ir.model.fields,field_description:l10n_ua_hr_scorecard.field_hr_kpi_assignment_line__write_date
+#: model:ir.model.fields,field_description:l10n_ua_hr_scorecard.field_hr_kpi_map__write_date
+#: model:ir.model.fields,field_description:l10n_ua_hr_scorecard.field_hr_kpi_period__write_date
+#: model:ir.model.fields,field_description:l10n_ua_hr_scorecard.field_hr_kpi_target__write_date
+#: model:ir.model.fields,field_description:l10n_ua_hr_scorecard.field_hr_kpi_target_copy_wizard__write_date
+#: model:ir.model.fields,field_description:l10n_ua_hr_scorecard.field_hr_kpi_target_input__write_date
+#: model:ir.model.fields,field_description:l10n_ua_hr_scorecard.field_hr_kpi_target_source__write_date
+#: model:ir.model.fields,field_description:l10n_ua_hr_scorecard.field_hr_kpi_variable__write_date
+#: model:ir.model.fields,field_description:l10n_ua_hr_scorecard.field_hr_scorecard__write_date
+#: model:ir.model.fields,field_description:l10n_ua_hr_scorecard.field_hr_scorecard_employee_config__write_date
+#: model:ir.model.fields,field_description:l10n_ua_hr_scorecard.field_hr_scorecard_employee_result__write_date
+#: model:ir.model.fields,field_description:l10n_ua_hr_scorecard.field_hr_scorecard_line__write_date
+msgid "Last Updated on"
+msgstr "Останнє оновлення"
+
+#. module: l10n_ua_hr_scorecard
+#: model:ir.model.fields,help:l10n_ua_hr_scorecard.field_hr_kpi_assignment__date_to
+msgid "Last day before the next assignment of the job position, if any."
+msgstr "Останній день перед наступним призначенням посади, якщо воно є."
+
+#. module: l10n_ua_hr_scorecard
+#: model:ir.model.fields,help:l10n_ua_hr_scorecard.field_hr_kpi_target__selected_date_to
+msgid "Last day of the period currently selected on the target."
+msgstr "Останній день періоду, вибраного в цільовому значенні."
+
+#. module: l10n_ua_hr_scorecard
+#: model:ir.model.fields,help:l10n_ua_hr_scorecard.field_hr_scorecard_employee_result__date_to
+msgid "Last day of the period on which the employee held the job position."
+msgstr "Останній день періоду, коли працівник обіймав посаду."
+
+#. module: l10n_ua_hr_scorecard
+#. odoo-javascript
+#: code:addons/l10n_ua_hr_scorecard/static/src/kpi_map/kpi_map.xml:0
+msgid "Loading..."
+msgstr "Завантаження..."
+
+#. module: l10n_ua_hr_scorecard
+#: model:ir.model.fields.selection,name:l10n_ua_hr_scorecard.selection__hr_kpi__data_source__manual
+#: model:ir.model.fields.selection,name:l10n_ua_hr_scorecard.selection__hr_kpi_target__data_source__manual
+msgid "Manual input"
+msgstr "Ручне введення"
+
+#. module: l10n_ua_hr_scorecard
+#: model:ir.model.fields.selection,name:l10n_ua_hr_scorecard.selection__hr_kpi_period__month__3
+#: model:ir.model.fields.selection,name:l10n_ua_hr_scorecard.selection__hr_kpi_target__period_month__3
+#: model:ir.model.fields.selection,name:l10n_ua_hr_scorecard.selection__hr_kpi_target_copy_wizard__period_month__3
+msgid "March"
+msgstr "Березень"
+
+#. module: l10n_ua_hr_scorecard
+#: model:ir.model.fields.selection,name:l10n_ua_hr_scorecard.selection__hr_kpi_period__month__5
+#: model:ir.model.fields.selection,name:l10n_ua_hr_scorecard.selection__hr_kpi_target__period_month__5
+#: model:ir.model.fields.selection,name:l10n_ua_hr_scorecard.selection__hr_kpi_target_copy_wizard__period_month__5
+msgid "May"
+msgstr "Травень"
+
+#. module: l10n_ua_hr_scorecard
+#: model:ir.model.fields,field_description:l10n_ua_hr_scorecard.field_hr_scorecard__message_has_error
+msgid "Message Delivery error"
+msgstr "Помилка доставлення повідомлення"
+
+#. module: l10n_ua_hr_scorecard
+#: model:ir.model.fields,field_description:l10n_ua_hr_scorecard.field_hr_scorecard__message_ids
+msgid "Messages"
+msgstr "Повідомлення"
+
+#. module: l10n_ua_hr_scorecard
+#: model:ir.model.fields,field_description:l10n_ua_hr_scorecard.field_hr_kpi_period__month
+#: model:ir.model.fields,field_description:l10n_ua_hr_scorecard.field_hr_kpi_target__period_month
+#: model:ir.model.fields,field_description:l10n_ua_hr_scorecard.field_hr_kpi_target_copy_wizard__period_month
+#: model:ir.model.fields.selection,name:l10n_ua_hr_scorecard.selection__hr_kpi_period__period_type__month
+#: model:ir.model.fields.selection,name:l10n_ua_hr_scorecard.selection__hr_kpi_target__period_type__month
+#: model:ir.model.fields.selection,name:l10n_ua_hr_scorecard.selection__hr_kpi_target_copy_wizard__period_type__month
+msgid "Month"
+msgstr "Місяць"
+
+#. module: l10n_ua_hr_scorecard
+#: model_terms:ir.ui.view,arch_db:l10n_ua_hr_scorecard.hr_scorecard_employee_config_view_search
+msgid "Monthly Advance"
+msgstr "Щомісячний аванс"
+
+#. module: l10n_ua_hr_scorecard
+#. odoo-python
+#: code:addons/l10n_ua_hr_scorecard/models/hr_scorecard.py:0
+msgid "Monthly advance from scorecard %s (%d-%02d)"
+msgstr "Щомісячний аванс з картки KPI %s (%d-%02d)"
+
+#. module: l10n_ua_hr_scorecard
+#: model:ir.model.fields.selection,name:l10n_ua_hr_scorecard.selection__hr_scorecard_employee_config__bonus_model__monthly_advance
+#: model:ir.model.fields.selection,name:l10n_ua_hr_scorecard.selection__hr_scorecard_employee_result__bonus_model__monthly_advance
+msgid "Monthly advance with reconciliation"
+msgstr "Щомісячний аванс з остаточним розрахунком"
+
+#. module: l10n_ua_hr_scorecard
+#: model:ir.model.fields,field_description:l10n_ua_hr_scorecard.field_hr_scorecard__my_activity_date_deadline
+msgid "My Activity Deadline"
+msgstr "Дедлайн моєї дії"
+
+#. module: l10n_ua_hr_scorecard
+#: model:ir.model.fields,field_description:l10n_ua_hr_scorecard.field_hr_kpi__name
+msgid "Name"
+msgstr "Назва"
+
+#. module: l10n_ua_hr_scorecard
+#: model:ir.model.fields,help:l10n_ua_hr_scorecard.field_hr_kpi_target_input__code
+#: model:ir.model.fields,help:l10n_ua_hr_scorecard.field_hr_kpi_variable__code
+msgid ""
+"Name of the variable in the formula: a letter followed by letters, digits or"
+" underscores, e.g. A, B or Revenue."
+msgstr ""
+"Назва змінної у формулі: літера, за якою йдуть літери, цифри або "
+"підкреслення, напр. A, B або Revenue."
+
+#. module: l10n_ua_hr_scorecard
+#: model:ir.model.fields.selection,name:l10n_ua_hr_scorecard.selection__hr_kpi__system_field__net_profit
+#: model:ir.model.fields.selection,name:l10n_ua_hr_scorecard.selection__hr_kpi_target_input__system_field__net_profit
+#: model:ir.model.fields.selection,name:l10n_ua_hr_scorecard.selection__hr_kpi_variable__system_field__net_profit
+msgid "Net financial result"
+msgstr "Чистий фінансовий результат"
+
+#. module: l10n_ua_hr_scorecard
+#: model:ir.model.fields.selection,name:l10n_ua_hr_scorecard.selection__hr_kpi__system_field__net_revenue
+#: model:ir.model.fields.selection,name:l10n_ua_hr_scorecard.selection__hr_kpi_target_input__system_field__net_revenue
+#: model:ir.model.fields.selection,name:l10n_ua_hr_scorecard.selection__hr_kpi_variable__system_field__net_revenue
+msgid "Net revenue from sales of products (goods, works, services)"
+msgstr "Чистий дохід від реалізації продукції (товарів, робіт, послуг)"
+
+#. module: l10n_ua_hr_scorecard
+#. odoo-python
+#: code:addons/l10n_ua_hr_scorecard/models/hr_scorecard.py:0
+#: model_terms:ir.ui.view,arch_db:l10n_ua_hr_scorecard.hr_kpi_target_view_list
+msgid "New"
+msgstr "Новий"
+
+#. module: l10n_ua_hr_scorecard
+#: model:ir.actions.act_window,name:l10n_ua_hr_scorecard.action_hr_kpi_target_create
+msgid "New KPI Target"
+msgstr "Нове цільове значення KPI"
+
+#. module: l10n_ua_hr_scorecard
+#: model:ir.model.fields,field_description:l10n_ua_hr_scorecard.field_hr_scorecard__activity_date_deadline
+msgid "Next Activity Deadline"
+msgstr "Дедлайн наступної дії"
+
+#. module: l10n_ua_hr_scorecard
+#: model:ir.model.fields,field_description:l10n_ua_hr_scorecard.field_hr_scorecard__activity_summary
+msgid "Next Activity Summary"
+msgstr "Підсумок наступної дії"
+
+#. module: l10n_ua_hr_scorecard
+#: model:ir.model.fields,field_description:l10n_ua_hr_scorecard.field_hr_scorecard__activity_type_id
+msgid "Next Activity Type"
+msgstr "Тип наступної дії"
+
+#. module: l10n_ua_hr_scorecard
+#. odoo-python
+#: code:addons/l10n_ua_hr_scorecard/models/hr_kpi_target_copy_wizard.py:0
+msgid ""
+"No KPI target was copied:\n"
+"%s"
+msgstr ""
+"Жодне цільове значення KPI не скопійовано:\n"
+"%s"
+
+#. module: l10n_ua_hr_scorecard
+#. odoo-javascript
+#: code:addons/l10n_ua_hr_scorecard/static/src/kpi_map/kpi_map.xml:0
+msgid ""
+"No employee held a job position with the KPI targets matching the search."
+msgstr ""
+"Жоден працівник не обіймав посаду з цільовими значеннями KPI, що "
+"відповідають пошуку."
+
+#. module: l10n_ua_hr_scorecard
+#. odoo-python
+#: code:addons/l10n_ua_hr_scorecard/models/hr_kpi_target.py:0
+msgid ""
+"None of the selected KPI targets takes its actual value from Odoo data or a "
+"formula."
+msgstr ""
+"Жодне з вибраних цільових значень KPI не отримує фактичне значення з даних "
+"Odoo або за формулою."
+
+#. module: l10n_ua_hr_scorecard
+#: model:ir.model.fields,field_description:l10n_ua_hr_scorecard.field_hr_scorecard__notes
+#: model:ir.model.fields,field_description:l10n_ua_hr_scorecard.field_hr_scorecard_employee_config__notes
+#: model_terms:ir.ui.view,arch_db:l10n_ua_hr_scorecard.hr_scorecard_employee_config_view_form
+#: model_terms:ir.ui.view,arch_db:l10n_ua_hr_scorecard.hr_scorecard_view_form
+msgid "Notes"
+msgstr "Примітки"
+
+#. module: l10n_ua_hr_scorecard
+#: model_terms:ir.ui.view,arch_db:l10n_ua_hr_scorecard.hr_scorecard_employee_config_view_form
+#: model_terms:ir.ui.view,arch_db:l10n_ua_hr_scorecard.hr_scorecard_view_form
+msgid "Notes..."
+msgstr "Примітки..."
+
+#. module: l10n_ua_hr_scorecard
+#: model:ir.model.fields.selection,name:l10n_ua_hr_scorecard.selection__hr_kpi_period__month__11
+#: model:ir.model.fields.selection,name:l10n_ua_hr_scorecard.selection__hr_kpi_target__period_month__11
+#: model:ir.model.fields.selection,name:l10n_ua_hr_scorecard.selection__hr_kpi_target_copy_wizard__period_month__11
+msgid "November"
+msgstr "Листопад"
+
+#. module: l10n_ua_hr_scorecard
+#: model:ir.model.fields,field_description:l10n_ua_hr_scorecard.field_hr_scorecard__message_needaction_counter
+msgid "Number of Actions"
+msgstr "Кількість дій"
+
+#. module: l10n_ua_hr_scorecard
+#: model:ir.model.fields,help:l10n_ua_hr_scorecard.field_hr_kpi_period__target_count
+msgid ""
+"Number of KPI targets of this very period (not of the periods inside it)."
+msgstr ""
+"Кількість цільових значень KPI саме цього періоду (без вкладених у нього "
+"періодів)."
+
+#. module: l10n_ua_hr_scorecard
+#: model:ir.model.fields,field_description:l10n_ua_hr_scorecard.field_hr_scorecard__message_has_error_counter
+msgid "Number of errors"
+msgstr "Кількість помилок"
+
+#. module: l10n_ua_hr_scorecard
+#: model:ir.model.fields,help:l10n_ua_hr_scorecard.field_hr_scorecard__message_needaction_counter
+msgid "Number of messages requiring action"
+msgstr "Кількість повідомлень, які вимагають дії"
+
+#. module: l10n_ua_hr_scorecard
+#: model:ir.model.fields,help:l10n_ua_hr_scorecard.field_hr_scorecard__message_has_error_counter
+msgid "Number of messages with delivery error"
+msgstr "Кількість повідомлень з помилкою доставки"
+
+#. module: l10n_ua_hr_scorecard
+#: model:ir.model.fields.selection,name:l10n_ua_hr_scorecard.selection__hr_kpi_period__month__10
+#: model:ir.model.fields.selection,name:l10n_ua_hr_scorecard.selection__hr_kpi_target__period_month__10
+#: model:ir.model.fields.selection,name:l10n_ua_hr_scorecard.selection__hr_kpi_target_copy_wizard__period_month__10
+msgid "October"
+msgstr "Жовтень"
+
+#. module: l10n_ua_hr_scorecard
+#: model:ir.model.fields,field_description:l10n_ua_hr_scorecard.field_hr_kpi__system_field
+#: model:ir.model.fields,field_description:l10n_ua_hr_scorecard.field_hr_kpi_target_input__system_field
+#: model:ir.model.fields,field_description:l10n_ua_hr_scorecard.field_hr_kpi_variable__system_field
+#: model_terms:ir.ui.view,arch_db:l10n_ua_hr_scorecard.hr_kpi_target_view_form
+msgid "Odoo Parameter"
+msgstr "Параметр Odoo"
+
+#. module: l10n_ua_hr_scorecard
+#: model:ir.model.fields.selection,name:l10n_ua_hr_scorecard.selection__hr_kpi__data_source__system
+#: model:ir.model.fields.selection,name:l10n_ua_hr_scorecard.selection__hr_kpi_target__data_source__system
+msgid "Odoo data"
+msgstr "Дані з Odoo"
+
+#. module: l10n_ua_hr_scorecard
+#: model:ir.model.fields,help:l10n_ua_hr_scorecard.field_hr_kpi_target__source_ids
+msgid "One report per type of report the KPI reads Odoo data from."
+msgstr "Один звіт на кожен тип звіту, з якого KPI бере дані з Odoo."
+
+#. module: l10n_ua_hr_scorecard
+#. odoo-python
+#: code:addons/l10n_ua_hr_scorecard/models/hr_kpi_map.py:0
+msgid "Only HR users can see the KPI map."
+msgstr "Карту KPI можуть переглядати лише користувачі HR."
+
+#. module: l10n_ua_hr_scorecard
+#: model:ir.model.fields,help:l10n_ua_hr_scorecard.field_hr_kpi__state
+msgid ""
+"Only confirmed KPIs can be picked for KPI targets and assignments; a "
+"confirmed KPI cannot be edited until it is reset to draft."
+msgstr ""
+"У цільових значеннях і призначеннях можна вибрати лише затверджені KPI; "
+"затверджений KPI не можна редагувати, доки його не повернуто в чернетку."
+
+#. module: l10n_ua_hr_scorecard
+#. odoo-python
+#: code:addons/l10n_ua_hr_scorecard/models/hr_kpi.py:0
+msgid "Only confirmed KPIs can be reset to draft."
+msgstr "Повернути в чернетку можна лише затверджені KPI."
+
+#. module: l10n_ua_hr_scorecard
+#. odoo-python
+#: code:addons/l10n_ua_hr_scorecard/models/hr_scorecard.py:0
+msgid "Only confirmed scorecards can be closed."
+msgstr "Закрити можна лише підтверджені картки KPI."
+
+#. module: l10n_ua_hr_scorecard
+#. odoo-python
+#: code:addons/l10n_ua_hr_scorecard/models/hr_kpi_target.py:0
+msgid "Only confirmed targets can be reset to draft."
+msgstr "Повернути в чернетку можна лише підтверджені цільові значення."
+
+#. module: l10n_ua_hr_scorecard
+#. odoo-python
+#: code:addons/l10n_ua_hr_scorecard/models/hr_kpi.py:0
+msgid "Only draft KPIs can be confirmed."
+msgstr "Затвердити можна лише KPI у статусі «Чернетка»."
+
+#. module: l10n_ua_hr_scorecard
+#. odoo-python
+#: code:addons/l10n_ua_hr_scorecard/models/hr_scorecard.py:0
+msgid "Only draft scorecards can be confirmed."
+msgstr "Підтвердити можна лише картки KPI у статусі «Чернетка»."
+
+#. module: l10n_ua_hr_scorecard
+#. odoo-python
+#: code:addons/l10n_ua_hr_scorecard/models/hr_kpi_target.py:0
+msgid "Only draft targets can be confirmed."
+msgstr "Підтвердити можна лише цільові значення у статусі «Чернетка»."
+
+#. module: l10n_ua_hr_scorecard
+#. odoo-python
+#: code:addons/l10n_ua_hr_scorecard/models/hr_kpi.py:0
+msgid ""
+"Only numbers, variable codes, + - * / and parentheses are allowed in the "
+"formula."
+msgstr "У формулі дозволені лише числа, коди змінних, + - * / та дужки."
+
+#. module: l10n_ua_hr_scorecard
+#: model:ir.model.fields.selection,name:l10n_ua_hr_scorecard.selection__hr_kpi_period__state__open
+msgid "Open"
+msgstr "Відкрито"
+
+#. module: l10n_ua_hr_scorecard
+#: model:ir.model.fields.selection,name:l10n_ua_hr_scorecard.selection__hr_kpi__system_field__other_expenses
+#: model:ir.model.fields.selection,name:l10n_ua_hr_scorecard.selection__hr_kpi_target_input__system_field__other_expenses
+#: model:ir.model.fields.selection,name:l10n_ua_hr_scorecard.selection__hr_kpi_variable__system_field__other_expenses
+msgid "Other expenses"
+msgstr "Інші витрати"
+
+#. module: l10n_ua_hr_scorecard
+#: model:ir.model.fields.selection,name:l10n_ua_hr_scorecard.selection__hr_kpi__system_field__other_income
+#: model:ir.model.fields.selection,name:l10n_ua_hr_scorecard.selection__hr_kpi_target_input__system_field__other_income
+#: model:ir.model.fields.selection,name:l10n_ua_hr_scorecard.selection__hr_kpi_variable__system_field__other_income
+msgid "Other income"
+msgstr "Інші доходи"
+
+#. module: l10n_ua_hr_scorecard
+#: model:ir.model.fields.selection,name:l10n_ua_hr_scorecard.selection__hr_kpi__system_field__other_operating_expenses
+#: model:ir.model.fields.selection,name:l10n_ua_hr_scorecard.selection__hr_kpi_target_input__system_field__other_operating_expenses
+#: model:ir.model.fields.selection,name:l10n_ua_hr_scorecard.selection__hr_kpi_variable__system_field__other_operating_expenses
+msgid "Other operating expenses"
+msgstr "Інші операційні витрати"
+
+#. module: l10n_ua_hr_scorecard
+#: model:ir.model.fields.selection,name:l10n_ua_hr_scorecard.selection__hr_kpi__system_field__other_operating_income
+#: model:ir.model.fields.selection,name:l10n_ua_hr_scorecard.selection__hr_kpi_target_input__system_field__other_operating_income
+#: model:ir.model.fields.selection,name:l10n_ua_hr_scorecard.selection__hr_kpi_variable__system_field__other_operating_income
+msgid "Other operating income"
+msgstr "Інші операційні доходи"
+
+#. module: l10n_ua_hr_scorecard
+#: model:ir.model.fields,field_description:l10n_ua_hr_scorecard.field_hr_kpi_period__parent_id
+msgid "Parent Period"
+msgstr "Батьківський період"
+
+#. module: l10n_ua_hr_scorecard
+#: model:ir.model.fields,field_description:l10n_ua_hr_scorecard.field_hr_kpi_assign_wizard__period_id
+#: model:ir.model.fields,field_description:l10n_ua_hr_scorecard.field_hr_kpi_target__period_id
+#: model:ir.model.fields,field_description:l10n_ua_hr_scorecard.field_hr_scorecard__period_id
+#: model:ir.model.fields,field_description:l10n_ua_hr_scorecard.field_hr_scorecard_employee_result__period_id
+#: model:ir.model.fields,field_description:l10n_ua_hr_scorecard.field_hr_scorecard_line__period_id
+#: model_terms:ir.ui.view,arch_db:l10n_ua_hr_scorecard.hr_kpi_period_view_list
+#: model_terms:ir.ui.view,arch_db:l10n_ua_hr_scorecard.hr_kpi_target_copy_wizard_view_form
+#: model_terms:ir.ui.view,arch_db:l10n_ua_hr_scorecard.hr_kpi_target_view_form
+#: model_terms:ir.ui.view,arch_db:l10n_ua_hr_scorecard.hr_kpi_target_view_search
+msgid "Period"
+msgstr "Період"
+
+#. module: l10n_ua_hr_scorecard
+#: model:ir.ui.menu,name:l10n_ua_hr_scorecard.menu_hr_kpi_period
+msgid "Period Directory"
+msgstr "Довідник періодів"
+
+#. module: l10n_ua_hr_scorecard
+#: model:ir.model.fields,field_description:l10n_ua_hr_scorecard.field_hr_kpi_target__selected_date_to
+msgid "Period End"
+msgstr "Кінець періоду"
+
+#. module: l10n_ua_hr_scorecard
+#: model:ir.model.fields,field_description:l10n_ua_hr_scorecard.field_hr_kpi_target__period_date_to
+msgid "Period End Date"
+msgstr "Дата кінця періоду"
+
+#. module: l10n_ua_hr_scorecard
+#: model:ir.model.fields,field_description:l10n_ua_hr_scorecard.field_hr_kpi_target__period_missing
+#: model:ir.model.fields,field_description:l10n_ua_hr_scorecard.field_hr_kpi_target_copy_wizard__period_missing
+msgid "Period Missing"
+msgstr "Період відсутній"
+
+#. module: l10n_ua_hr_scorecard
+#: model:ir.model.fields,field_description:l10n_ua_hr_scorecard.field_hr_kpi_target__selected_date_from
+msgid "Period Start"
+msgstr "Початок періоду"
+
+#. module: l10n_ua_hr_scorecard
+#: model:ir.model.fields,field_description:l10n_ua_hr_scorecard.field_hr_kpi_target__period_date_from
+msgid "Period Start Date"
+msgstr "Дата початку періоду"
+
+#. module: l10n_ua_hr_scorecard
+#: model:ir.model.fields,field_description:l10n_ua_hr_scorecard.field_hr_kpi_period__period_type
+#: model:ir.model.fields,field_description:l10n_ua_hr_scorecard.field_hr_kpi_target__period_type
+#: model:ir.model.fields,field_description:l10n_ua_hr_scorecard.field_hr_kpi_target_copy_wizard__period_type
+#: model_terms:ir.ui.view,arch_db:l10n_ua_hr_scorecard.hr_kpi_period_view_search
+msgid "Period Type"
+msgstr "Тип періоду"
+
+#. module: l10n_ua_hr_scorecard
+#. odoo-python
+#: code:addons/l10n_ua_hr_scorecard/models/hr_scorecard.py:0
+msgid "Period does not cover any month."
+msgstr "Період не охоплює жодного місяця."
+
+#. module: l10n_ua_hr_scorecard
+#: model_terms:ir.ui.view,arch_db:l10n_ua_hr_scorecard.hr_scorecard_employee_config_view_search
+msgid "Period-based"
+msgstr "За період"
+
+#. module: l10n_ua_hr_scorecard
+#: model:ir.model.fields.selection,name:l10n_ua_hr_scorecard.selection__hr_scorecard_employee_config__bonus_model__period
+#: model:ir.model.fields.selection,name:l10n_ua_hr_scorecard.selection__hr_scorecard_employee_result__bonus_model__period
+msgid "Period-based (single payout)"
+msgstr "За період (одноразова виплата)"
+
+#. module: l10n_ua_hr_scorecard
+#: model:ir.model.fields,help:l10n_ua_hr_scorecard.field_hr_scorecard__final_bonus_ids
+msgid "Period-based bonuses and monthly-advance reconciliations."
+msgstr "Премії за період та остаточні розрахунки за щомісячними авансами."
+
+#. module: l10n_ua_hr_scorecard
+#: model:ir.model.fields,help:l10n_ua_hr_scorecard.field_hr_scorecard_line__target_id
+msgid ""
+"Period-level planned/actual values for this KPI. Created automatically when "
+"the line is saved."
+msgstr ""
+"Планові/фактичні значення цього KPI на рівні періоду. Створюються "
+"автоматично під час збереження рядка."
+
+#. module: l10n_ua_hr_scorecard
+#: model_terms:ir.ui.view,arch_db:l10n_ua_hr_scorecard.hr_kpi_target_view_search
+msgid "Periods"
+msgstr "Періоди"
+
+#. module: l10n_ua_hr_scorecard
+#: model_terms:ir.actions.act_window,help:l10n_ua_hr_scorecard.action_hr_kpi_assignment
+msgid "Pick a job position, add its KPIs and their weights."
+msgstr "Виберіть посаду, додайте її KPI та їхні ваги."
+
+#. module: l10n_ua_hr_scorecard
+#: model_terms:ir.actions.act_window,help:l10n_ua_hr_scorecard.action_hr_kpi_targets
+msgid ""
+"Pick a period on the left sidebar, then maintain planned/actual values for "
+"each KPI on the right."
+msgstr ""
+"Виберіть період на лівій панелі, а потім заповніть планові/фактичні значення"
+" кожного KPI праворуч."
+
+#. module: l10n_ua_hr_scorecard
+#. odoo-javascript
+#: code:addons/l10n_ua_hr_scorecard/static/src/kpi_map/kpi_map.xml:0
+msgid "Planned"
+msgstr "План"
+
+#. module: l10n_ua_hr_scorecard
+#: model:ir.model.fields,field_description:l10n_ua_hr_scorecard.field_hr_scorecard_employee_result__planned_bonus
+msgid "Planned Bonus"
+msgstr "Планова премія"
+
+#. module: l10n_ua_hr_scorecard
+#: model:ir.model.fields,field_description:l10n_ua_hr_scorecard.field_hr_kpi_target__planned_value
+#: model:ir.model.fields,field_description:l10n_ua_hr_scorecard.field_hr_scorecard_line__planned_value
+msgid "Planned Value"
+msgstr "Планове значення"
+
+#. module: l10n_ua_hr_scorecard
+#: model:ir.model.fields,help:l10n_ua_hr_scorecard.field_hr_scorecard_employee_result__bonus_base
+msgid "Planned bonus x days in position / days in period."
+msgstr "Планова премія x днів на посаді / днів у періоді."
+
+#. module: l10n_ua_hr_scorecard
+#: model_terms:ir.ui.view,arch_db:l10n_ua_hr_scorecard.hr_kpi_target_view_kanban
+msgid "Planned:"
+msgstr "План:"
+
+#. module: l10n_ua_hr_scorecard
+#. odoo-javascript
+#: code:addons/l10n_ua_hr_scorecard/static/src/kpi_map/kpi_map.xml:0
+msgid "Print"
+msgstr "Друк"
+
+#. module: l10n_ua_hr_scorecard
+#: model:ir.model.fields,field_description:l10n_ua_hr_scorecard.field_hr_scorecard_employee_result__bonus_base
+msgid "Prorated Bonus Base"
+msgstr "Пропорційна база премії"
+
+#. module: l10n_ua_hr_scorecard
+#: model:ir.model.fields,help:l10n_ua_hr_scorecard.field_hr_scorecard_employee_result__bonus_amount
+msgid "Prorated bonus base x weighted result / 100"
+msgstr "Пропорційна база премії x зважений результат / 100"
+
+#. module: l10n_ua_hr_scorecard
+#. odoo-python
+#: code:addons/l10n_ua_hr_scorecard/models/hr_kpi_period.py:0
+msgid "Q%(quarter)s %(year)s"
+msgstr "%(quarter)s квартал %(year)s"
+
+#. module: l10n_ua_hr_scorecard
+#: model:ir.model.fields.selection,name:l10n_ua_hr_scorecard.selection__hr_kpi_period__quarter__1
+#: model:ir.model.fields.selection,name:l10n_ua_hr_scorecard.selection__hr_kpi_target__period_quarter__1
+#: model:ir.model.fields.selection,name:l10n_ua_hr_scorecard.selection__hr_kpi_target_copy_wizard__period_quarter__1
+msgid "Q1"
+msgstr "I квартал"
+
+#. module: l10n_ua_hr_scorecard
+#: model:ir.model.fields.selection,name:l10n_ua_hr_scorecard.selection__hr_kpi_period__quarter__2
+#: model:ir.model.fields.selection,name:l10n_ua_hr_scorecard.selection__hr_kpi_target__period_quarter__2
+#: model:ir.model.fields.selection,name:l10n_ua_hr_scorecard.selection__hr_kpi_target_copy_wizard__period_quarter__2
+msgid "Q2"
+msgstr "II квартал"
+
+#. module: l10n_ua_hr_scorecard
+#: model:ir.model.fields.selection,name:l10n_ua_hr_scorecard.selection__hr_kpi_period__quarter__3
+#: model:ir.model.fields.selection,name:l10n_ua_hr_scorecard.selection__hr_kpi_target__period_quarter__3
+#: model:ir.model.fields.selection,name:l10n_ua_hr_scorecard.selection__hr_kpi_target_copy_wizard__period_quarter__3
+msgid "Q3"
+msgstr "III квартал"
+
+#. module: l10n_ua_hr_scorecard
+#: model:ir.model.fields.selection,name:l10n_ua_hr_scorecard.selection__hr_kpi_period__quarter__4
+#: model:ir.model.fields.selection,name:l10n_ua_hr_scorecard.selection__hr_kpi_target__period_quarter__4
+#: model:ir.model.fields.selection,name:l10n_ua_hr_scorecard.selection__hr_kpi_target_copy_wizard__period_quarter__4
+msgid "Q4"
+msgstr "IV квартал"
+
+#. module: l10n_ua_hr_scorecard
+#: model:ir.model.fields,field_description:l10n_ua_hr_scorecard.field_hr_kpi_period__quarter
+#: model:ir.model.fields,field_description:l10n_ua_hr_scorecard.field_hr_kpi_target__period_quarter
+#: model:ir.model.fields,field_description:l10n_ua_hr_scorecard.field_hr_kpi_target_copy_wizard__period_quarter
+#: model:ir.model.fields.selection,name:l10n_ua_hr_scorecard.selection__hr_kpi_period__period_type__quarter
+#: model:ir.model.fields.selection,name:l10n_ua_hr_scorecard.selection__hr_kpi_target__period_type__quarter
+#: model:ir.model.fields.selection,name:l10n_ua_hr_scorecard.selection__hr_kpi_target_copy_wizard__period_type__quarter
+msgid "Quarter"
+msgstr "Квартал"
+
+#. module: l10n_ua_hr_scorecard
+#: model:hr.kpi,name:l10n_ua_hr_scorecard.kpi_quarterly_report
+msgid "Quarterly Report Submitted"
+msgstr "Квартальний звіт подано"
+
+#. module: l10n_ua_hr_scorecard
+#: model:ir.model.fields,field_description:l10n_ua_hr_scorecard.field_hr_kpi_target__fetch_ready
+msgid "Ready to Get Data"
+msgstr "Готово до отримання даних"
+
+#. module: l10n_ua_hr_scorecard
+#. odoo-python
+#: code:addons/l10n_ua_hr_scorecard/models/hr_scorecard.py:0
+msgid "Reconciliation for scorecard %s"
+msgstr "Остаточний розрахунок за карткою KPI %s"
+
+#. module: l10n_ua_hr_scorecard
+#: model:ir.model.fields,field_description:l10n_ua_hr_scorecard.field_hr_scorecard__name
+msgid "Reference"
+msgstr "Номер"
+
+#. module: l10n_ua_hr_scorecard
+#: model:ir.model.fields,field_description:l10n_ua_hr_scorecard.field_hr_kpi_target_source__pnl_report_id
+msgid "Report"
+msgstr "Звіт"
+
+#. module: l10n_ua_hr_scorecard
+#: model:ir.model.fields,field_description:l10n_ua_hr_scorecard.field_hr_kpi_target_source__report_usable
+msgid "Report Confirmed"
+msgstr "Звіт затверджено"
+
+#. module: l10n_ua_hr_scorecard
+#: model:ir.model.fields,field_description:l10n_ua_hr_scorecard.field_hr_kpi_target_source__date_to
+msgid "Report End"
+msgstr "Кінець звіту"
+
+#. module: l10n_ua_hr_scorecard
+#: model:ir.model.fields,field_description:l10n_ua_hr_scorecard.field_hr_kpi_target_source__report_id
+msgid "Report ID"
+msgstr "ID звіту"
+
+#. module: l10n_ua_hr_scorecard
+#: model:ir.model.fields,field_description:l10n_ua_hr_scorecard.field_hr_kpi_target_source__model
+msgid "Report Model"
+msgstr "Модель звіту"
+
+#. module: l10n_ua_hr_scorecard
+#: model:ir.model.fields,field_description:l10n_ua_hr_scorecard.field_hr_kpi_target_source__date_from
+msgid "Report Start"
+msgstr "Початок звіту"
+
+#. module: l10n_ua_hr_scorecard
+#: model:ir.model.fields,field_description:l10n_ua_hr_scorecard.field_hr_kpi_target_source__model_name
+msgid "Report Type"
+msgstr "Тип звіту"
+
+#. module: l10n_ua_hr_scorecard
+#: model_terms:ir.ui.view,arch_db:l10n_ua_hr_scorecard.hr_kpi_target_view_form
+#: model_terms:ir.ui.view,arch_db:l10n_ua_hr_scorecard.hr_kpi_view_form
+#: model_terms:ir.ui.view,arch_db:l10n_ua_hr_scorecard.hr_scorecard_view_form
+msgid "Reset to Draft"
+msgstr "Повернути в чернетку"
+
+#. module: l10n_ua_hr_scorecard
+#: model:ir.model.fields,field_description:l10n_ua_hr_scorecard.field_hr_scorecard__activity_user_id
+msgid "Responsible User"
+msgstr "Відповідальний користувач"
+
+#. module: l10n_ua_hr_scorecard
+#: model_terms:ir.ui.view,arch_db:l10n_ua_hr_scorecard.hr_kpi_target_view_form
+msgid "Result"
+msgstr "Результат"
+
+#. module: l10n_ua_hr_scorecard
+#: model:ir.model.fields,field_description:l10n_ua_hr_scorecard.field_hr_scorecard__message_has_sms_error
+msgid "SMS Delivery error"
+msgstr "Помилка доставки SMS"
+
+#. module: l10n_ua_hr_scorecard
+#: model:ir.model.fields,field_description:l10n_ua_hr_scorecard.field_hr_scorecard_employee_config__salary_pct
+msgid "Salary Share (%)"
+msgstr "Частка окладу (%)"
+
+#. module: l10n_ua_hr_scorecard
+#. odoo-python
+#: code:addons/l10n_ua_hr_scorecard/models/hr_scorecard_employee_config.py:0
+msgid "Salary share + Bonus share must equal 100%% (currently %.2f%%)."
+msgstr ""
+"Сума частки окладу та частки премії має дорівнювати 100%% (зараз %.2f%%)."
+
+#. module: l10n_ua_hr_scorecard
+#: model:hr.kpi,name:l10n_ua_hr_scorecard.kpi_sales_target
+msgid "Sales Target"
+msgstr "План продажів"
+
+#. module: l10n_ua_hr_scorecard
+#: model_terms:ir.ui.view,arch_db:l10n_ua_hr_scorecard.hr_kpi_assign_wizard_view_form
+msgid "Save Assignments"
+msgstr "Зберегти призначення"
+
+#. module: l10n_ua_hr_scorecard
+#. odoo-python
+#: code:addons/l10n_ua_hr_scorecard/models/hr_scorecard_line.py:0
+#: model:ir.model.fields,field_description:l10n_ua_hr_scorecard.field_hr_scorecard_employee_result__scorecard_id
+#: model:ir.model.fields,field_description:l10n_ua_hr_scorecard.field_hr_scorecard_line__scorecard_id
+#: model_terms:ir.ui.view,arch_db:l10n_ua_hr_scorecard.hr_scorecard_view_form
+msgid "Scorecard"
+msgstr "Картка KPI"
+
+#. module: l10n_ua_hr_scorecard
+#: model:ir.model,name:l10n_ua_hr_scorecard.model_hr_scorecard_line
+msgid "Scorecard KPI Line"
+msgstr "Рядок KPI картки"
+
+#. module: l10n_ua_hr_scorecard
+#: model:ir.model,name:l10n_ua_hr_scorecard.model_hr_scorecard_employee_result
+msgid "Scorecard Result per Employee"
+msgstr "Результат картки KPI по працівнику"
+
+#. module: l10n_ua_hr_scorecard
+#: model_terms:ir.ui.view,arch_db:l10n_ua_hr_scorecard.hr_kpi_target_view_form
+msgid ""
+"Select every source report for exactly the period of the target to get the "
+"data."
+msgstr ""
+"Щоб отримати дані, виберіть усі звіти-джерела точно за період цільового "
+"значення."
+
+#. module: l10n_ua_hr_scorecard
+#. odoo-python
+#: code:addons/l10n_ua_hr_scorecard/models/hr_kpi_target.py:0
+msgid ""
+"Select the %(types)s report for exactly the period of the KPI target "
+"%(target)s."
+msgstr ""
+"Виберіть звіт «%(types)s» точно за період цільового значення KPI %(target)s."
+
+#. module: l10n_ua_hr_scorecard
+#. odoo-python
+#: code:addons/l10n_ua_hr_scorecard/models/hr_kpi.py:0
+msgid "Select the Odoo parameter of KPI %s."
+msgstr "Виберіть параметр Odoo для KPI %s."
+
+#. module: l10n_ua_hr_scorecard
+#. odoo-python
+#: code:addons/l10n_ua_hr_scorecard/models/hr_kpi_variable.py:0
+msgid "Select the Odoo parameter of the variable %s."
+msgstr "Виберіть параметр Odoo для змінної %s."
+
+#. module: l10n_ua_hr_scorecard
+#. odoo-python
+#: code:addons/l10n_ua_hr_scorecard/models/hr_kpi_period.py:0
+msgid "Select the month of the KPI period."
+msgstr "Виберіть місяць періоду KPI."
+
+#. module: l10n_ua_hr_scorecard
+#. odoo-python
+#: code:addons/l10n_ua_hr_scorecard/models/hr_kpi_target.py:0
+#: code:addons/l10n_ua_hr_scorecard/models/hr_kpi_target_copy_wizard.py:0
+msgid "Select the period type, year and quarter or month first."
+msgstr "Спочатку виберіть тип періоду, рік і квартал або місяць."
+
+#. module: l10n_ua_hr_scorecard
+#. odoo-python
+#: code:addons/l10n_ua_hr_scorecard/models/hr_kpi_period.py:0
+msgid "Select the quarter of the KPI period."
+msgstr "Виберіть квартал періоду KPI."
+
+#. module: l10n_ua_hr_scorecard
+#: model_terms:ir.ui.view,arch_db:l10n_ua_hr_scorecard.hr_kpi_assign_wizard_view_form
+msgid ""
+"Selecting a job position adds the KPI to its scorecard; deselecting\n"
+"                        removes it. Removal requires the scorecard to be in Draft state.\n"
+"                        Employees are taken from the job position automatically."
+msgstr ""
+"Вибір посади додає KPI до її картки; зняття вибору — видаляє його.\n"
+"                        Для видалення картка KPI має бути у статусі «Чернетка».\n"
+"                        Працівники визначаються за посадою автоматично."
+
+#. module: l10n_ua_hr_scorecard
+#: model:ir.model.fields.selection,name:l10n_ua_hr_scorecard.selection__hr_kpi__system_field__selling_expenses
+#: model:ir.model.fields.selection,name:l10n_ua_hr_scorecard.selection__hr_kpi_target_input__system_field__selling_expenses
+#: model:ir.model.fields.selection,name:l10n_ua_hr_scorecard.selection__hr_kpi_variable__system_field__selling_expenses
+msgid "Selling expenses"
+msgstr "Витрати на збут"
+
+#. module: l10n_ua_hr_scorecard
+#: model:ir.model.fields.selection,name:l10n_ua_hr_scorecard.selection__hr_kpi_period__month__9
+#: model:ir.model.fields.selection,name:l10n_ua_hr_scorecard.selection__hr_kpi_target__period_month__9
+#: model:ir.model.fields.selection,name:l10n_ua_hr_scorecard.selection__hr_kpi_target_copy_wizard__period_month__9
+msgid "September"
+msgstr "Вересень"
+
+#. module: l10n_ua_hr_scorecard
+#: model:ir.model.fields,field_description:l10n_ua_hr_scorecard.field_hr_kpi__sequence
+#: model:ir.model.fields,field_description:l10n_ua_hr_scorecard.field_hr_kpi_assignment_line__sequence
+#: model:ir.model.fields,field_description:l10n_ua_hr_scorecard.field_hr_kpi_target_input__sequence
+#: model:ir.model.fields,field_description:l10n_ua_hr_scorecard.field_hr_kpi_variable__sequence
+#: model:ir.model.fields,field_description:l10n_ua_hr_scorecard.field_hr_scorecard_line__sequence
+msgid "Sequence"
+msgstr "Послідовність"
+
+#. module: l10n_ua_hr_scorecard
+#: model_terms:ir.actions.act_window,help:l10n_ua_hr_scorecard.action_hr_kpi_targets
+msgid "Set planned and actual values for KPIs by period"
+msgstr "Задайте планові та фактичні значення KPI за періодами"
+
+#. module: l10n_ua_hr_scorecard
+#: model:ir.model.fields,help:l10n_ua_hr_scorecard.field_hr_scorecard_employee_config__bonus_pct
+msgid ""
+"Share of total compensation paid as KPI-driven bonus. Salary + Bonus shares "
+"must sum to 100%."
+msgstr ""
+"Частка загальної винагороди, що виплачується як премія за KPI. Сума часток "
+"окладу та премії має становити 100%."
+
+#. module: l10n_ua_hr_scorecard
+#: model:ir.model.fields,help:l10n_ua_hr_scorecard.field_hr_scorecard_employee_config__salary_pct
+msgid "Share of total compensation paid as fixed salary."
+msgstr "Частка загальної винагороди, що виплачується як фіксований оклад."
+
+#. module: l10n_ua_hr_scorecard
+#. odoo-python
+#: code:addons/l10n_ua_hr_scorecard/models/hr_kpi_target_copy_wizard.py:0
+msgid ""
+"Skipped:\n"
+"%s"
+msgstr ""
+"Пропущено:\n"
+"%s"
+
+#. module: l10n_ua_hr_scorecard
+#: model:ir.model.fields,field_description:l10n_ua_hr_scorecard.field_hr_kpi__system_source_model
+#: model:ir.model.fields,field_description:l10n_ua_hr_scorecard.field_hr_kpi_target__system_field_model
+#: model:ir.model.fields,field_description:l10n_ua_hr_scorecard.field_hr_kpi_variable__source_model
+msgid "Source Report Model"
+msgstr "Модель звіту-джерела"
+
+#. module: l10n_ua_hr_scorecard
+#: model:ir.model.fields,field_description:l10n_ua_hr_scorecard.field_hr_kpi__source_models
+msgid "Source Report Models"
+msgstr "Моделі звітів-джерел"
+
+#. module: l10n_ua_hr_scorecard
+#: model:ir.model.fields,field_description:l10n_ua_hr_scorecard.field_hr_kpi_target__source_ids
+#: model_terms:ir.ui.view,arch_db:l10n_ua_hr_scorecard.hr_kpi_target_view_form
+msgid "Source Reports"
+msgstr "Звіти-джерела"
+
+#. module: l10n_ua_hr_scorecard
+#: model:ir.model.fields,field_description:l10n_ua_hr_scorecard.field_hr_kpi_period__date_from
+msgid "Start Date"
+msgstr "Дата початку"
+
+#. module: l10n_ua_hr_scorecard
+#: model:ir.model.fields,field_description:l10n_ua_hr_scorecard.field_hr_kpi__state
+#: model:ir.model.fields,field_description:l10n_ua_hr_scorecard.field_hr_kpi_period__state
+#: model:ir.model.fields,field_description:l10n_ua_hr_scorecard.field_hr_kpi_target__state
+#: model:ir.model.fields,field_description:l10n_ua_hr_scorecard.field_hr_scorecard__state
+#: model:ir.model.fields,field_description:l10n_ua_hr_scorecard.field_hr_scorecard_line__scorecard_state
+#: model:ir.model.fields,field_description:l10n_ua_hr_scorecard.field_hr_scorecard_line__target_state
+#: model_terms:ir.ui.view,arch_db:l10n_ua_hr_scorecard.hr_kpi_target_view_search
+msgid "Status"
+msgstr "Статус"
+
+#. module: l10n_ua_hr_scorecard
+#: model:ir.model.fields,help:l10n_ua_hr_scorecard.field_hr_scorecard__activity_state
+msgid ""
+"Status based on activities\n"
+"Overdue: Due date is already passed\n"
+"Today: Activity date is today\n"
+"Planned: Future activities."
+msgstr ""
+"Етап заснований на діях\n"
+"Протерміновано: термін виконання вже минув\n"
+"Сьогодні: дата дії сьогодні\n"
+"Заплановано: майбутні дії."
+
+#. module: l10n_ua_hr_scorecard
+#: model:ir.model.fields,field_description:l10n_ua_hr_scorecard.field_hr_kpi_period__child_ids
+msgid "Sub-periods"
+msgstr "Вкладені періоди"
+
+#. module: l10n_ua_hr_scorecard
+#: model:ir.model.fields,help:l10n_ua_hr_scorecard.field_hr_scorecard__weighted_result
+#: model:ir.model.fields,help:l10n_ua_hr_scorecard.field_hr_scorecard_employee_result__weighted_result
+msgid ""
+"Sum of (KPI achievement x weight) over all lines. May exceed or fall below "
+"100%."
+msgstr ""
+"Сума (виконання KPI x вага) за всіма рядками. Може бути більшою або меншою "
+"за 100%."
+
+#. module: l10n_ua_hr_scorecard
+#: model:ir.model.fields,help:l10n_ua_hr_scorecard.field_hr_scorecard_employee_result__bonus_model
+msgid ""
+"Taken from the employee KPI config. Empty when the employee has no config "
+"and therefore receives no bonus."
+msgstr ""
+"Береться з налаштувань KPI працівника. Порожнє, якщо налаштувань немає, — "
+"тоді премія не нараховується."
+
+#. module: l10n_ua_hr_scorecard
+#: model:ir.model.fields,field_description:l10n_ua_hr_scorecard.field_hr_scorecard_line__target_id
+msgid "Target"
+msgstr "Цільове значення"
+
+#. module: l10n_ua_hr_scorecard
+#: model:ir.model.fields,field_description:l10n_ua_hr_scorecard.field_hr_kpi__target_count
+#: model:ir.model.fields,field_description:l10n_ua_hr_scorecard.field_hr_kpi_assignment__target_count
+msgid "Target Count"
+msgstr "Кількість цільових значень"
+
+#. module: l10n_ua_hr_scorecard
+#: model:ir.ui.menu,name:l10n_ua_hr_scorecard.menu_hr_kpi_targets
+#: model_terms:ir.ui.view,arch_db:l10n_ua_hr_scorecard.hr_kpi_assignment_view_form
+#: model_terms:ir.ui.view,arch_db:l10n_ua_hr_scorecard.hr_kpi_period_view_form
+#: model_terms:ir.ui.view,arch_db:l10n_ua_hr_scorecard.hr_kpi_view_form
+msgid "Targets"
+msgstr "Цільові значення"
+
+#. module: l10n_ua_hr_scorecard
+#: model:ir.model.fields,help:l10n_ua_hr_scorecard.field_hr_kpi__system_source_model
+#: model:ir.model.fields,help:l10n_ua_hr_scorecard.field_hr_kpi_target__system_field_model
+#: model:ir.model.fields,help:l10n_ua_hr_scorecard.field_hr_kpi_variable__source_model
+msgid ""
+"Technical name of the model of the reports the Odoo parameter is read from."
+msgstr "Технічна назва моделі звітів, з яких зчитується параметр Odoo."
+
+#. module: l10n_ua_hr_scorecard
+#. odoo-python
+#: code:addons/l10n_ua_hr_scorecard/models/hr_kpi_target.py:0
+msgid ""
+"The KPI target %(target)s has no value for the formula variables %(codes)s."
+msgstr ""
+"Цільове значення KPI %(target)s не має значень для змінних формули "
+"%(codes)s."
+
+#. module: l10n_ua_hr_scorecard
+#. odoo-python
+#: code:addons/l10n_ua_hr_scorecard/models/hr_kpi_target.py:0
+msgid "The Odoo parameter of KPI %s is not supported."
+msgstr "Параметр Odoo KPI %s не підтримується."
+
+#. module: l10n_ua_hr_scorecard
+#: model:ir.model.fields,help:l10n_ua_hr_scorecard.field_hr_kpi_target__computed_actual
+msgid ""
+"The actual value is read from Odoo data or computed by the KPI formula."
+msgstr ""
+"Фактичне значення береться з даних Odoo або розраховується за формулою KPI."
+
+#. module: l10n_ua_hr_scorecard
+#: model:ir.model.fields,help:l10n_ua_hr_scorecard.field_hr_kpi_assignment__date_from
+msgid ""
+"The assignment is in force from this date until the next assignment of the "
+"job position starts."
+msgstr "Призначення діє з цієї дати до початку наступного призначення посади."
+
+#. module: l10n_ua_hr_scorecard
+#. odoo-python
+#: code:addons/l10n_ua_hr_scorecard/models/hr_kpi_variable.py:0
+msgid ""
+"The code %s of a KPI formula variable must start with a letter and contain "
+"only letters, digits and underscores."
+msgstr ""
+"Код %s змінної формули KPI має починатися з літери й містити лише літери, "
+"цифри та підкреслення."
+
+#. module: l10n_ua_hr_scorecard
+#: model_terms:ir.ui.view,arch_db:l10n_ua_hr_scorecard.hr_kpi_target_view_form
+msgid ""
+"The dates of every report must be exactly the dates of the period of the target,\n"
+"                            otherwise the changes cannot be saved."
+msgstr ""
+"Дати кожного звіту мають точно збігатися з датами періоду цільового значення,\n"
+"                            інакше зміни не можна зберегти."
+
+#. module: l10n_ua_hr_scorecard
+#. odoo-python
+#: code:addons/l10n_ua_hr_scorecard/models/hr_kpi.py:0
+msgid ""
+"The formula builder of KPI %s works with Odoo data: select Odoo data as its "
+"data source."
+msgstr ""
+"Конструктор формули KPI %s працює з даними з Odoo: виберіть «Дані з Odoo» як"
+" джерело даних."
+
+#. module: l10n_ua_hr_scorecard
+#. odoo-python
+#: code:addons/l10n_ua_hr_scorecard/models/hr_kpi.py:0
+msgid "The formula is not a valid arithmetic expression."
+msgstr "Формула не є коректним арифметичним виразом."
+
+#. module: l10n_ua_hr_scorecard
+#. odoo-python
+#: code:addons/l10n_ua_hr_scorecard/models/hr_kpi_target.py:0
+msgid "The formula of KPI %(kpi)s cannot be computed: %(error)s"
+msgstr "Формулу KPI %(kpi)s неможливо розрахувати: %(error)s"
+
+#. module: l10n_ua_hr_scorecard
+#. odoo-python
+#: code:addons/l10n_ua_hr_scorecard/models/hr_kpi_target.py:0
+msgid "The formula of KPI %s divides by zero with the values of this target."
+msgstr "Формула KPI %s ділить на нуль зі значеннями цього цільового значення."
+
+#. module: l10n_ua_hr_scorecard
+#: model:ir.model.fields,help:l10n_ua_hr_scorecard.field_hr_kpi_period__parent_id
+msgid "The quarter of a month, or the year of a quarter."
+msgstr "Квартал для місяця або рік для кварталу."
+
+#. module: l10n_ua_hr_scorecard
+#. odoo-python
+#: code:addons/l10n_ua_hr_scorecard/models/hr_kpi_target_source.py:0
+msgid ""
+"The report %(report)s is not confirmed: only confirmed %(type)s reports can "
+"be a source of actual values."
+msgstr ""
+"Звіт %(report)s не затверджено: джерелом фактичних значень можуть бути лише "
+"затверджені звіти «%(type)s»."
+
+#. module: l10n_ua_hr_scorecard
+#. odoo-python
+#: code:addons/l10n_ua_hr_scorecard/models/hr_kpi_target.py:0
+msgid "The report %s has not been calculated yet: calculate it first."
+msgstr "Звіт %s ще не розраховано: спочатку розрахуйте його."
+
+#. module: l10n_ua_hr_scorecard
+#: model:ir.model.fields,help:l10n_ua_hr_scorecard.field_hr_kpi_target_source__dates_match
+msgid "The report covers exactly the period selected on the target."
+msgstr "Звіт точно охоплює період, вибраний у цільовому значенні."
+
+#. module: l10n_ua_hr_scorecard
+#: model:ir.model.fields,help:l10n_ua_hr_scorecard.field_hr_kpi_target_source__report_usable
+msgid "The report is confirmed and can be used as a source of actual values."
+msgstr ""
+"Звіт затверджено, і його можна використовувати як джерело фактичних значень."
+
+#. module: l10n_ua_hr_scorecard
+#. odoo-python
+#: code:addons/l10n_ua_hr_scorecard/models/hr_kpi_assign_wizard.py:0
+msgid "The selected company is not accessible in your current session."
+msgstr "Вибрана компанія недоступна в поточному сеансі."
+
+#. module: l10n_ua_hr_scorecard
+#: model:ir.model.fields,help:l10n_ua_hr_scorecard.field_hr_kpi_target__period_missing
+msgid "The selected period does not exist yet and will be generated on save."
+msgstr ""
+"Вибраного періоду ще не існує, його буде згенеровано під час збереження."
+
+#. module: l10n_ua_hr_scorecard
+#: model:ir.model.fields,help:l10n_ua_hr_scorecard.field_hr_kpi_target_copy_wizard__period_missing
+msgid "The selected period does not exist yet and will be generated."
+msgstr "Вибраного періоду ще не існує, його буде згенеровано."
+
+#. module: l10n_ua_hr_scorecard
+#. odoo-python
+#: code:addons/l10n_ua_hr_scorecard/models/hr_kpi_target.py:0
+msgid ""
+"The source report %(report)s covers %(report_from)s - %(report_to)s, but the"
+" period %(period)s of the KPI target covers %(period_from)s - %(period_to)s."
+" Select a report for exactly the period of the target."
+msgstr ""
+"Звіт-джерело %(report)s охоплює %(report_from)s - %(report_to)s, а період "
+"%(period)s цільового значення KPI охоплює %(period_from)s - %(period_to)s. "
+"Виберіть звіт точно за період цільового значення."
+
+#. module: l10n_ua_hr_scorecard
+#. odoo-python
+#: code:addons/l10n_ua_hr_scorecard/models/hr_kpi_target.py:0
+msgid "The source report of the KPI target %s belongs to another company."
+msgstr "Звіт-джерело цільового значення KPI %s належить іншій компанії."
+
+#. module: l10n_ua_hr_scorecard
+#: model_terms:ir.ui.view,arch_db:l10n_ua_hr_scorecard.hr_kpi_assignment_view_form
+msgid "The total weight of the KPIs of a job position must not exceed 100%."
+msgstr "Сумарна вага KPI посади не повинна перевищувати 100%."
+
+#. module: l10n_ua_hr_scorecard
+#. odoo-python
+#: code:addons/l10n_ua_hr_scorecard/models/hr_kpi_assignment.py:0
+msgid ""
+"The total weight of the KPIs of job position %(job)s is %(total)s%%. It must"
+" not exceed 100%%."
+msgstr ""
+"Сумарна вага KPI посади %(job)s становить %(total)s%%. Вона не повинна "
+"перевищувати 100%%."
+
+#. module: l10n_ua_hr_scorecard
+#. odoo-javascript
+#: code:addons/l10n_ua_hr_scorecard/static/src/kpi_map/kpi_map.xml:0
+msgid "The weights of the KPIs of this job position do not total 100%"
+msgstr "Сума ваг KPI цієї посади не дорівнює 100%"
+
+#. module: l10n_ua_hr_scorecard
+#. odoo-python
+#: code:addons/l10n_ua_hr_scorecard/models/hr_kpi_period.py:0
+msgid "The year of a KPI period must be between %(min)s and %(max)s."
+msgstr "Рік періоду KPI має бути в межах від %(min)s до %(max)s."
+
+#. module: l10n_ua_hr_scorecard
+#: model:ir.model.constraint,message:l10n_ua_hr_scorecard.constraint_hr_kpi_period_name_company_uniq
+msgid "This KPI period already exists."
+msgstr "Такий період KPI уже існує."
+
+#. module: l10n_ua_hr_scorecard
+#: model_terms:ir.ui.view,arch_db:l10n_ua_hr_scorecard.hr_kpi_target_view_form
+msgid ""
+"This KPI period does not exist yet. It will be generated automatically on "
+"save."
+msgstr ""
+"Такого періоду KPI ще не існує. Його буде згенеровано автоматично під час "
+"збереження."
+
+#. module: l10n_ua_hr_scorecard
+#: model_terms:ir.ui.view,arch_db:l10n_ua_hr_scorecard.hr_kpi_target_copy_wizard_view_form
+msgid ""
+"This KPI period does not exist yet. It will be generated automatically."
+msgstr "Такого періоду KPI ще не існує. Його буде згенеровано автоматично."
+
+#. module: l10n_ua_hr_scorecard
+#: model:ir.model.fields,field_description:l10n_ua_hr_scorecard.field_hr_kpi_assignment__total_weight
+#: model:ir.model.fields,field_description:l10n_ua_hr_scorecard.field_hr_scorecard__total_weight
+msgid "Total Weight (%)"
+msgstr "Загальна вага (%)"
+
+#. module: l10n_ua_hr_scorecard
+#: model_terms:ir.ui.view,arch_db:l10n_ua_hr_scorecard.hr_scorecard_employee_result_view_list
+msgid "Total accrued"
+msgstr "Усього нараховано"
+
+#. module: l10n_ua_hr_scorecard
+#: model_terms:ir.ui.view,arch_db:l10n_ua_hr_scorecard.hr_scorecard_employee_result_view_list
+msgid "Total bonus"
+msgstr "Усього премій"
+
+#. module: l10n_ua_hr_scorecard
+#: model:ir.model.fields,help:l10n_ua_hr_scorecard.field_hr_scorecard_employee_result__accrued_amount
+msgid ""
+"Total of the hr.bonus records already accrued for the employee from this "
+"scorecard."
+msgstr "Сума записів hr.bonus, уже нарахованих працівнику з цієї картки KPI."
+
+#. module: l10n_ua_hr_scorecard
+#: model_terms:ir.ui.view,arch_db:l10n_ua_hr_scorecard.hr_scorecard_employee_result_view_list
+msgid "Total planned bonus"
+msgstr "Усього планових премій"
+
+#. module: l10n_ua_hr_scorecard
+#: model_terms:ir.ui.view,arch_db:l10n_ua_hr_scorecard.hr_scorecard_employee_result_view_list
+msgid "Total prorated bonus base"
+msgstr "Усього пропорційних баз премії"
+
+#. module: l10n_ua_hr_scorecard
+#: model_terms:ir.ui.view,arch_db:l10n_ua_hr_scorecard.hr_kpi_assignment_view_form
+#: model_terms:ir.ui.view,arch_db:l10n_ua_hr_scorecard.hr_scorecard_view_form
+msgid "Total weight"
+msgstr "Загальна вага"
+
+#. module: l10n_ua_hr_scorecard
+#. odoo-python
+#: code:addons/l10n_ua_hr_scorecard/models/hr_scorecard.py:0
+msgid ""
+"Total weight of KPI lines must equal 100%% on confirmed scorecards "
+"(currently %.2f%%)."
+msgstr ""
+"Загальна вага рядків KPI у підтверджених картках має дорівнювати 100%% "
+"(зараз %.2f%%)."
+
+#. module: l10n_ua_hr_scorecard
+#: model:ir.model.fields,help:l10n_ua_hr_scorecard.field_hr_scorecard__activity_exception_decoration
+msgid "Type of the exception activity on record."
+msgstr "Тип дії виключення на записі."
+
+#. module: l10n_ua_hr_scorecard
+#: model:ir.model.fields,help:l10n_ua_hr_scorecard.field_hr_scorecard_employee_config__bonus_type_id
+msgid "Type used when auto-accruing hr.bonus records from scorecards."
+msgstr ""
+"Тип, що використовується для автоматичного нарахування записів hr.bonus з "
+"карток KPI."
+
+#. module: l10n_ua_hr_scorecard
+#: model:ir.model.fields,help:l10n_ua_hr_scorecard.field_hr_kpi__higher_is_better
+#: model:ir.model.fields,help:l10n_ua_hr_scorecard.field_hr_kpi_target__higher_is_better
+#: model:ir.model.fields,help:l10n_ua_hr_scorecard.field_hr_scorecard_line__higher_is_better
+msgid ""
+"Uncheck for KPIs where lower actual value means better performance (e.g. "
+"defects, downtime). The coefficient is then inverted: planned / actual."
+msgstr ""
+"Зніміть позначку для KPI, де менше фактичне значення означає кращий "
+"результат (напр. брак, простої). Тоді коефіцієнт обертається: план / факт."
+
+#. module: l10n_ua_hr_scorecard
+#: model:ir.model.fields,field_description:l10n_ua_hr_scorecard.field_hr_kpi__uom_name
+#: model:ir.model.fields,field_description:l10n_ua_hr_scorecard.field_hr_kpi_target__uom_name
+#: model:ir.model.fields,field_description:l10n_ua_hr_scorecard.field_hr_scorecard_line__uom_name
+msgid "Unit of Measure"
+msgstr "Одиниця виміру"
+
+#. module: l10n_ua_hr_scorecard
+#. odoo-python
+#: code:addons/l10n_ua_hr_scorecard/models/hr_kpi.py:0
+msgid "Unknown variables in the formula: %s."
+msgstr "Невідомі змінні у формулі: %s."
+
+#. module: l10n_ua_hr_scorecard
+#: model_terms:ir.ui.view,arch_db:l10n_ua_hr_scorecard.hr_kpi_view_form
+msgid ""
+"Use the variable codes, numbers, + - * / and parentheses. The variables\n"
+"                            are read from the reports selected on each KPI target; write constants\n"
+"                            directly in the formula."
+msgstr ""
+"Використовуйте коди змінних, числа, + - * / та дужки. Змінні\n"
+"                            зчитуються зі звітів, вибраних у кожному цільовому значенні KPI; константи\n"
+"                            записуйте прямо у формулі."
+
+#. module: l10n_ua_hr_scorecard
+#: model:ir.model.fields,field_description:l10n_ua_hr_scorecard.field_hr_kpi_assignment__date_from
+#: model_terms:ir.ui.view,arch_db:l10n_ua_hr_scorecard.hr_kpi_assignment_view_search
+msgid "Valid From"
+msgstr "Діє з"
+
+#. module: l10n_ua_hr_scorecard
+#: model:ir.model.fields,field_description:l10n_ua_hr_scorecard.field_hr_kpi_assignment__date_to
+msgid "Valid Until"
+msgstr "Діє до"
+
+#. module: l10n_ua_hr_scorecard
+#: model:ir.model.fields,field_description:l10n_ua_hr_scorecard.field_hr_kpi_target_input__value
+msgid "Value"
+msgstr "Значення"
+
+#. module: l10n_ua_hr_scorecard
+#: model_terms:ir.ui.view,arch_db:l10n_ua_hr_scorecard.hr_kpi_target_view_form
+msgid "Values"
+msgstr "Значення"
+
+#. module: l10n_ua_hr_scorecard
+#: model:ir.model.fields,help:l10n_ua_hr_scorecard.field_hr_kpi_target__input_ids
+msgid "Values of the variables of the KPI formula for this target."
+msgstr "Значення змінних формули KPI для цього цільового значення."
+
+#. module: l10n_ua_hr_scorecard
+#: model:ir.model.fields,field_description:l10n_ua_hr_scorecard.field_hr_kpi_target_input__variable_id
+msgid "Variable"
+msgstr "Змінна"
+
+#. module: l10n_ua_hr_scorecard
+#. odoo-javascript
+#: code:addons/l10n_ua_hr_scorecard/static/src/kpi_formula/kpi_formula_field.js:0
+msgid "Variable %s"
+msgstr "Змінна %s"
+
+#. module: l10n_ua_hr_scorecard
+#: model:ir.model.fields,field_description:l10n_ua_hr_scorecard.field_hr_kpi__variable_ids
+msgid "Variables"
+msgstr "Змінні"
+
+#. module: l10n_ua_hr_scorecard
+#: model:ir.model.fields,field_description:l10n_ua_hr_scorecard.field_hr_kpi_assignment_line__weight
+#: model:ir.model.fields,field_description:l10n_ua_hr_scorecard.field_hr_scorecard_line__weight
+msgid "Weight (%)"
+msgstr "Вага (%)"
+
+#. module: l10n_ua_hr_scorecard
+#: model_terms:ir.ui.view,arch_db:l10n_ua_hr_scorecard.hr_kpi_assignment_view_search
+msgid "Weight Not 100%"
+msgstr "Вага не 100%"
+
+#. module: l10n_ua_hr_scorecard
+#. odoo-python
+#: code:addons/l10n_ua_hr_scorecard/models/hr_kpi_assignment.py:0
+#: code:addons/l10n_ua_hr_scorecard/models/hr_scorecard_line.py:0
+msgid "Weight must be between 0 and 100."
+msgstr "Вага має бути в межах від 0 до 100."
+
+#. module: l10n_ua_hr_scorecard
+#: model:ir.model.fields,help:l10n_ua_hr_scorecard.field_hr_scorecard_line__weight
+msgid ""
+"Weight of this KPI in the overall scorecard. All weights on a confirmed "
+"scorecard must total 100%. Always editable."
+msgstr ""
+"Вага цього KPI в загальній картці. Сума всіх ваг у підтвердженій картці має "
+"становити 100%. Редагується завжди."
+
+#. module: l10n_ua_hr_scorecard
+#. odoo-javascript
+#: code:addons/l10n_ua_hr_scorecard/static/src/kpi_map/kpi_map.xml:0
+msgid "Weight, %"
+msgstr "Вага, %"
+
+#. module: l10n_ua_hr_scorecard
+#: model:ir.model.fields,field_description:l10n_ua_hr_scorecard.field_hr_scorecard_line__weighted_achievement
+msgid "Weighted (%)"
+msgstr "Зважене (%)"
+
+#. module: l10n_ua_hr_scorecard
+#. odoo-javascript
+#: code:addons/l10n_ua_hr_scorecard/static/src/kpi_map/kpi_map.xml:0
+msgid "Weighted Result"
+msgstr "Зважений результат"
+
+#. module: l10n_ua_hr_scorecard
+#: model:ir.model.fields,field_description:l10n_ua_hr_scorecard.field_hr_scorecard__weighted_result
+#: model:ir.model.fields,field_description:l10n_ua_hr_scorecard.field_hr_scorecard_employee_result__weighted_result
+msgid "Weighted Result (%)"
+msgstr "Зважений результат (%)"
+
+#. module: l10n_ua_hr_scorecard
+#: model_terms:ir.ui.view,arch_db:l10n_ua_hr_scorecard.hr_scorecard_view_form
+msgid "Weighted result"
+msgstr "Зважений результат"
+
+#. module: l10n_ua_hr_scorecard
+#: model:ir.model.fields,help:l10n_ua_hr_scorecard.field_hr_kpi__data_source
+#: model:ir.model.fields,help:l10n_ua_hr_scorecard.field_hr_kpi_target__data_source
+msgid ""
+"Where the actual value of the KPI targets comes from: typed in by hand, or "
+"read from Odoo data for the period and company of the target."
+msgstr ""
+"Звідки береться фактичне значення цільових значень KPI: вводиться вручну або"
+" зчитується з даних Odoo за період і компанію цільового значення."
+
+#. module: l10n_ua_hr_scorecard
+#: model:ir.model.fields,help:l10n_ua_hr_scorecard.field_hr_kpi__formula_error
+msgid "Why the formula cannot be used, if it cannot."
+msgstr "Чому формулу неможливо використати, якщо так."
+
+#. module: l10n_ua_hr_scorecard
+#: model_terms:ir.ui.view,arch_db:l10n_ua_hr_scorecard.hr_kpi_period_view_search
+msgid "With KPI Targets"
+msgstr "З цільовими значеннями KPI"
+
+#. module: l10n_ua_hr_scorecard
+#: model_terms:ir.ui.view,arch_db:l10n_ua_hr_scorecard.hr_kpi_period_view_search
+msgid "Without KPI Targets"
+msgstr "Без цільових значень KPI"
+
+#. module: l10n_ua_hr_scorecard
+#: model_terms:ir.ui.view,arch_db:l10n_ua_hr_scorecard.hr_kpi_assignment_view_search
+msgid "Without KPIs"
+msgstr "Без KPI"
+
+#. module: l10n_ua_hr_scorecard
+#: model:ir.model.fields,field_description:l10n_ua_hr_scorecard.field_hr_kpi_period__year
+#: model:ir.model.fields,field_description:l10n_ua_hr_scorecard.field_hr_kpi_target__period_year
+#: model:ir.model.fields,field_description:l10n_ua_hr_scorecard.field_hr_kpi_target_copy_wizard__period_year
+#: model:ir.model.fields.selection,name:l10n_ua_hr_scorecard.selection__hr_kpi_period__period_type__year
+#: model:ir.model.fields.selection,name:l10n_ua_hr_scorecard.selection__hr_kpi_target__period_type__year
+#: model:ir.model.fields.selection,name:l10n_ua_hr_scorecard.selection__hr_kpi_target_copy_wizard__period_type__year
+#: model_terms:ir.ui.view,arch_db:l10n_ua_hr_scorecard.hr_kpi_period_view_search
+msgid "Year"
+msgstr "Рік"
+
+#. module: l10n_ua_hr_scorecard
+#: model:ir.model.fields,help:l10n_ua_hr_scorecard.field_hr_scorecard_line__weighted_achievement
+msgid "achievement x weight / 100"
+msgstr "виконання x вага / 100"
+
+#. module: l10n_ua_hr_scorecard
+#: model_terms:ir.ui.view,arch_db:l10n_ua_hr_scorecard.hr_kpi_view_form
+msgid "e.g. (A - B) / C * 100"
+msgstr "напр. (A - B) / C * 100"
+
+#. module: l10n_ua_hr_scorecard
+#: model_terms:ir.ui.view,arch_db:l10n_ua_hr_scorecard.hr_kpi_view_form
+msgid "e.g. Sales Target"
+msgstr "напр. План продажів"
+
+#. module: l10n_ua_hr_scorecard
+#. odoo-python
+#: code:addons/l10n_ua_hr_scorecard/models/hr_kpi_target.py:0
+msgid "the formula is not valid."
+msgstr "формула некоректна."
+
+#. module: l10n_ua_hr_scorecard
+#. odoo-python
+#: code:addons/l10n_ua_hr_scorecard/models/hr_kpi_target.py:0
+msgid "the target has no value for the variable %s."
+msgstr "цільове значення не має значення для змінної %s."

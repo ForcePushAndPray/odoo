@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+
+    <t t-name="l10n_ua_hr_scorecard.KpiMap">
+        <Layout className="'o_kpi_map'" display="props.display">
+            <t t-set-slot="control-panel-additional-actions">
+                <CogMenu/>
+            </t>
+            <div class="p-3 overflow-auto" t-ref="printable">
+                <div t-if="state.loading and !state.employees.length" class="text-muted">Loading...</div>
+                <div t-elif="!state.employees.length" class="text-muted">
+                    No employee held a job position with the KPI targets matching the search.
+                </div>
+                <table t-else="" class="table table-sm align-middle mb-0 o_kpi_map_table">
+                    <thead>
+                        <tr>
+                            <th rowspan="2" class="align-bottom">Employee</th>
+                            <th rowspan="2" class="align-bottom">Job Position</th>
+                            <th rowspan="2" class="align-bottom o_kpi_map_kpi_col">KPI</th>
+                            <th t-foreach="state.periods" t-as="period" t-key="period.id"
+                                colspan="4" class="text-center text-nowrap o_kpi_map_period_start o_kpi_map_period_title"
+                                t-esc="period.name"/>
+                        </tr>
+                        <tr>
+                            <t t-foreach="state.periods" t-as="period" t-key="period.id">
+                                <th class="text-end o_kpi_map_period_start">Weight, %</th>
+                                <th class="text-end">Planned</th>
+                                <th class="text-end">Actual</th>
+                                <th class="text-end">Achievement, %</th>
+                            </t>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr t-foreach="rows" t-as="row" t-key="row.key" t-att-class="rowClass(row)">
+                            <td t-if="row.employee" t-att-rowspan="row.employee.row_count"
+                                class="fw-bold align-top o_kpi_map_group_cell">
+                                <t t-esc="row.employee.name"/>
+                            </td>
+                            <td t-if="row.type === 'kpi' and row.job" t-att-rowspan="row.jobRowCount"
+                                class="align-top o_kpi_map_group_cell">
+                                <t t-esc="row.job.name"/>
+                                <div t-if="row.job.company" class="small text-muted" t-esc="row.job.company"/>
+                            </td>
+                            <t t-if="row.type === 'kpi'">
+                                <td class="o_kpi_map_kpi_col">
+                                    <t t-esc="row.kpi.name"/>
+                                    <span t-if="row.kpi.uom" class="small text-muted ms-1">
+                                        (<t t-esc="row.kpi.uom"/>)
+                                    </span>
+                                </td>
+                                <t t-foreach="state.periods" t-as="period" t-key="period.id">
+                                    <t t-set="cell" t-value="this.cell(row.kpi, period)"/>
+                                    <t t-if="cell">
+                                        <td class="text-end o_kpi_map_period_start" t-esc="formatNumber(cell.weight)"/>
+                                        <td class="text-end text-nowrap" t-esc="formatNumber(cell.planned)"/>
+                                        <td class="text-end text-nowrap" t-esc="formatNumber(cell.actual)"/>
+                                        <td t-attf-class="text-end fw-bold {{ achievementClass(cell.achievement) }}">
+                                            <a href="#" t-attf-class="{{ achievementClass(cell.achievement) }}"
+                                               t-on-click.prevent="() => this.openTarget(cell)"
+                                               t-esc="formatNumber(cell.achievement)"/>
+                                        </td>
+                                    </t>
+                                    <t t-else="">
+                                        <td class="o_kpi_map_period_start"/><td/><td/><td/>
+                                    </t>
+                                </t>
+                            </t>
+                            <t t-else="">
+                                <td t-if="!row.job.kpis.length" class="align-top o_kpi_map_group_cell">
+                                    <t t-esc="row.job.name"/>
+                                </td>
+                                <td class="o_kpi_map_kpi_col">Weighted Result</td>
+                                <t t-foreach="state.periods" t-as="period" t-key="period.id">
+                                    <t t-set="total" t-value="this.total(row.job, period)"/>
+                                    <t t-if="total">
+                                        <td class="text-end o_kpi_map_period_start">
+                                            <t t-esc="formatNumber(total.total_weight)"/>
+                                            <i t-if="total.total_weight !== 100" class="fa fa-exclamation-triangle text-warning ms-1"
+                                               title="The weights of the KPIs of this job position do not total 100%"/>
+                                        </td>
+                                        <td colspan="2" class="text-end small text-muted fw-normal">
+                                            <span t-if="total.partial" t-att-title="partialTitle(total)">
+                                                <i class="fa fa-clock-o me-1"/>
+                                                <t t-esc="total.days"/>/<t t-esc="total.period_days"/>
+                                            </span>
+                                        </td>
+                                        <td t-attf-class="text-end {{ achievementClass(total.weighted_result) }}"
+                                            t-esc="formatNumber(total.weighted_result)"/>
+                                    </t>
+                                    <t t-else="">
+                                        <td class="o_kpi_map_period_start"/><td colspan="2"/><td/>
+                                    </t>
+                                </t>
+                            </t>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </Layout>
+    </t>
+
+    <t t-name="l10n_ua_hr_scorecard.KpiMapPrintItem">
+        <DropdownItem class="'o_kpi_map_print_menu'" onSelected.bind="onPrint">
+            <i class="fa fa-fw fa-print me-1"/>Print
+        </DropdownItem>
+    </t>
+
+</templates>

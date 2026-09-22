@@ -4,7 +4,8 @@ from odoo.exceptions import UserError
 
 class HrKpiAssignWizard(models.TransientModel):
     _name = 'hr.kpi.assign.wizard'
-    _description = 'Assign KPI to Employees'
+    _description = 'Assign KPI to Job Positions'
+    _check_company_auto = True
 
     kpi_id = fields.Many2one(
         'hr.kpi',
@@ -25,10 +26,10 @@ class HrKpiAssignWizard(models.TransientModel):
         default=lambda self: self.env.company,
         domain=lambda self: [('id', 'in', self.env.companies.ids)],
     )
-    employee_ids = fields.Many2many(
-        'hr.employee',
-        string='Employees',
-        domain="[('company_id', '=', company_id)]",
+    job_ids = fields.Many2many(
+        'hr.job',
+        string='Job Positions',
+        check_company=True,
     )
 
     @api.model
@@ -43,25 +44,24 @@ class HrKpiAssignWizard(models.TransientModel):
             # context-supplied company is not in the user's allowed set; fall back
             company_id = self.env.company.id
             vals['company_id'] = company_id
-        if 'employee_ids' in fields_list and kpi_id and period_id:
+        if 'job_ids' in fields_list and kpi_id and period_id:
             lines = self.env['hr.scorecard.line'].search([
                 ('kpi_id', '=', kpi_id),
                 ('scorecard_id.period_id', '=', period_id),
                 ('scorecard_id.company_id', '=', company_id),
             ])
-            current_emp_ids = lines.mapped('scorecard_id.employee_id').ids
-            vals['employee_ids'] = [(6, 0, current_emp_ids)]
+            vals['job_ids'] = [(6, 0, lines.mapped('scorecard_id.job_id').ids)]
         return vals
 
     @api.onchange('company_id')
     def _onchange_company_id(self):
-        """Drop selected employees that don't belong to the new company."""
-        if self.company_id and self.employee_ids:
-            mismatched = self.employee_ids.filtered(
-                lambda e: e.company_id and e.company_id != self.company_id
+        """Drop selected job positions that don't belong to the new company."""
+        if self.company_id and self.job_ids:
+            mismatched = self.job_ids.filtered(
+                lambda j: j.company_id and j.company_id != self.company_id
             )
             if mismatched:
-                self.employee_ids = self.employee_ids - mismatched
+                self.job_ids = self.job_ids - mismatched
 
     def action_save_assignments(self):
         self.ensure_one()
@@ -76,19 +76,19 @@ class HrKpiAssignWizard(models.TransientModel):
             ('scorecard_id.period_id', '=', self.period_id.id),
             ('scorecard_id.company_id', '=', self.company_id.id),
         ])
-        current_emp_ids = set(current_lines.mapped('scorecard_id.employee_id').ids)
-        new_emp_ids = set(self.employee_ids.ids)
+        current_job_ids = set(current_lines.mapped('scorecard_id.job_id').ids)
+        new_job_ids = set(self.job_ids.ids)
 
         # Add new assignments
-        for emp_id in new_emp_ids - current_emp_ids:
+        for job_id in new_job_ids - current_job_ids:
             scorecard = Scorecard.search([
-                ('employee_id', '=', emp_id),
+                ('job_id', '=', job_id),
                 ('period_id', '=', self.period_id.id),
                 ('company_id', '=', self.company_id.id),
             ], limit=1)
             if not scorecard:
                 scorecard = Scorecard.create({
-                    'employee_id': emp_id,
+                    'job_id': job_id,
                     'period_id': self.period_id.id,
                     'company_id': self.company_id.id,
                 })
@@ -99,20 +99,21 @@ class HrKpiAssignWizard(models.TransientModel):
 
         # Remove deselected assignments; block if scorecard not draft
         to_remove = current_lines.filtered(
-            lambda l: l.scorecard_id.employee_id.id not in new_emp_ids
+            lambda l: l.scorecard_id.job_id.id not in new_job_ids
         )
         blocking = to_remove.filtered(lambda l: l.scorecard_id.state != 'draft')
         if blocking:
-            sample = blocking[0]
+            scorecard = blocking[0].scorecard_id
+            states = dict(scorecard._fields['state']._description_selection(self.env))
             raise UserError(_(
-                'Cannot unassign %(emp)s from KPI %(kpi)s in %(period)s '
+                'Cannot remove KPI %(kpi)s from job position %(job)s in %(period)s '
                 'because the scorecard is %(state)s. '
                 'Reset the scorecard to draft first.'
             ) % {
-                'emp': sample.scorecard_id.employee_id.name,
                 'kpi': self.kpi_id.name,
-                'period': self.period_id.name,
-                'state': sample.scorecard_id.state,
+                'job': scorecard.job_id.name,
+                'period': self.period_id.display_name,
+                'state': states[scorecard.state],
             })
         to_remove.unlink()
 

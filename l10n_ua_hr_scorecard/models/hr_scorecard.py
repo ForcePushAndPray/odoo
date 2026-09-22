@@ -1,16 +1,19 @@
 import calendar
+from collections import defaultdict
+from datetime import date, timedelta
 
-from odoo import models, fields, api, _
+from odoo import models, fields, api, _, Command
 from odoo.exceptions import UserError, ValidationError
 from odoo.tools.float_utils import float_compare, float_round
 
 
 class HrScorecard(models.Model):
     _name = 'hr.scorecard'
-    _description = 'Employee KPI Scorecard'
+    _description = 'Job Position KPI Scorecard'
     _inherit = ['mail.thread', 'mail.activity.mixin']
-    _order = 'period_id desc, employee_id'
+    _order = 'period_id desc, job_id'
     _rec_name = 'name'
+    _check_company_auto = True
 
     name = fields.Char(
         string='Reference',
@@ -19,17 +22,18 @@ class HrScorecard(models.Model):
         readonly=True,
         default=lambda self: _('New'),
     )
-    employee_id = fields.Many2one(
-        'hr.employee',
-        string='Employee',
+    job_id = fields.Many2one(
+        'hr.job',
+        string='Job Position',
         required=True,
         tracking=True,
         index=True,
+        check_company=True,
     )
     department_id = fields.Many2one(
         'hr.department',
         string='Department',
-        related='employee_id.department_id',
+        related='job_id.department_id',
         store=True,
         readonly=True,
     )
@@ -39,6 +43,7 @@ class HrScorecard(models.Model):
         required=True,
         tracking=True,
         index=True,
+        check_company=True,
     )
     line_ids = fields.One2many(
         'hr.scorecard.line',
@@ -57,53 +62,38 @@ class HrScorecard(models.Model):
         store=True,
         help='Sum of (KPI achievement x weight) over all lines. May exceed or fall below 100%.',
     )
-    bonus_base = fields.Monetary(
-        string='Bonus Base',
-        tracking=True,
-        help='Bonus amount paid when weighted result equals 100%. '
-             'Defaults to the value from the employee KPI config.',
+    employee_count = fields.Integer(
+        string='Employee Count',
+        compute='_compute_employee_count',
+        help='Employees who held the job position for at least one day of the period.',
     )
-    bonus_amount = fields.Monetary(
-        string='Bonus Amount',
-        compute='_compute_bonus_amount',
-        store=True,
-        help='bonus_base x weighted_result / 100',
+    advance_bonus_ids = fields.Many2many(
+        'hr.bonus',
+        'hr_scorecard_advance_bonus_rel',
+        'scorecard_id',
+        'bonus_id',
+        string='Accrued Advances',
+        copy=False,
+        readonly=True,
     )
-    bonus_model = fields.Selection([
-        ('period', 'Period-based (single payout)'),
-        ('monthly_advance', 'Monthly advance with reconciliation'),
-    ], string='Bonus Model', required=True, default='period', tracking=True)
-    bonus_type_id = fields.Many2one(
-        'hr.bonus.type',
-        string='Bonus Type',
-        tracking=True,
-        help='Bonus type used when auto-accruing hr.bonus records. '
-             'Defaults from the employee KPI config.',
+    final_bonus_ids = fields.Many2many(
+        'hr.bonus',
+        'hr_scorecard_final_bonus_rel',
+        'scorecard_id',
+        'bonus_id',
+        string='Accrued Final Bonuses',
+        copy=False,
+        readonly=True,
+        help='Period-based bonuses and monthly-advance reconciliations.',
     )
     bonus_ids = fields.Many2many(
         'hr.bonus',
-        'hr_scorecard_bonus_rel',
-        'scorecard_id',
-        'bonus_id',
         string='Accrued Bonuses',
-        copy=False,
-        readonly=True,
+        compute='_compute_bonus_ids',
     )
     bonus_count = fields.Integer(
         string='Bonus Count',
-        compute='_compute_bonus_count',
-    )
-    advances_accrued = fields.Boolean(
-        string='Advances Accrued',
-        readonly=True,
-        copy=False,
-        default=False,
-    )
-    final_accrued = fields.Boolean(
-        string='Final Accrued',
-        readonly=True,
-        copy=False,
-        default=False,
+        compute='_compute_bonus_ids',
     )
     currency_id = fields.Many2one(
         'res.currency',
@@ -118,7 +108,7 @@ class HrScorecard(models.Model):
         required=True,
         default=lambda self: self.env.company,
         domain=lambda self: [('id', 'in', self.env.companies.ids)],
-    )    
+    )
     state = fields.Selection([
         ('draft', 'Draft'),
         ('confirmed', 'Confirmed'),
@@ -126,10 +116,10 @@ class HrScorecard(models.Model):
     ], string='Status', required=True, default='draft', tracking=True, index=True)
     notes = fields.Text(string='Notes')
 
-    _sql_constraints = [
-        ('employee_period_uniq', 'unique(employee_id, period_id, company_id)',
-         'A scorecard already exists for this employee and period.'),
-    ]
+    _job_period_uniq = models.Constraint(
+        'unique(job_id, period_id, company_id)',
+        'A scorecard already exists for this job position and period.',
+    )
 
     @api.depends('line_ids.weight', 'line_ids.weighted_achievement')
     def _compute_totals(self):
@@ -137,17 +127,15 @@ class HrScorecard(models.Model):
             card.total_weight = sum(card.line_ids.mapped('weight'))
             card.weighted_result = sum(card.line_ids.mapped('weighted_achievement'))
 
-    @api.depends('bonus_base', 'weighted_result')
-    def _compute_bonus_amount(self):
+    @api.depends('job_id', 'period_id', 'company_id')
+    def _compute_employee_count(self):
         for card in self:
-            card.bonus_amount = float_round(
-                card.bonus_base * card.weighted_result / 100.0,
-                precision_digits=2,
-            )
+            card.employee_count = len(card._get_employee_intervals())
 
-    @api.depends('bonus_ids')
-    def _compute_bonus_count(self):
+    @api.depends('advance_bonus_ids', 'final_bonus_ids')
+    def _compute_bonus_ids(self):
         for card in self:
+            card.bonus_ids = card.advance_bonus_ids | card.final_bonus_ids
             card.bonus_count = len(card.bonus_ids)
 
     @api.constrains('line_ids', 'state')
@@ -160,36 +148,148 @@ class HrScorecard(models.Model):
                         '(currently %.2f%%).'
                     ) % card.total_weight)
 
-    @api.onchange('employee_id', 'company_id')
-    def _onchange_employee_id(self):
-        if self.employee_id:
-            config = self.env['hr.scorecard.employee.config'].get_for_employee(
-                self.employee_id, self.company_id,
-            )
-            if config:
-                self.bonus_base = config.bonus_base
-                self.bonus_model = config.bonus_model
-                self.bonus_type_id = config.bonus_type_id
-
     @api.model_create_multi
     def create(self, vals_list):
-        Config = self.env['hr.scorecard.employee.config']
         for vals in vals_list:
             if vals.get('name', _('New')) == _('New'):
                 vals['name'] = self.env['ir.sequence'].next_by_code('hr.scorecard') or _('New')
-            employee_id = vals.get('employee_id')
-            if employee_id:
-                company = self.env['res.company'].browse(
-                    vals.get('company_id') or self.env.company.id
-                )
-                config = Config.get_for_employee(
-                    self.env['hr.employee'].browse(employee_id), company,
-                )
-                if config:
-                    vals.setdefault('bonus_base', config.bonus_base)
-                    vals.setdefault('bonus_model', config.bonus_model)
-                    vals.setdefault('bonus_type_id', config.bonus_type_id.id)
         return super().create(vals_list)
+
+    # ------------------------------------------------------------------
+    # Employees of the job position
+    # ------------------------------------------------------------------
+
+    def _get_employee_intervals(self):
+        """Return ``{employee_id: [(date_start, date_end), ...]}``: the days of
+        the period on which each employee held this job position.
+
+        Read from ``hr.version``, never from ``hr.employee``: ``job_id`` on the
+        card is the one in force today and cannot answer for a past quarter.
+        A version is in force from its ``date_version`` until the next version
+        starts, clipped by the contract dates. The rules follow
+        ``hr.staffing.table._occupancy_from_versions`` so that the scorecard
+        and the staffing table agree on who held a position:
+
+        * a departure date on any version ends employment when the contract
+          has no end date;
+        * an archived employee without any end date is dropped, since there
+          is no telling when they left.
+
+        Contract dates are restricted to HR managers, so the timeline is read
+        as superuser; only dates and ids leave this method.
+        """
+        self.ensure_one()
+        return self._get_job_employee_intervals(self.job_id, self.period_id, self.company_id)
+
+    @api.model
+    def _get_job_employee_intervals(self, job, period, company):
+        """Same as ``_get_employee_intervals`` for any job position, period
+        and company, with or without a scorecard."""
+        return self._get_job_employee_intervals_between(job, company, period.date_from, period.date_to)
+
+    @api.model
+    def _get_job_employee_intervals_between(self, job, company, date_from, date_to):
+        """Same as ``_get_job_employee_intervals`` for any date range."""
+        if not (job and company and date_from and date_to):
+            return {}
+        Version = self.env['hr.version'].sudo().with_context(active_test=False)
+        holders = Version.search([
+            ('employee_id', '!=', False),
+            ('company_id', '=', company.id),
+            ('job_id', '=', job.id),
+            ('date_version', '<=', date_to),
+        ])
+        if not holders:
+            return {}
+        employee_ids = holders.employee_id.ids
+        rows = Version.search_read(
+            [('employee_id', 'in', employee_ids),
+             ('date_version', '<=', date_to)],
+            ['employee_id', 'company_id', 'job_id', 'date_version',
+             'contract_date_start', 'contract_date_end', 'departure_date'],
+            order='date_version, id',
+        )
+        archived = set(self.env['hr.employee'].sudo().with_context(active_test=False).search([
+            ('id', 'in', employee_ids), ('active', '=', False),
+        ]).ids)
+
+        timelines = defaultdict(list)
+        departures = {}
+        for row in rows:
+            employee_id = row['employee_id'][0]
+            timelines[employee_id].append(row)
+            departure = row['departure_date']
+            if departure and (employee_id not in departures or departure > departures[employee_id]):
+                departures[employee_id] = departure
+
+        result = {}
+        for employee_id, timeline in timelines.items():
+            intervals = []
+            for index, row in enumerate(timeline):  # ordered by date_version ascending
+                if (row['job_id'] and row['job_id'][0]) != job.id:
+                    continue
+                if (row['company_id'] and row['company_id'][0]) != company.id:
+                    continue
+                end = row['contract_date_end'] or departures.get(employee_id)
+                if not end and employee_id in archived:
+                    continue
+                start = row['date_version']
+                if row['contract_date_start']:
+                    start = max(start, row['contract_date_start'])
+                if index + 1 < len(timeline):
+                    version_end = timeline[index + 1]['date_version'] - timedelta(days=1)
+                    end = min(end, version_end) if end else version_end
+                start = max(start, date_from)
+                end = min(end, date_to) if end else date_to
+                if start <= end:
+                    intervals.append((start, end))
+            if intervals:
+                result[employee_id] = intervals
+        return result
+
+    @staticmethod
+    def _days_in_range(intervals, date_from, date_to):
+        """Number of days of ``intervals`` that fall within [date_from, date_to]."""
+        return sum(
+            max((min(end, date_to) - max(start, date_from)).days + 1, 0)
+            for start, end in intervals
+        )
+
+    def _get_employee_results(self):
+        """Per-employee bonus figures, computed on the fly (nothing is stored).
+
+        The bonus base from the employee KPI config is prorated by the share of
+        the period the employee held the job position, so that an employee
+        transferred mid-period is not paid the full base on both scorecards.
+        """
+        self.ensure_one()
+        intervals = self._get_employee_intervals()
+        if not intervals:
+            return []
+        period = self.period_id
+        period_days = (period.date_to - period.date_from).days + 1
+        Config = self.env['hr.scorecard.employee.config']
+        results = []
+        for employee in self.env['hr.employee'].browse(list(intervals)):
+            days = self._days_in_range(intervals[employee.id], period.date_from, period.date_to)
+            config = Config.get_for_employee(employee, self.company_id)
+            bonus_base = float_round(config.bonus_base * days / period_days, precision_digits=2)
+            results.append({
+                'employee': employee,
+                'config': config,
+                'intervals': intervals[employee.id],
+                'days': days,
+                'period_days': period_days,
+                'bonus_base': bonus_base,
+                'bonus_amount': float_round(
+                    bonus_base * self.weighted_result / 100.0, precision_digits=2,
+                ),
+            })
+        return results
+
+    # ------------------------------------------------------------------
+    # Actions
+    # ------------------------------------------------------------------
 
     def action_confirm(self):
         for card in self:
@@ -203,7 +303,7 @@ class HrScorecard(models.Model):
         for card in self:
             if card.state == 'closed':
                 raise UserError(_('Closed scorecards cannot be reset to draft.'))
-            if card.bonus_ids:
+            if card.advance_bonus_ids or card.final_bonus_ids:
                 raise UserError(_(
                     'Cannot reset a scorecard with accrued bonuses. '
                     'Cancel the linked hr.bonus records first.'
@@ -226,81 +326,119 @@ class HrScorecard(models.Model):
             'domain': [('id', 'in', self.bonus_ids.ids)],
         }
 
+    def action_open_employees(self):
+        """Show the employees of the job position with their bonus figures."""
+        self.ensure_one()
+        Result = self.env['hr.scorecard.employee.result']
+        records = Result.create([
+            {
+                'scorecard_id': self.id,
+                'employee_id': result['employee'].id,
+                'date_from': min(start for start, _end in result['intervals']),
+                'date_to': max(end for _start, end in result['intervals']),
+                'days_in_position': result['days'],
+                'period_days': result['period_days'],
+                'bonus_model': result['config'].bonus_model,
+                'bonus_type_id': result['config'].bonus_type_id.id,
+                'planned_bonus': result['config'].bonus_base,
+                'bonus_base': result['bonus_base'],
+                'bonus_amount': result['bonus_amount'],
+                'accrued_amount': sum(self.bonus_ids.filtered(
+                    lambda b, employee=result['employee']: b.employee_id == employee
+                ).mapped('amount')),
+            }
+            for result in self._get_employee_results()
+        ])
+        return {
+            'type': 'ir.actions.act_window',
+            'name': _('Employees'),
+            'res_model': 'hr.scorecard.employee.result',
+            'view_mode': 'list',
+            'views': [(self.env.ref('l10n_ua_hr_scorecard.hr_scorecard_employee_result_view_list').id, 'list')],
+            'domain': [('id', 'in', records.ids)],
+            'target': 'current',
+        }
+
     def action_accrue_bonus(self):
         for card in self:
             card._accrue_bonus()
         return True
 
     def _accrue_bonus(self):
-        """Create hr.bonus records for this scorecard.
+        """Create hr.bonus records for the employees of this scorecard.
 
-        Idempotent: re-running skips already-accrued advances and the final
-        reconciliation. For period-based bonuses, creates one hr.bonus when
-        the scorecard is closed. For monthly-advance bonuses, creates N
-        advances on first call (scorecard confirmed or closed) and a
-        reconciliation on close.
+        Each employee follows the bonus model of their own KPI config;
+        employees without a config are skipped. Idempotent per employee: an
+        employee who already has advances or a final bonus on this scorecard
+        is not accrued them again.
+
+        * Period-based: one bonus once the scorecard is closed.
+        * Monthly advance: one advance per month of the period as soon as the
+          scorecard is confirmed, prorated by the days in the position within
+          that month, and a reconciliation of the difference on close.
         """
         self.ensure_one()
         if self.state == 'draft':
             raise UserError(_('Confirm the scorecard before accruing bonuses.'))
-        if not self.bonus_type_id:
-            raise UserError(_(
-                'Set a Bonus Type on the scorecard (or in the employee KPI config) '
-                'before accruing bonuses.'
-            ))
         Bonus = self.env['hr.bonus']
+        period = self.period_id
 
-        if self.bonus_model == 'period':
-            if self.state != 'closed':
-                raise UserError(_(
-                    'Period-based bonus can only be accrued after the scorecard is closed.'
-                ))
-            if self.final_accrued:
-                return
+        for result in self._get_employee_results():
+            employee = result['employee']
+            config = result['config']
+            if not config:
+                continue
+            advances = self.advance_bonus_ids.filtered(lambda b: b.employee_id == employee)
+            finals = self.final_bonus_ids.filtered(lambda b: b.employee_id == employee)
+
+            if config.bonus_model == 'monthly_advance' and not advances:
+                months = period.months_in_period()
+                if not months:
+                    raise UserError(_('Period does not cover any month.'))
+                per_month = config.bonus_base / len(months)
+                for year, month in months:
+                    month_start = date(year, month, 1)
+                    month_end = date(year, month, calendar.monthrange(year, month)[1])
+                    days = self._days_in_range(result['intervals'], month_start, month_end)
+                    amount = float_round(
+                        per_month * days / month_end.day, precision_digits=2,
+                    )
+                    if self.currency_id.is_zero(amount):
+                        continue
+                    advances |= Bonus.create(self._prepare_bonus_vals(
+                        employee, config,
+                        amount=amount,
+                        bonus_date=month_end,
+                        note=_('Monthly advance from scorecard %s (%d-%02d)') % (
+                            self.name, year, month,
+                        ),
+                    ))
+                self.advance_bonus_ids = [Command.link(bonus.id) for bonus in advances]
+
+            if self.state != 'closed' or finals:
+                continue
+            if config.bonus_model == 'period':
+                amount = result['bonus_amount']
+                note = _('Auto-accrued from scorecard %s') % self.name
+            else:
+                amount = float_round(
+                    result['bonus_amount'] - sum(advances.mapped('amount')),
+                    precision_digits=2,
+                )
+                note = _('Reconciliation for scorecard %s') % self.name
+            if self.currency_id.is_zero(amount):
+                continue
             bonus = Bonus.create(self._prepare_bonus_vals(
-                amount=self.bonus_amount,
-                date=self.period_id.date_to,
-                note=_('Auto-accrued from scorecard %s') % self.name,
+                employee, config, amount=amount, bonus_date=period.date_to, note=note,
             ))
-            self.write({'bonus_ids': [(4, bonus.id)], 'final_accrued': True})
-            return
+            self.final_bonus_ids = [Command.link(bonus.id)]
 
-        # monthly_advance
-        if not self.advances_accrued:
-            months = self.period_id.months_in_period()
-            if not months:
-                raise UserError(_('Period does not cover any month.'))
-            per_month = float_round(self.bonus_base / len(months), precision_digits=2)
-            for year, month in months:
-                last_day = calendar.monthrange(year, month)[1]
-                bonus = Bonus.create(self._prepare_bonus_vals(
-                    amount=per_month,
-                    date=fields.Date.to_date(f'{year:04d}-{month:02d}-{last_day:02d}'),
-                    note=_('Monthly advance from scorecard %s (%d-%02d)') % (
-                        self.name, year, month,
-                    ),
-                ))
-                self.write({'bonus_ids': [(4, bonus.id)]})
-            self.advances_accrued = True
-
-        if self.state == 'closed' and not self.final_accrued:
-            accrued = sum(self.bonus_ids.mapped('amount'))
-            diff = float_round(self.bonus_amount - accrued, precision_digits=2)
-            if not self.currency_id.is_zero(diff):
-                bonus = Bonus.create(self._prepare_bonus_vals(
-                    amount=diff,
-                    date=self.period_id.date_to,
-                    note=_('Reconciliation for scorecard %s') % self.name,
-                ))
-                self.write({'bonus_ids': [(4, bonus.id)]})
-            self.final_accrued = True
-
-    def _prepare_bonus_vals(self, amount, date, note):
+    def _prepare_bonus_vals(self, employee, config, amount, bonus_date, note):
         self.ensure_one()
         return {
-            'employee_id': self.employee_id.id,
-            'bonus_type_id': self.bonus_type_id.id,
-            'date': date,
+            'employee_id': employee.id,
+            'bonus_type_id': config.bonus_type_id.id,
+            'date': bonus_date,
             'amount': amount,
             'company_id': self.company_id.id,
             'notes': note,
